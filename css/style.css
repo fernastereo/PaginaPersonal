@@ -1,0 +1,162 @@
+body{
+	font-family: 'Titillium Web', sans-serif;
+	margin: 0;
+}
+
+.contenedor-header{
+	background: white;
+	height: 90px;
+	opacity: 0.3;
+}
+
+.contenedor-menu{
+	position: relative;
+	top: -84px;
+}
+
+.logotipo{
+	display: inline-block;
+	margin-bottom: 0px;
+	margin-left: 15px;
+	margin-top: 10px;
+}
+
+.logotipo img{
+	border: 1px solid black;
+	border-bottom-right-radius: 20px;
+	height: 60px;
+	width: 125px;
+}
+
+.menu{
+	display: inline-block;
+	float: right;
+	font-size: 18px;
+	margin-right: 30px;
+	margin-top: 10px;
+}
+
+.menu a{
+	color: black;
+	text-decoration: none;
+}
+
+.menu li{
+	display: inline;
+	margin-left: 15px;
+}
+
+.menu li:after{
+	content: '∣';
+	font-size: 20px;
+	line-height: 20px;
+	margin-left: 12px;
+}
+
+.menu ul{
+	margin-bottom: 0px;
+}
+
+.menu span{
+	margin-right: 10px;
+}
+
+.portada{
+	background-image: url('../images/background1125x510.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: black;
+	font-family: 'Ubuntu', sans-serif;
+	height: 640px;
+}
+
+.portada a{
+	margin-bottom: 240px;
+	text-decoration: none
+}
+
+.titulos{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 50px;
+}
+
+.titulo-a{
+	font-size: 40px;
+	margin-bottom: 0px;
+	margin-top: 110px;
+}
+
+.titulo-b{
+	font-size: 28px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-bottom: 10px;
+}
+
+.footer{
+	background: black;
+	padding-bottom: 15px;
+}
+
+.contacto img{
+	border-bottom-right-radius: 20px;
+	display: inline-block;
+	height: 60px;
+	margin-bottom: 25px;
+	margin-left: 150px;
+	margin-top: 35px;
+	width: 125px;
+}
+
+.contacto a, strong{
+	color: white;
+	display: block;
+	text-decoration: none;
+}
+
+.contacto a{
+	margin-left: 150px;
+}
+
+.footer{
+	display: flex;
+	justify-content: space-between;
+}
+
+.formulario{
+	display: flex;
+	justify-content: space-between;
+	margin-right: 150px;
+	margin-top: 40px;
+	width: 500px;
+}
+
+.formulario label{
+	color: white;
+	margin-bottom: 5px;
+}
+
+.col1, .col2{
+	display: flex;
+	flex-direction: column;
+}
+
+.col2{
+	align-items: flex-start;
+}
+
+.button{
+	border-radius: 5px;
+	border: none;
+	background: gray;
+	color: black;
+	cursor: pointer;
+	margin-top: 15px;
+	padding: 7px;
+}
+
+input:focus, textarea:focus{
+	background: lightgray;
+}
