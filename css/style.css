@@ -61,7 +61,7 @@ body{
 }
 
 .menu a:hover{
-	font-weight: 600;
+	font-weight: 600px;
 	border-bottom: 5px solid #e51b23;
 }
 
@@ -120,7 +120,12 @@ body{
 	margin-bottom: 0px;
 	padding-bottom: 10px;
 }
-
+/****************************************************************************************************************/
+#perfil h2{
+	background: white;
+	border: 1px solid red;
+	color: white;
+}
 /****************************************************************************************************************/
 .footer{
 	background: black;
