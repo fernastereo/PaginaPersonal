@@ -1,0 +1,302 @@
+body{
+	font-family: 'Titillium Web', sans-serif;
+	margin: 0;
+	background-image: url('../images/background1125x510.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center center;
+	padding-top: 80px;
+}
+
+.header{
+	background-color: rgba(255, 255, 255, 0.3);
+	width: 100%;
+	left: 0;
+	top: 0;
+	position: fixed;
+}
+/*
+.contenedor-header{
+	background: white;
+	height: 90px;
+	opacity: 0.3;
+}
+
+.contenedor-menu{
+	position: relative;
+	top: -84px;
+}
+*/
+
+.logotipo{
+	display: inline-block;
+	margin-bottom: 0px;
+	margin-left: 15px;
+	margin-top: 10px;
+}
+
+.logotipo img{
+	border: 1px solid black;
+	border-bottom-right-radius: 20px;
+	height: 60px;
+	width: 125px;
+}
+
+.menu{
+	display: inline-block;
+	float: right;
+	font-size: 18px;
+	margin-right: 30px;
+	margin-top: 7px;
+}
+
+.menu a{
+	color: black;
+	text-decoration: none;
+	padding-top: 25px;
+	padding-left: 25px;
+	padding-bottom: 22px;
+	padding-right: 25px;
+}
+
+.menu a:hover{
+	font-weight: 600px;
+	border-bottom: 5px solid #e51b23;
+}
+
+.menu li{
+	display: inline;
+	margin-left: 15px;
+}
+
+.menu li:after{
+	content: '∣';
+	font-size: 20px;
+	line-height: 20px;
+	margin-left: 12px;
+}
+
+.menu ul{
+	margin-bottom: 0px;
+}
+
+.menu span{
+	margin-right: 10px;
+}
+
+/*
+.portada{
+	background-image: url('../images/background1125x510.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: black;
+	font-family: 'Ubuntu', sans-serif;
+	height: 640px;
+}
+
+.portada a{
+	margin-bottom: 240px;
+	text-decoration: none
+}
+*/
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 50px;
+    margin-bottom: 300px;
+}
+
+.titulo-a{
+	font-size: 40px;
+	margin-bottom: 0px;
+	margin-top: 110px;
+}
+
+.titulo-b{
+	font-size: 28px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-bottom: 10px;
+}
+
+/****************************************************************************************************************/
+.perfil{
+	background: #eaeae1;
+}
+
+.perfil h2{
+	padding-top: 100px;
+	text-align: center;
+}
+
+.perfil-desc{
+	font-size: 0.9em;
+	margin: 0px auto;
+	text-align: center;
+	width: 60%;
+}
+
+.social{
+	height: 50px;
+	margin: 20px auto;
+	display: flex;
+	align-items: flex-end;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 25%;
+}
+
+.social img{
+	height: 40px;
+	width: 40px;
+}
+
+.skills{
+	align-items: flex-end;
+	display: flex;
+	flex-direction: row;
+	padding-bottom: 45px;
+	margin-top: 45px;
+	width: 100%;
+}
+
+.skills article{
+	margin: 0px auto;
+	width: 380px;
+}
+
+.skills img{
+	height: 184px;
+}
+
+.skills div{
+	margin: 0px auto;
+	width: 352px;
+}
+
+.skills p{
+	font-size: 0.9em;
+	margin: 0px auto;
+	text-align: center;
+	width: 80%;
+}
+
+/****************************************************************************************************************/
+.proyectos{
+	background: white;
+	padding-bottom: 15px;
+	padding-top: 10px;
+}
+
+.proyectos h2{
+	padding-top: 100px;
+	text-align: center;
+}
+
+.proyecto-desc{
+	font-size: 0.9em;
+	margin: 0px auto;
+	text-align: center;
+	width: 60%;
+}
+
+.proyecto-img{
+	height: 168px;
+	margin: 15px 30px 15px 30px;
+	width: 280px;
+}
+
+.proyecto-left img{
+	float: left;
+}
+
+.proyecto-right img{
+	float: right;
+}
+
+.proyecto-left, .proyecto-right{
+	border: 1px solid white;
+	margin: 30px auto;
+	width: 80%;
+}
+
+.proyecto-left p{
+	margin-right: 30px;
+	text-align: justify;
+}
+
+.proyecto-right p, h3{
+	margin-left: 30px;
+	text-align: justify;
+}
+
+/****************************************************************************************************************/
+
+/*ERIKA ALVAREZ 326262056 CITIBANK*/
+.footer{
+	background: black;
+	padding-bottom: 15px;
+}
+
+.contacto img{
+	border-bottom-right-radius: 20px;
+	display: inline-block;
+	height: 60px;
+	margin-bottom: 25px;
+	margin-left: 150px;
+	margin-top: 35px;
+	width: 125px;
+}
+
+.contacto a, strong{
+	color: white;
+	display: block;
+	text-decoration: none;
+}
+
+.contacto a{
+	margin-left: 150px;
+}
+
+.footer{
+	display: flex;
+	justify-content: space-between;
+}
+
+.formulario{
+	display: flex;
+	justify-content: space-between;
+	margin-right: 150px;
+	margin-top: 40px;
+	width: 500px;
+}
+
+.formulario label{
+	color: white;
+	margin-bottom: 5px;
+}
+
+.col1, .col2{
+	display: flex;
+	flex-direction: column;
+}
+
+.col2{
+	align-items: flex-start;
+}
+
+.button{
+	border-radius: 5px;
+	border: none;
+	background: gray;
+	color: black;
+	cursor: pointer;
+	margin-top: 15px;
+	padding: 7px 20px;
+}
+
+input:focus, textarea:focus{
+	background: lightgray;
+}
