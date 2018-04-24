@@ -5,15 +5,17 @@
 	<meta charset="utf-8">
 	<link href="https://fonts.googleapis.com/css?family=Titillium+Web|Ubuntu" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<script type="text/javascript" src="js/cssrefresh.js"></script>	 
 </head>
 <body>
 	<section class="portada">
 		<header class="header">
 				<figure class="logotipo">
-					<img src="images/logo.PNG" alt="Logo Fernando">
+					<img src="images/logo.PNG" alt="Logo Fernast">
 				</figure>
-				<nav class="menu">
+				<span id="burguer-button" class="burguer-button icon-menu"></span>
+				<nav id="menu" class="menu">
 					<ul>
 						<li><a href="index.html">Inicio</a></li>
 						<li><a href="#perfil">Perfil</a></li>
@@ -29,7 +31,7 @@
 			<a href="#contacto" class="button">Ver más</a>
 		</div>
 	</section>
-	<section id="perfil" class="perfil">
+<!--	<section id="perfil" class="perfil">
 		<article>
 			<h2>Perfil</h2>
 			<p class="perfil-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -153,6 +155,16 @@
 				<input type="submit" class="button" name="">
 			</div>
 		</form>
-	</footer>
+	</footer>-->
+	<script>
+		var $burguerButton = document.getElementById('burguer-button');
+		var $menu = document.getElementById('menu');
+
+		$burguerButton.addEventListener('touchstart', toggleMenu);
+
+		function toggleMenu(){
+			$menu.classList.toggle('active');
+		};
+	</script>
 </body>
 </html>
