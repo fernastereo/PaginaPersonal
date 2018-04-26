@@ -40,16 +40,20 @@
 body{
 	font-family: 'Titillium Web', sans-serif;
 	margin: 0;
-	background-image: url('../images/background1125x510.png');
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-	background-position: center center;
+	background-image: url('../images/sba_Chytra_kancelar.jpg');
+	background-repeat: no-repeat;/* Para que la imagen de fondo no se repita */
+	background-attachment: fixed;/* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
+	background-size: cover;/* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
+	background-position: center center;/* Para dejar la imagen de fondo centrada, vertical y horizontalmente */
 	padding-top: 80px;
 }
 
+.portada{
+	height: 640px;
+}
+
 .header{
-	background-color: rgba(255, 255, 255, 0.3);
+	background-color: rgba(255, 255, 255, 0.7);
 	width: 100%;
 	left: 0;
 	top: 0;
@@ -112,6 +116,9 @@ body{
 	margin-right: 10px;
 }
 
+.burguer-button{
+	display: none;
+}
 /*
 .portada{
 	background-image: url('../images/background1125x510.png');
@@ -128,17 +135,23 @@ body{
 }
 */
 .contenedor{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-right: 50px;
-    margin-bottom: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: white;
+  opacity: 0.9;
+  width: 100%;
 }
 
 .titulo-a{
 	font-size: 40px;
 	margin-bottom: 0px;
 	margin-top: 110px;
+	margin-left: 30px;
 }
 
 .titulo-b{
@@ -146,9 +159,17 @@ body{
 	margin-top: 0px;
 	margin-bottom: 0px;
 	padding-bottom: 10px;
+	margin-left: 30px;
 }
 
-/****************************************************************************************************************/
+.regresar{
+	text-align: center;
+	padding-bottom: 25px;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+/************************************SECCION PERFIL*****************************************/
 .perfil{
 	background: #eaeae1;
 }
@@ -210,11 +231,18 @@ body{
 	width: 80%;
 }
 
-/****************************************************************************************************************/
+/***********************************SECCION PROYECTOS******************************************/
 .proyectos{
 	background: white;
 	padding-bottom: 15px;
 	padding-top: 10px;
+}
+
+.proyectos article{
+	padding-bottom: 20px;
+	border-bottom: 1px solid red;
+	width: 80%;
+	margin: 30px auto;
 }
 
 .proyectos h2{
@@ -243,29 +271,24 @@ body{
 	float: right;
 }
 
-.proyecto-left, .proyecto-right{
-	border: 1px solid white;
-	margin: 30px auto;
-	width: 80%;
-}
-
 .proyecto-left p{
 	margin-right: 30px;
 	text-align: justify;
 }
 
-.proyecto-right p, h3{
+.proyecto-right p, .proyecto-right h3{
 	margin-left: 30px;
 	text-align: justify;
 }
 
-/****************************************************************************************************************/
+/*************************************SECCION FOOTER*****************************************/
 
 /*ERIKA ALVAREZ 326262056 CITIBANK*/
 .footer{
 	background: black;
 	padding-bottom: 15px;
-}
+	display: flex;
+	justify-content: space-between;}
 
 .contacto img{
 	border-bottom-right-radius: 20px;
@@ -285,11 +308,6 @@ body{
 
 .contacto a{
 	margin-left: 150px;
-}
-
-.footer{
-	display: flex;
-	justify-content: space-between;
 }
 
 .formulario{
@@ -319,8 +337,13 @@ body{
 	border: none;
 	background: gray;
 	color: black;
-	margin-top: 15px;
+	margin-top: 0px;
 	padding: 7px 20px;
+	margin-left: 30px;
+}
+
+.button-comments{
+	margin-left: 0px;	
 }
 
 input:focus, textarea:focus{
@@ -358,19 +381,19 @@ input:focus, textarea:focus{
 	}	
 }
 
-@media screen and (min-width: 375px){
+@media screen and (max-width: 414px){
 	/*Lo que quiere decir que este media-query se va a ejecutar para 
 	resoluciones de 375px hacia abajo hasta que encuentre un media-query 
 	que especifique una resolucion menor hacia abajo*/
 	body{
-		background-image: url('../images/background1125x510.png');
-		background-repeat: no-repeat;/* Para que la imagen de fondo no se repita */
-		background-attachment: fixed;/* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
-		background-size: cover;/* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
-		background-position: center center;/* Para dejar la imagen de fondo centrada, vertical y horizontalmente */
 		background-color: #66999;/* Se muestra un color de fondo mientras se está cargando la imagen de fondo o si hay problemas para cargarla */
 		padding-top: 0px;
+		height: 780px;
 	}	
+
+	.portada{
+		height: 100%;
+	}
 
 	.header{
 		position: static;
@@ -405,6 +428,10 @@ input:focus, textarea:focus{
 		left: 0;
 	}
 
+	.menu.hide{
+		left: -100%;
+	}
+
 	.menu ul{
 		padding-left: 0px;
 		margin-top: 0;
@@ -429,24 +456,21 @@ input:focus, textarea:focus{
 	}
 
 	.contenedor{
-    display: flex;
-    flex-direction: column;
+		background-color: rgba(255, 255, 255, 0.3);
     align-items: flex-end;
-    margin-right: 20px;
-    margin-bottom: 50px;
+    padding-right: 10px;
+	  color: black;
+  	opacity: 1;
 	}
 
 	.titulo-a{
 		font-size: 40px;
 		margin-bottom: 0px;
-		margin-top: 40px;
+		margin-top: 50px;
 		line-height: 40px;
 	}
 
 	.titulo-b{
-		font-size: 28px;
-		margin-top: 0px;
-		margin-bottom: 0px;
 		padding-bottom: 0px;
 	}
 
@@ -470,5 +494,102 @@ input:focus, textarea:focus{
 		cursor: pointer;
 		z-index: 3;
 	}
+
+	/***********************************SECCION PERFIL (VERSION MOVIL)************************************************/
+	.perfil h2{
+		padding-top: 50px;
+	}
+
+	.perfil-desc{
+		width: 80%;
+	}
+
+	.social{
+		width: 70%;
+	}
+
+	.social img{
+		height: 40px;
+		width: 40px;
+	}
+
+	.skills{
+		flex-direction: column;
+		padding-bottom: 0px;
+	}
+
+	.skills article{
+		padding-bottom: 45px;
+		width: 100%;
+	
+	}
+
+	/***********************************SECCION PROYECTOS (VERSION MOVIL)**************************************/
+	.proyectos h2{
+		padding-top: 20px;
+	}
+
+	.proyecto-desc{
+		width: 80%;
+	}
+
+	.proyecto-img{
+		display: block;
+		margin: 15px auto;
+	}
+
+	.proyecto-left img, .proyecto-right img{
+		float: none;
+	}
+
+	.proyecto-left h3, .proyecto-right h3{
+		text-align: center;
+	}
+
+	.proyecto-left p{
+		margin-right: 0px;
+	}
+
+	.proyecto-right p, .proyecto-right h3{
+		margin-left: 0px;
+	}
+
+	/*************************************SECCION FOOTER (VERSION MOVIL)**************************/
+	.contacto img{
+		margin-left: 30px;
+	}
+
+	.contacto a{
+		margin-left: 30px;
+	}
+
+	.footer{
+		display: block;
+	}
+
+	.formulario{
+		margin-left: 30px;
+		display: block;
+		width: 85%;
+	}
+
+	.col1, .col2{
+		display: flex;
+		flex-direction: column;
+		width: 90%;
+	}
+
+	.button{
+		margin-left: 0;
+	}
+
+	input, textarea{
+		width: 100%;
+	}
+
+	.button-comments{
+		width: 90px;
+	}
+
 }
 
