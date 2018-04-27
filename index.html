@@ -50,7 +50,7 @@
 		<div class="skills">
 			<article>
 				<div>
-					<img src="images/backend.png">
+					<img src="images/backend.png" alt="Skills">
 				</div>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -59,7 +59,7 @@
 			</article>
 			<article>
 				<div>
-					<img src="images/frontend.png">
+					<img src="images/frontend.png" alt="Skills">
 				</div>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -68,7 +68,7 @@
 			</article>
 			<article>
 				<div>
-					<img src="images/desktop.png">
+					<img src="images/desktop.png" alt="Skills">
 				</div>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -91,7 +91,7 @@
 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 		</article>
 		<article class="proyecto-left">
-			<img src="images/hal-con.jpg" class="proyecto-img">
+			<img src="images/hal-con.jpg" class="proyecto-img" alt="Proyectos">
 			<div>
 				<h3>Titulo 1</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -103,7 +103,7 @@
 			</div>
 		</article>
 		<article class="proyecto-right">
-			<img src="images/hal-con.jpg" class="proyecto-img">
+			<img src="images/hal-con.jpg" class="proyecto-img" alt="Proyectos">
 			<div>
 				<h3>Titulo 2</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -115,7 +115,7 @@
 			</div>
 		</article>
 		<article class="proyecto-left">
-			<img src="images/hal-con.jpg" class="proyecto-img">
+			<img src="images/hal-con.jpg" class="proyecto-img" alt="Proyectos">
 			<div>
 				<h3>Titulo 3</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -127,7 +127,7 @@
 			</div>
 		</article>
 		<article class="proyecto-right">
-			<img src="images/hal-con.jpg" class="proyecto-img">
+			<img src="images/hal-con.jpg" class="proyecto-img" alt="Proyectos">
 			<div>
 				<h3>Titulo 4</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -165,6 +165,8 @@
 			</div>
 		</form>
 	</footer>
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.2/blazy.min.js"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 	<script>
 		var $burguerButton = document.getElementById('burguer-button');
 		var $menu = document.getElementById('menu');
@@ -175,6 +177,30 @@
 			$menu.classList.toggle('active');
 			$burguerButton.classList.toggle('icon-close');
 		};
+
+		function showMenu(){
+			$menu.classList.add('active');
+			$burguerButton.classList.add('icon-close');
+		};
+
+		function hideMenu(){
+			$menu.classList.remove('active');
+			$burguerButton.classList.remove('icon-close');
+		};
+
+		//Lazy Loading
+		/*
+		var bLazy = new Blazy({
+		    selector: 'img'
+		});
+		*/
+
+		//Gestos Touch
+		var $body = document.body;
+		var gestos = new Hammer($body);
+		gestos.on('swipeleft', hideMenu);		
+
+		gestos.on('swiperight', showMenu);
 	</script>
 </body>
 </html>
