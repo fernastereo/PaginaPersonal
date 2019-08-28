@@ -1,227 +1,89 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Fernando Cueto Rivera</title>
-		<meta charset="utf-8">
-		<!--<link href="https://fonts.googleapis.com/css?family=Titillium+Web|Ubuntu" rel="stylesheet">-->
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-		<!--<script type="text/javascript" src="js/cssrefresh.js"></script>	 -->
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-	</head>
-	<body id="portada">
-		<section class="portada">
-			<header id="head" class="header">
-					<figure class="logotipo">
-						<img src="images/logo.PNG" alt="Logo Fernast">
-					</figure>
-					<span id="burguer-button" class="burguer-button icon-menu"></span>
-					<nav id="menu" class="menu">
-						<ul>
-							<li><a href="#portada">Inicio</a></li>
-							<li><a href="#perfil">Perfil</a></li>
-							<li><a href="#proyectos">Proyectos</a></li>
-							<li><a href="#blog">Blog</a></li>
-							<li><a href="#contacto">Contacto</a></li>
-						</ul>
-					</nav>
-			</header>
-			<div class="contenedor">
-				<h1 class="titulo-a">Fernando Cueto Rivera</h1>
-				<h3 class="titulo-b">Fullstack Developer</h3>
-				<a id="boton-portada" href="#perfil" class="button">Ver más</a>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="./css/index.css">
+<body>
+	<header class="sticky-top">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Navbar</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_navbar" aria-controls="main_navbar" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		
+			<div class="collapse navbar-collapse" id="main_navbar">
+				<ul class="navbar-nav ml-auto bg-dark">
+					<li class="nav-item active pl-4 pt-2 pb-2 pt-md-0 pb-md-0">
+						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item pl-4 pt-2 pb-2 pt-md-0 pb-md-0">
+						<a class="nav-link" href="#profile">Profile</a>
+					</li>
+					<li class="nav-item pl-4 pt-2 pb-2 pt-md-0 pb-md-0">
+						<a href="" class="nav-link">Projects</a>
+					</li>
+					<li class="nav-item pl-4 pt-2 pb-2 pt-md-0 pb-md-0">
+						<a href="" class="nav-link">Blog</a>
+					</li>
+					<li class="nav-item pl-4 pt-2 pb-2 pt-md-0 pb-md-0">
+						<a href="" class="nav-link">Contact</a>
+					</li>
+				</ul>
 			</div>
-		</section>
-		<section id="perfil" class="perfil">
-			<article>
-				<h2>Perfil</h2>
-				<p class="perfil-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<div class="social">
-					<a href="https://github.com/fernastereo"><img src="images/github.png" alt=""></a>
-					<a href="https://www.linkedin.com/in/fernando-cueto-rivera-075ab6154/"><img src="images/linkedin.png" alt=""></a>
-					<a href="https://twitter.com/fernastereo"><img src="images/twitter.png" alt=""></a>
-					<a href="https://plus.google.com/u/0/113947300823706260817"><img src="images/googleplus.png" alt=""></a>
+		</nav>
+	</header>
+	<main class="backimage d-flex align-items-end">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 text-md-left mb-4 text-white">
+					<h1 class="display-5">Fernando E. Cueto</h1>
+					<h2>Backend Developer</h2>
+					<a class="btn btn-outline-light" href="#" role="button">Hire me!</a>
 				</div>
-			</article>
-			<div class="skills">
-				<article>
-					<div>
-						<img src="images/backend.png" alt="Skills">
+			</div>
+		</div>
+	</main>
+	<section id="profile" class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-6 text-center mt-5 mb-3">
+						<h3>Fernando Cueto</h3>	
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-md-6 text-center">
+					<img class="mypicture" src="./images/me-TO.jpg" alt="">
+				</div>
+				<div class="col-12 col-md-6 text-center text-md-left">
+					<p>I am a Backend developer with industry experience building software and web applications. I specialize in .Net Core (C# and Visual Basic) and have professional experience working with PHP and JavaScript. I also have experience working with HTML, CSS, Responsive Design, Bootstrap, Git, and Github</p>
+					<div class="container">
+						<div class="row">
+							<div class="col-12 social d-flex justify-content-around mt-3">
+									<a href="https://github.com/fernastereo"><img src="./images/github.png" alt=""></a>
+									<a href="https://www.linkedin.com/in/fernando-cueto-rivera-075ab6154/"><img src="./images/linkedin.png" alt=""></a>
+									<a href="https://twitter.com/fernastereo"><img src="./images/twitter.png" alt=""></a>
+									<a href="https://plus.google.com/u/0/113947300823706260817"><img src="./images/googleplus.png" alt=""></a>
+							</div>
+						</div>
+						<div class="row">
+								<div class="col-12 text-center mt-5">
+									<a class="btn btn-outline-dark" href="#" role="button">Contact me!</a>
+								</div>
+						</div>
 					</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. <a href="perfil.html#backend">Ver mas...</a></p>
-				</article>
-				<article>
-					<div>
-						<img src="images/frontend.png" alt="Skills">
-					</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. <a href="perfil.html#frontend">Ver mas...</a></p>
-				</article>
-				<article>
-					<div>
-						<img src="images/desktop.png" alt="Skills">
-					</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. <a href="perfil.html#desktop">Ver mas...</a></p>
-				</article>
-			</div>
-			<div class="regresar">
-				<a href="#portada">Regresar</a>
-			</div>
-		</section>
-		<section id="proyectos" class="proyectos">
-			<article>
-				<h2>Mis Proyectos</h2>
-				<p class="proyecto-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			</article>
-			<article class="proyecto-left">
-				<img src="images/hal-con.jpg" class="proyecto-img" alt="Proyectos">
-				<div>
-					<h3>Titulo 1</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 				</div>
-			</article>
-			<article class="proyecto-right">
-				<img src="images/hal-con.jpg" class="proyecto-img" alt="Proyectos">
-				<div>
-					<h3>Titulo 2</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				</div>
-			</article>
-			<article class="proyecto-left">
-				<img src="images/hal-con.jpg" class="proyecto-img" alt="Proyectos">
-				<div>
-					<h3>Titulo 3</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				</div>
-			</article>
-			<article class="proyecto-right">
-				<img src="images/hal-con.jpg" class="proyecto-img" alt="Proyectos">
-				<div>
-					<h3>Titulo 4</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				</div>
-			</article>
-			<div class="regresar">
-				<a href="#portada">Regresar</a>
-			</div>
-		</section>
-		<footer id="contacto" class="footer">
-			<div class="contacto">
-				<img src="images/logo.PNG" alt="FCR">
-				<a href="tel:+573017560109"><strong>Teléfono: </strong><span>+57 301-7560109</span></a>
-				<a href="mailto:info@fernandocueto.com"><strong>E-mail: </strong><span>info@fernandocueto.com</span></a>
-				<div class="regresar">
-					<a href="#portada">Regresar</a>
-				</div>
-			</div>
-			<form class="formulario">
-				<div class="col1">
-					<label for="name">Nombre:</label>
-					<input type="text" id="name" name="name" required placeholder="Nombre Completo" />
-					<label for="email">E-mail:</label>			
-					<input type="email" id="email" name="email" required placeholder="E-mail" />
-				</div>
-				<div class="col2">
-					<label for="comments">Comentario:</label>
-					<textarea id="comments" name="comments" cols="30" rows="5" placeholder="Comentarios"></textarea>
-					<input type="submit" class="button button-comments" name="">
-				</div>
-			</form>
-		</footer>
-		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.2/blazy.min.js"></script>-->
-		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-		<script>
-		  WebFont.load({
-		    google: {
-		      families: ['Titillium+Web', 'Ubuntu']
-		    }
-		  });
-		</script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-		<script>
-			var $burguerButton = document.getElementById('burguer-button');
-			var $menu = document.getElementById('menu');
+		</div>
+	</section>
+	<footer>
 
-			$burguerButton.addEventListener('touchstart', toggleMenu);
-
-			function toggleMenu(){
-				$menu.classList.toggle('active');
-				//document.body.classList.toggle('opened');
-				$burguerButton.classList.toggle('icon-close');
-			};
-
-			function showMenu(){
-				$menu.classList.add('active');
-				$burguerButton.classList.add('icon-close');
-			};
-
-			function hideMenu(){
-				$menu.classList.remove('active');
-				$burguerButton.classList.remove('icon-close');
-			};
-
-			//Lazy Loading
-			/*
-			var bLazy = new Blazy({
-			    selector: 'img'
-			});
-			*/
-
-			//Gestos Touch
-			var $body = document.body;
-			var gestos = new Hammer($body);
-			gestos.on('swipeleft', hideMenu);		
-
-			gestos.on('swiperight', showMenu);
-
-			var $head = document.getElementById('head');
-			var $botonPortada = document.getElementById('boton-portada');
-			var $altura = $botonPortada.offsetTop;
-
-			window.addEventListener('scroll', function (){
-				if(window.pageYOffset >= $altura){
-					$head.classList.add('color');
-				}else{
-					$head.classList.remove('color');
-				}
-			});
-		</script>
-	</body>
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>	
+</body>
 </html>

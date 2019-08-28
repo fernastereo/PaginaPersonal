@@ -1,0 +1,34 @@
+.navbar {
+  background-color: black !important;
+  height: 60px;
+}
+
+.navbar .navbar-nav{
+  background-color: black !important;
+}
+
+.backimage {
+	background-image: url('../images/sba_Chytra_kancelar.jpg');
+	background-repeat: no-repeat;/* Para que la imagen de fondo no se repita */
+	background-attachment: fixed;/* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
+	background-size: cover;/* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
+  background-position: center center;/* Para dejar la imagen de fondo centrada, vertical y horizontalmente */
+  border-radius: 0%;
+  height: 90vh;
+}
+
+.section {
+  height: 90vh;
+}
+
+.mypicture{
+  border-radius: 50%;
+  height: 250px;
+  width: 250px;
+  margin-bottom: 20px;
+}
+
+.social img{
+	height: 40px;
+	width: 40px;
+}
