@@ -4,11 +4,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
+	<title>Fernando Cueto - Backend Developer</title>
 </head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="./css/index.css">
 <body>
+	<!-- Header -->
 	<header class="sticky-top">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="#">Navbar</a>
@@ -25,22 +26,24 @@
 						<a class="nav-link" href="#profile">Profile</a>
 					</li>
 					<li class="nav-item pl-4 pt-2 pb-2 pt-md-0 pb-md-0">
-						<a href="" class="nav-link">Projects</a>
+						<a class="nav-link" href="#projects">Projects</a>
 					</li>
 					<li class="nav-item pl-4 pt-2 pb-2 pt-md-0 pb-md-0">
-						<a href="" class="nav-link">Blog</a>
+						<a class="nav-link" href="">Blog</a>
 					</li>
 					<li class="nav-item pl-4 pt-2 pb-2 pt-md-0 pb-md-0">
-						<a href="" class="nav-link">Contact</a>
+						<a class="nav-link" href="">Contact</a>
 					</li>
 				</ul>
 			</div>
 		</nav>
 	</header>
+	<!-- End Header -->
+	<!-- Main -->
 	<main class="backimage d-flex align-items-end">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
-				<div class="col-12 text-md-left mb-4 text-white">
+				<div class="col-12 col-md-6 col-lg-5 ml-md-4 text-black text-md-left mb-4 cardTitle">
 					<h1 class="display-5">Fernando E. Cueto</h1>
 					<h2>Backend Developer</h2>
 					<a class="btn btn-outline-light" href="#" role="button">Hire me!</a>
@@ -48,11 +51,15 @@
 			</div>
 		</div>
 	</main>
-	<section id="profile" class="section">
+	<!-- End Main -->
+	<!-- Profile -->
+	<section id="profile" class="pt-4">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-12 col-md-6 text-center mt-5 mb-3">
-						<h3>Fernando Cueto</h3>	
+				<div class="col text-center text-uppercase mt-5 mb-3">
+					<small>A brief summary</small>
+					<h2>about me</h2>
+					<hr/>
 				</div>
 			</div>
 			<div class="row">
@@ -64,21 +71,134 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-12 social d-flex justify-content-around mt-3">
-									<a href="https://github.com/fernastereo"><img src="./images/github.png" alt=""></a>
-									<a href="https://www.linkedin.com/in/fernando-cueto-rivera-075ab6154/"><img src="./images/linkedin.png" alt=""></a>
-									<a href="https://twitter.com/fernastereo"><img src="./images/twitter.png" alt=""></a>
-									<a href="https://plus.google.com/u/0/113947300823706260817"><img src="./images/googleplus.png" alt=""></a>
+								<a href="https://github.com/fernastereo"><img src="./images/github.png" alt=""></a>
+								<a href="https://www.linkedin.com/in/fernando-cueto-rivera-075ab6154/"><img src="./images/linkedin.png" alt=""></a>
+								<a href="https://twitter.com/fernastereo"><img src="./images/twitter.png" alt=""></a>
+								<a href="https://plus.google.com/u/0/113947300823706260817"><img src="./images/googleplus.png" alt=""></a>
 							</div>
 						</div>
 						<div class="row">
-								<div class="col-12 text-center mt-5">
-									<a class="btn btn-outline-dark" href="#" role="button">Contact me!</a>
-								</div>
+							<div class="col-12 text-center mt-5">
+								<a class="btn btn-outline-dark" href="#" role="button">Contact me!</a>
+							</div>
 						</div>
 					</div>
 				</div>
+			</div>
 		</div>
 	</section>
+	<!-- End Profile -->
+	<!-- Projects -->
+	<section id="projects" class="pt-4">
+		<div class="container">
+			<div class="row">
+				<div class="col text-center text-uppercase mt-5 mb-3">
+					<small>An overview to</small>
+					<h2>My Projects</h2>
+					<hr/>
+				</div>
+			</div>
+			<div class="row">
+				<!-- <div class="d-flex justify-content-around"> -->
+				<div class="col-12 col-md-6 col-lg-4 mb-4">
+					<div class="card" style="width: 18rem;">
+						<img src="./images/sac.png" class="card-img-top px-2 py-2" alt="">
+						<div class="card-body">
+							<h5 class="card-title">SAC</h5>
+							<div class="badges">
+								<span class="badge badge-dark">Visual Basic</span>
+								<span class="badge badge-primary">MySQL</span>
+								<span class="badge badge-success">Crystal Reports</span>
+							</div>
+							<p class="card-text">Software for managing the entire process of requiring and obtaining a formal building permit in Colombia according to the Colombian Building Code. Currently upgrading to web app with Laravel.</p>
+							<a href="https://github.com/fernastereo/Cur2BQ" class="btn btn-outline-secondary btn-sm">Github Repository</a>
+						</div>
+					</div>					
+				</div>
+				<div class="col-12 col-md-6 col-lg-4 mb-4">
+					<div class="card" style="width: 18rem;">
+						<img src="./images/docus.png" class="card-img-top px-2 py-2" alt="">
+						<div class="card-body">
+							<h5 class="card-title">Docus</h5>
+							<div class="badges">
+								<span class="badge badge-danger">PHP Laravel</span>
+								<span class="badge badge-primary">MySQL</span>
+								<span class="badge badge-success">MVC</span>
+							</div>
+							<p class="card-text">Web app for the reception of documents in offices, loading of attachments, assignment of employees in charge, print label with proof of receipt of the document through Dymo Labelwriter 450 printer.</p>
+							<a href="https://github.com/fernastereo/Docus" class="btn btn-outline-secondary btn-sm">Github Repository</a>
+						</div>
+					</div>					
+				</div>
+				<div class="col-12 col-md-6 col-lg-4 mb-4">
+					<div class="card" style="width: 18rem;">
+						<div class="embed-responsive embed-responsive-16by9">
+							<!-- <iframe class="embed-responsive-item px-2 py-2" src="https://www.youtube.com/embed/NUKVtFCH_bU" allowfullscreen></iframe> -->
+							<iframe class="embed-responsive-item px-2 py-2" src="https://www.youtube.com/embed/NUKVtFCH_bU" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+						</div>
+						<div class="card-body">
+							<h5 class="card-title">Signature Notification</h5>
+							<div class="badges">
+								<span class="badge badge-warning">C#</span>
+								<span class="badge badge-dark">Visual Basic</span>
+								<span class="badge badge-primary">MySQL</span>
+								<span class="badge badge-secondary">.NET Core</span>
+							</div>
+							<p class="card-text">Application with fingerprint capture through Digital Persona reader device and signature capture through Wacom STU-530 device.</p>
+							<a href="https://github.com/fernastereo/Wacom-STU-530-DigitalPersona" class="btn btn-outline-secondary btn-sm">Github Repository</a>
+						</div>
+					</div>					
+				</div>
+				<div class="col-12 col-md-6 col-lg-4 mb-4">
+					<div class="card" style="width: 18rem;">
+						<img src="./images/censoph.png" class="card-img-top px-2 py-2" alt="">
+						<div class="card-body">
+							<h5 class="card-title">Censo PH</h5>
+							<div class="badges">
+								<span class="badge badge-danger">PHP Laravel</span>
+								<span class="badge badge-primary">MySQL</span>
+								<span class="badge badge-success">MVC</span>
+							</div>
+							<p class="card-text">Web app for registering information about people who live in condos including all family members, vehicles, pets. It's useful for the managing to send notifications via e-mail for all accupants.</p>
+							<a href="https://github.com/fernastereo/CensoPH" class="btn btn-outline-secondary btn-sm">Github Repository</a>
+						</div>
+					</div>					
+				</div>
+				<div class="col-12 col-md-6 col-lg-4 mb-4">
+					<div class="card" style="width: 18rem;">
+						<img src="./images/backend.png" class="card-img-top px-2 py-2" alt="">
+						<div class="card-body">
+							<h5 class="card-title">Api restful</h5>
+							<div class="badges">
+								<span class="badge badge-danger">PHP Laravel</span>
+								<span class="badge badge-primary">MySQL</span>
+								<span class="badge badge-success">MVC</span>
+							</div>
+							<p class="card-text">Apirestful built with Laravel framework. It includes all the operations for an e-cammerce application such as clients, sellers, products, categories, and transactions.</p>
+							<a href="https://github.com/fernastereo/apirestful" class="btn btn-outline-secondary btn-sm">Github Repository</a>
+						</div>
+					</div>					
+				</div>
+				<div class="col-12 col-md-6 col-lg-4 mb-4">
+					<div class="card" style="width: 18rem;">
+						<img src="./images/escuela.png" class="card-img-top px-2 py-2" alt="">
+						<div class="card-body">
+							<h5 class="card-title">School Managing</h5>
+							<div class="badges">
+								<span class="badge badge-warning">C#</span>
+								<span class="badge badge-primary">SQL Server</span>
+								<span class="badge badge-secondary">Asp.NET Core</span>
+								<span class="badge badge-success">MVC</span>
+							</div>
+							<p class="card-text">School Management system for administration of students profiles, subjects, courses, grades.</p>
+							<a href="https://github.com/fernastereo/EscuelaAspNetCore" class="btn btn-outline-secondary btn-sm">Github Repository</a>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Projects -->
 	<footer>
 
 	</footer>
