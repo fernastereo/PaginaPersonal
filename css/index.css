@@ -3,6 +3,10 @@
   height: 60px;
 }
 
+.navbar-brand img{
+  border-radius: 15%;
+}
+
 .navbar .navbar-nav{
   background-color: black !important;
 }
