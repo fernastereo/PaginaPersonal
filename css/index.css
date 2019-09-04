@@ -24,7 +24,7 @@ main {
 }
 
 #profile{
-  background-color: rgb(240, 234, 234);
+  background-color: var(--white);/* rgb(240, 234, 234);*/
 }
 
 #projects{
