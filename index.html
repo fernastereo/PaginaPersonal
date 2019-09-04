@@ -5,6 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Fernando Cueto - Backend Developer</title>
+
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
+	<script src="./js/mail.js"></script>
 </head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="./css/index.css">
@@ -12,7 +15,9 @@
 	<!-- Header -->
 	<header class="sticky-top">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="#">Navbar</a>
+			<!-- <a class="navbar-brand" href="#">
+				<img src="./images/f-red.png" width="30" height="30" alt="">
+			</a> -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_navbar" aria-controls="main_navbar" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -20,7 +25,7 @@
 			<div class="collapse navbar-collapse" id="main_navbar">
 				<ul class="navbar-nav ml-auto bg-dark">
 					<li class="nav-item active pl-4 pt-2 pb-2 pt-md-0 pb-md-0">
-						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item pl-4 pt-2 pb-2 pt-md-0 pb-md-0">
 						<a class="nav-link" href="#profile">Profile</a>
@@ -32,7 +37,7 @@
 						<a class="nav-link" href="">Blog</a>
 					</li>
 					<li class="nav-item pl-4 pt-2 pb-2 pt-md-0 pb-md-0">
-						<a class="nav-link" href="">Contact</a>
+						<a class="nav-link" href="#contact">Contact</a>
 					</li>
 				</ul>
 			</div>
@@ -40,13 +45,13 @@
 	</header>
 	<!-- End Header -->
 	<!-- Main -->
-	<main class="backimage d-flex align-items-end">
+	<main class="d-flex align-items-end">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12 col-md-6 col-lg-5 ml-md-4 text-black text-md-left mb-4 cardTitle">
 					<h1 class="display-5">Fernando E. Cueto</h1>
 					<h2>Backend Developer</h2>
-					<a class="btn btn-outline-light" href="#" role="button">Hire me!</a>
+					<a class="btn btn-outline-light" href="#contact" role="button">Hire me!</a>
 				</div>
 			</div>
 		</div>
@@ -63,11 +68,11 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-12 col-md-6 text-center">
+				<div class="col-12 col-lg-4 text-center">
 					<img class="mypicture" src="./images/me-TO.jpg" alt="">
 				</div>
-				<div class="col-12 col-md-6 text-center text-md-left">
-					<p>I am a Backend developer with industry experience building software and web applications. I specialize in .Net Core (C# and Visual Basic) and have professional experience working with PHP and JavaScript. I also have experience working with HTML, CSS, Responsive Design, Bootstrap, Git, and Github</p>
+				<div class="col-12 col-lg-4 text-center">
+					<p>I am a Backend Developer with industry experience building software and web applications. I specialize in .Net Core (C# and Visual Basic) and have professional experience working with PHP and JavaScript. I also have experience working with HTML, CSS, Responsive Design, Bootstrap, Git, and Github</p>
 					<div class="container">
 						<div class="row">
 							<div class="col-12 social d-flex justify-content-around mt-3">
@@ -77,12 +82,35 @@
 								<a href="https://plus.google.com/u/0/113947300823706260817"><img src="./images/googleplus.png" alt=""></a>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-12 text-center mt-5">
-								<a class="btn btn-outline-dark" href="#" role="button">Contact me!</a>
-							</div>
+					</div>
+				</div>
+				<div class="col-12 col-lg-4 mt-4 mt-lg-0">
+					<h5 class="text-uppercase text-center">skills</h5>
+					<div class="d-flex flex-column justify-content-around" style="height: 80%;">
+						<div class="progress mb-3">
+							<div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">C#</div>
+						</div>
+						<div class="progress mb-3">
+							<div class="progress-bar bg-primary" role="progressbar" style="width: 65%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">PHP Laravel</div>
+						</div>
+						<div class="progress mb-3">
+							<div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Java Script</div>
+						</div>
+						<div class="progress mb-3">
+							<div class="progress-bar bg-primary" role="progressbar" style="width: 95%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Visual Basic</div>
+						</div>
+						<div class="progress mb-3">
+							<div class="progress-bar bg-primary" role="progressbar" style="width: 60%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">HTML / CSS</div>
+						</div>
+						<div class="progress mb-3">
+							<div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Git</div>
 						</div>
 					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 text-center mt-5 mb-5">
+					<a class="btn btn-outline-dark" href="#contact" role="button">Contact me!</a>
 				</div>
 			</div>
 		</div>
@@ -99,7 +127,6 @@
 				</div>
 			</div>
 			<div class="row">
-				<!-- <div class="d-flex justify-content-around"> -->
 				<div class="col-12 col-md-6 col-lg-4 mb-4">
 					<div class="card" style="width: 18rem;">
 						<img src="./images/sac.png" class="card-img-top px-2 py-2" alt="">
@@ -133,7 +160,6 @@
 				<div class="col-12 col-md-6 col-lg-4 mb-4">
 					<div class="card" style="width: 18rem;">
 						<div class="embed-responsive embed-responsive-16by9">
-							<!-- <iframe class="embed-responsive-item px-2 py-2" src="https://www.youtube.com/embed/NUKVtFCH_bU" allowfullscreen></iframe> -->
 							<iframe class="embed-responsive-item px-2 py-2" src="https://www.youtube.com/embed/NUKVtFCH_bU" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
 						</div>
 						<div class="card-body">
@@ -199,9 +225,74 @@
 		</div>
 	</section>
 	<!-- End Projects -->
-	<footer>
-
+	<!-- Footer -->
+	<footer id="contact">
+		<div class="container colorTitle">
+			<div class="row">
+				<div class="col-12 col-md-5 mt-5">
+					<h3>Fernando E. Cueto</h3>
+					<p><a class="email" href="mailto:hey@fernandocueto.com">hey@fernandocueto.com</a></p>
+					<p>I’m a software developer. I can help you solve 
+						a problem, build a product or grow existing project.</p>
+				</div>
+				<div class="col-12 col-md-6 offset-md-1">
+					<h5 class="mt-4 text-center">Thanks for taking the time to reach out.</h5>
+					<h6 class="mb-4 text-center">How can I help you today?</h6>
+					<form class="needs-validation" novalidate>
+						<div class="form-row">
+							<div class="col-md-6 mb-3">
+								<label for="validationCustom01">Your name</label>
+								<input type="text" class="form-control form-control-sm" id="validationCustom01" name="fullname" required>
+								<div class="valid-feedback">
+									Looks good!
+								</div>
+								<div class="invalid-feedback">
+									name please	
+								</div>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="validationCustom02">E-mail</label>
+								<input type="email" class="form-control form-control-sm" id="validationCustom02" name="email" required>
+								<div class="valid-feedback">
+									Looks good!
+								</div>
+								<div class="invalid-feedback">
+									email please
+								</div>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-md-12 mb-3">
+								<label for="validationCustom03">Message:</label>
+								<textarea class="form-control form-control-sm" id="validationCustom03" name="message" rows="4" required></textarea>
+								<div class="valid-feedback">
+										Great!
+								</div>
+								<div class="invalid-feedback">
+									message please
+								</div>
+							</div>
+						</div>
+						<div class="container">
+							<div class="row">
+								<div class="col-4 col-md-5">
+									<button id="send" class="btn btn-outline-light btn-sm" onclick="sendEmail(); return false;">Send Message</button>
+								</div>
+								<div id="answer" class="col-8 col-md-7">									
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 mt-4 mb-4 text-center">
+					<span>Handcrafted by me. Copyright © 2019</span>
+				</div>
+			</div>
+		</div>
 	</footer>
+	<!-- End Footer -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>	
