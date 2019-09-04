@@ -12,9 +12,7 @@ function sendEmail(){
   }
 
   Email.send({
-    Host : "smtpout.europe.secureserver.net",
-    Username : "hey@fernandocueto.com",
-    Password : "72007766",
+    SecureToken: "2c0a952d-c47c-4bf6-a9dc-272f25851ae8",
     To : 'hey@fernandocueto.com',
     From : "hey@fernandocueto.com",
     Subject : `Contact from ${name.value}`,
