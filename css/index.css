@@ -3,7 +3,13 @@ body{
 	background-repeat: no-repeat;/* Para que la imagen de fondo no se repita */
 	background-attachment: fixed;/* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
 	background-size: cover;/* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
-	background-position: center center;/* Para dejar la imagen de fondo centrada, vertical y horizontalmente */
+  background-position: center center;/* Para dejar la imagen de fondo centrada, vertical y horizontalmente */
+}
+
+.scrolling-box{
+  height: 90vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 .navbar {
@@ -24,7 +30,7 @@ main {
 }
 
 #profile{
-  background-color: var(--white);/* rgb(240, 234, 234);*/
+  background-color: var(--white);/*  rgb(240, 234, 234);*/
 }
 
 .mypicture{
