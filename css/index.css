@@ -70,3 +70,8 @@ footer {
 .colorTitle{
   color: var(--white);
 }
+
+.invalid-field{
+  color: var(--red);
+  font-size: 0.8rem;
+}

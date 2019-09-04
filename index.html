@@ -5,6 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Fernando Cueto - Backend Developer</title>
+
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
+	<script src="./js/mail.js"></script>
 </head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="./css/index.css">
@@ -236,25 +239,26 @@
 					<h5 class="mt-4 text-center">Thanks for taking the time to reach out.</h5>
 					<h6 class="mb-4 text-center">How can I help you today?</h6>
 					<form class="needs-validation" novalidate>
+					<!-- <div class="needs-validation"> -->
 						<div class="form-row">
 							<div class="col-md-6 mb-3">
 								<label for="validationCustom01">Your name</label>
-								<input type="text" class="form-control form-control-sm" id="validationCustom01" required>
+								<input type="text" class="form-control form-control-sm" id="validationCustom01" name="fullname" required>
 								<div class="valid-feedback">
 									Looks good!
 								</div>
 								<div class="invalid-feedback">
-										Please give me your name.
+									name please	
 								</div>
 							</div>
 							<div class="col-md-6 mb-3">
 								<label for="validationCustom02">E-mail</label>
-								<input type="email" class="form-control form-control-sm" id="validationCustom02" required>
+								<input type="email" class="form-control form-control-sm" id="validationCustom02" name="email" required>
 								<div class="valid-feedback">
 									Looks good!
 								</div>
 								<div class="invalid-feedback">
-									Provide your e-mail.
+									email please
 								</div>
 							</div>
 						</div>
@@ -262,16 +266,25 @@
 							<div class="col-md-12 mb-3">
 								<label for="validationCustom03">Message:</label>
 								<!-- s<input type="text" class="form-control" id="validationCustom03" placeholder="City" required> -->
-								<textarea name="text" class="form-control form-control-sm" id="validationCustom03" rows="4" required></textarea>
+								<textarea class="form-control form-control-sm" id="validationCustom03" name="message" rows="4" required></textarea>
 								<div class="valid-feedback">
 										Great!
 								</div>
 								<div class="invalid-feedback">
-									Please write a message to me.
+									message please
 								</div>
 							</div>
 						</div>
-						<button class="btn btn-outline-light btn-sm" type="submit">Submit form</button>
+						<div class="container">
+							<div class="row">
+								<div class="col-4 col-md-5">
+									<button id="send" class="btn btn-outline-light btn-sm" onclick="sendEmail(); return false;">Send Message</button>
+								</div>
+								<div id="answer" class="col-8 col-md-7">									
+								</div>
+							</div>
+						</div>
+					<!-- </div> -->
 					</form>
 							
 					<script>
@@ -292,9 +305,10 @@
 									}, false);
 								});
 							}, false);
-						})();
+						});
 					</script>
-					<script src="https://smtpjs.com/v3/smtp.js"></script>
+					<script>
+					</script>
 				</div>
 			</div>
 			<div class="row">
