@@ -25,6 +25,13 @@ body{
   background-color: black !important;
 }
 
+.flag {
+  height: 20px;
+  width: 20px;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
 main {
   height: 90vh;
 }
@@ -72,7 +79,7 @@ main {
 
 .card {
   margin: 0 auto;
-  height: 25rem;
+  height: 28rem;
 }
 
 .card p{
