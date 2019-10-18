@@ -1,5 +1,4 @@
 function sendEmail(){
-  const send = document.querySelector('#send');
   const name = document.querySelector('#validationCustom01');
   const email = document.querySelector('#validationCustom02');
   const body = document.querySelector('#validationCustom03');
