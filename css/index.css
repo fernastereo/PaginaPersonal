@@ -1,5 +1,5 @@
 body{
-	background-image: url('../images/sba_Chytra_kancelar.jpg');
+	background-image: url('../images/20191019_110356.jpg');
 	background-repeat: no-repeat;/* Para que la imagen de fondo no se repita */
 	background-attachment: fixed;/* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
 	background-size: cover;/* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
@@ -33,7 +33,7 @@ body{
 }
 
 main {
-  height: 90vh;
+  height: 89vh;
 }
 
 #profile{
