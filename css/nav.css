@@ -53,11 +53,12 @@ nav{
     height: 100vh;
     width: 100%;
     flex-direction: column;
-    /* display: none; */
+    justify-content: space-evenly;
     clip-path: circle(100px at 90% -10%);
     -webkit-clip-path: circle(100px at 90% -10%);
     transition: all 1s ease-out;
     pointer-events: none;
+    padding-left: 0;
   }
 
   .nav-links.open{
