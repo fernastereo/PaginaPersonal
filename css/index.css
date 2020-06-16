@@ -9,7 +9,6 @@
 :root{
   --ff-primary: 'Source Sans Pro', sans-serif;
   --ff-secondary: 'Source Code Pro', monospace;
-  --ff-logo: 
 
   --fw-reg: 300;
   --fw-bold: 900;
@@ -319,6 +318,38 @@ header {
 
   .submenu__list--item{
     margin: 0 1.5em;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .submenu__list--link{
+    color: inherit;
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-h3);
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+  }
+
+  .submenu__list--link:hover{
+    color: var(--clr-accent);
+  }
+
+  .submenu__list--link:after{
+    content: '';
+    position: absolute;
+    top: 110%;
+    height: 4px;
+    width: 0%;
+    left: 50%;
+    background-color: var(--clr-accent);
+    transition: 0.4s ease-out all .1s;
+  }
+
+  .submenu__list--item:hover .submenu__list--link:after{
+    width: 90%;
+    left: 5%;
+    transition: 0.5s ease all;
   }
 }
 
