@@ -353,6 +353,29 @@ header {
   }
 }
 
+.social-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 2em 0 0;
+  padding: 0;
+}
+
+.social__list--item{
+  margin: 0 .5em;
+}
+
+.social__list--link{
+  padding: .5em;
+  color: var(--clr-accent);
+  font-size: 2em;
+}
+
+.social__list--link:hover{
+  color: var(--clr-dark);
+  transition: 0.9s ease all;
+}
+
 /* Styling the services section */
 
 .my-services {
@@ -519,20 +542,4 @@ header {
 
 .footer__link:hover{
   text-decoration: underline;
-}
-
-.social-list {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  margin: 2em 0 0;
-  padding: 0;
-}
-
-.social__list--item{
-  margin: 0 .5em;
-}
-
-.social__list--link{
-  padding: .5em
 }
