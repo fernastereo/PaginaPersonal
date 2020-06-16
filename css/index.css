@@ -147,7 +147,7 @@ header {
 
 .header__logo--tittle{
   margin: 0;
-  font-family: 'Fira Code', monospace;
+  font-family: var(--ff-secondary);
   font-size: var(--fs-h3);
   color: var(--clr-accent);
   text-shadow: 1px 1px 2px rgb(92, 87, 87);
