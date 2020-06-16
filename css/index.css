@@ -9,6 +9,7 @@
 :root{
   --ff-primary: 'Source Sans Pro', sans-serif;
   --ff-secondary: 'Source Code Pro', monospace;
+  --ff-logo: 
 
   --fw-reg: 300;
   --fw-bold: 900;
@@ -141,7 +142,15 @@ header {
 }
 
 .logo {
-  max-width: 100px;
+  max-width: 280px;
+}
+
+.header__logo--tittle{
+  margin: 0;
+  font-family: 'Fira Code', monospace;
+  font-size: var(--fs-h3);
+  color: var(--clr-accent);
+  text-shadow: 1px 1px 2px rgb(92, 87, 87);
 }
 
 .nav {
