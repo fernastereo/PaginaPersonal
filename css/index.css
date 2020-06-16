@@ -267,6 +267,10 @@ header {
   display: inline-block;
 }
 
+.section__submenu{
+  display: none;
+}
+
 @media(min-width: 960px){
   .intro {
     display: grid;
@@ -275,8 +279,13 @@ header {
     column-gap: 1em;
     grid-template-areas: 
       "img title"
-      "img subtitle";
+      "img subtitle"
+      "submenu submenu";
     grid-template-columns: min-content max-content;
+  }
+
+  .intro > .section__submenu{
+    grid-area: submenu;
   }
 
   .intro__img {
@@ -294,6 +303,22 @@ header {
     position: relative;
     left: -1.5em;
     width: calc(100% + 1.5em);
+  }
+
+  .section__submenu{
+    display: inline-block;
+  }
+  
+  .section__submenu--list{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 6em 0 0;
+    padding: 0;
+  }
+
+  .submenu__list--item{
+    margin: 0 1.5em;
   }
 }
 
