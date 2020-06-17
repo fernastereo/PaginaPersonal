@@ -326,7 +326,7 @@ header {
     color: inherit;
     font-weight: var(--fw-bold);
     font-size: var(--fs-h3);
-    text-decoration: none;
+    text-decoration: none !important;
     position: relative;
     display: inline-block;
   }
@@ -378,7 +378,7 @@ header {
 
 /* Styling the services section */
 
-.my-services {
+.my-services, .footer {
   background-color: var(--clr-dark);
   background-image: url('../images/code-coding-data-574073.jpg');
   background-size: cover;
@@ -388,7 +388,7 @@ header {
   position: relative;
 }
 
-.my-services:before{
+.my-services:before, .footer:before{
   content: '';
   position: absolute;
   background-color: #000;
@@ -517,7 +517,27 @@ header {
   opacity: .5;
 }
 
-/* styling the footer */
+/* styling the footer 
+.footer {
+  background-color: var(--clr-dark);
+  background-image: url('../images/code-coding-data-574073.jpg');
+  background-size: cover;
+  color: var(--clr-light);
+  text-align: center;
+  position: relative;
+}
+
+.footer:before{
+  content: '';
+  position: absolute;
+  background-color: #000;
+  opacity: 0.7;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+/* 
 .footer {
   background: #111;
   color: var(--clr-accent);
@@ -538,7 +558,7 @@ header {
 .footer__link:hover,
 .social-list__link:hover {
   opacity: .7;
-}
+} */
 
 .footer__link:hover{
   text-decoration: underline;
