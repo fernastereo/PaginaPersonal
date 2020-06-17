@@ -15,7 +15,7 @@ function sendEmail(){
     To : 'hey@fernandocueto.com',
     From : "hey@fernandocueto.com",
     Subject : `Contact from ${name.value}`,
-    Body : `${email.value}: ${body.value}`
+    Body : `<strong>${name.value}</strong> ha escrito:<br>${body.value}<br><br>Para responder escribir al correo: ${email.value}`
   }).then(
     name.value = '',
     email.value = '',

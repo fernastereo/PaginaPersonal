@@ -6,7 +6,11 @@
 	<title>Fernando Cueto - Fullstack Dev</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="./css/index.css">
+
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
+	<script src="./js/mail.js"></script>
 </head>
 <body>
 	<header>
@@ -149,8 +153,71 @@
 	</section>
 
 	<!-- Footer -->
-	<footer class="footer">
-		<a href="mailto:hey@fernandocueto.com" class="footer__link">hey@fernandocueto.com</a>
+	<footer class="footer" id="contact">
+		<div class="container colorTitle">
+			<div class="row">
+				<div class="col-12 col-md-5 mt-5">
+					<h3>Fernando Cueto</h3>
+					<p><a class="email" href="mailto:hey@fernandocueto.com">hey@fernandocueto.com</a></p>
+					<p id="contact__description">I’m a software developer. I can help you solve 
+						a problem, build a product or grow existing project.</p>
+				</div>
+				<div class="col-12 col-md-6 offset-md-1">
+					<h5 id="contact__title" class="mt-4 text-center">Thanks for taking the time to reach out.</h5>
+					<h6 id="contact__subtitle" class="mb-4 text-center">How can I help you today?</h6>
+					<form class="needs-validation" novalidate>
+						<div class="form-row">
+							<div class="col-md-6 mb-3">
+								<label id="contact__label__name" for="validationCustom01">Your name</label>
+								<input type="text" class="form-control form-control-sm" id="validationCustom01" name="fullname" required>
+								<div class="valid-feedback">
+									Looks good!
+								</div>
+								<div class="invalid-feedback">
+									Name please	
+								</div>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="validationCustom02">E-mail</label>
+								<input type="email" class="form-control form-control-sm" id="validationCustom02" name="email" required>
+								<div class="valid-feedback">
+									Looks good!
+								</div>
+								<div class="invalid-feedback">
+									Email please
+								</div>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-md-12 mb-3">
+								<label id="contact__label__message" for="validationCustom03">Message</label>
+								<textarea class="form-control form-control-sm" id="validationCustom03" name="message" rows="4" required></textarea>
+								<div class="valid-feedback">
+									Great!
+								</div>
+								<div class="invalid-feedback">
+									Message please
+								</div>
+							</div>
+						</div>
+						<div class="container">
+							<div class="row">
+								<div class="col-4 col-md-5">
+									<button id="contact__button" class="btn btn-outline-light btn-sm" onclick="sendEmail(); return false;">Send Message</button>
+								</div>
+								<div id="answer" class="col-8 col-md-7">									
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 mt-4 mb-4 text-center">
+					<span>Handcrafted by me. Copyright © 2020</span>
+				</div>
+			</div>
+		</div>
 	</footer>
 
 	<script src="./js/index.js"></script>
