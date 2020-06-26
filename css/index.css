@@ -351,6 +351,10 @@ header {
     left: 5%;
     transition: 0.5s ease all;
   }
+
+  .social__list--item{
+    margin: 0 .5em;
+  }
 }
 
 .social-list {
@@ -362,7 +366,7 @@ header {
 }
 
 .social__list--item{
-  margin: 0 .5em;
+  margin: 0 .2em;
 }
 
 .social__list--link{
