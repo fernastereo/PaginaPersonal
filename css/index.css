@@ -270,6 +270,18 @@ header {
   display: none;
 }
 
+.social-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 2em 0 0;
+  padding: 0;
+}
+
+.social__list--item{
+  margin: 0 .2em;
+}
+
 @media(min-width: 960px){
   .intro {
     display: grid;
@@ -355,18 +367,6 @@ header {
   .social__list--item{
     margin: 0 .5em;
   }
-}
-
-.social-list {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  margin: 2em 0 0;
-  padding: 0;
-}
-
-.social__list--item{
-  margin: 0 .2em;
 }
 
 .social__list--link{
