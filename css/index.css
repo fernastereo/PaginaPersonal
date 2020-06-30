@@ -519,7 +519,7 @@ header {
 }
 
 .col{
-  width: calc(25% - 2rem);
+  width: calc(90% - 2rem);
   margin: 1rem;
   cursor: pointer;
 }
@@ -550,7 +550,7 @@ header {
 	-webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 	text-align: center;
-	min-height: 350px;
+	min-height: 300px;
 	height: auto;
 	border-radius: 10px;
 	color: rgb(56, 54, 54);
@@ -559,9 +559,9 @@ header {
 
 .back{
   background: #cedce7;
-  background: -webkit-linear-gradient(45deg, #cedce7 0%, var(--clr-accent) 100%);
+  /* background: -webkit-linear-gradient(45deg, #cedce7 0%, var(--clr-accent) 100%);
   background: -o-linear-gradient(45deg,  #cedce7 0%, var(--clr-accent) 100%);
-  background: linear-gradient(45deg,  #cedce7 0%, var(--clr-accent) 100%);
+  background: linear-gradient(45deg,  #cedce7 0%, var(--clr-accent) 100%); */
 }
 
 .front:after{
@@ -573,8 +573,6 @@ header {
     height: 100%;
     content: '';
     display: block;
-    opacity: .6;
-    background-color: #000;
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
     border-radius: 10px;
@@ -610,6 +608,15 @@ header {
   -webkit-perspective: inherit;
           perspective: inherit;
   z-index: 2;
+}
+
+.outer{
+  top: 45%;
+}
+
+.my-work__cards--buttons{
+  display: flex;
+  justify-content: space-around;
 }
 
 .container .back{
