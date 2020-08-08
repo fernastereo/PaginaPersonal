@@ -1,317 +1,477 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Fernando Cueto - Fullstack Dev</title>
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fernando Cueto - Fullstack Dev</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-	<link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/index.css" />
+    <script
+      src="https://kit.fontawesome.com/f406a7473d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="./js/mail.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <!-- <img src="./images/nav.JPG" alt=""> -->
+        <p class="header__logo--tittle">< Fernando Cueto /></p>
+      </div>
+      <button class="nav-toggle" aria-label="toggle navigation">
+        <span class="hamburger"></span>
+      </button>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
+          <li class="nav__item">
+            <a href="#services" class="nav__link">Services</a>
+          </li>
+          <li class="nav__item">
+            <a href="#about" class="nav__link">About me</a>
+          </li>
+          <li class="nav__item">
+            <a href="#my-work" class="nav__link">My Work</a>
+          </li>
+          <li class="nav__item">
+            <a href="http://blog.fernandocueto.com/" class="nav__link">Blog</a>
+          </li>
+          <li class="nav__item">
+            <a href="#contact" class="nav__link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-	<script src="https://smtpjs.com/v3/smtp.js"></script>
-	<script src="./js/mail.js"></script>
-</head>
-<body>
-	<header>
-		<div class="logo">
-			<!-- <img src="./images/nav.JPG" alt=""> -->
-			<p class="header__logo--tittle">< Fernando Cueto /></p>
-		</div>
-		<button class="nav-toggle" aria-label="toggle navigation">
-			<span class="hamburger"></span>
-		</button>
-		<nav class="nav">
-			<ul class="nav__list">
-				<li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
-				<li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
-				<li class="nav__item"><a href="#about" class="nav__link">About me</a></li>
-				<li class="nav__item"><a href="#my-work" class="nav__link">My Work</a></li>
-				<li class="nav__item"><a href="http://blog.fernandocueto.com/" class="nav__link">Blog</a></li>
-				<li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-			</ul>
-		</nav>
-	</header>
+    <!-- Introduction -->
+    <section class="intro" id="home">
+      <h1 class="section__title section__title--intro">
+        Hi, I am <strong>Fernando Cueto</strong>
+      </h1>
+      <p class="section__subtitle section__subtitle--intro">
+        full-stack dev
+      </p>
+      <img
+        src="./images/me-TO.jpg"
+        alt="a picture of Ferna smiling on Toronto"
+        class="intro__img"
+      />
+      <div class="section__submenu">
+        <ul class="section__submenu--list">
+          <li class="submenu__list--item">
+            <a href="#services" class="submenu__list--link">Services</a>
+          </li>
+          <li class="submenu__list--item">
+            <a href="#about" class="submenu__list--link">About me</a>
+          </li>
+          <li class="submenu__list--item">
+            <a href="#my-work" class="submenu__list--link">My Work</a>
+          </li>
+          <li class="submenu__list--item">
+            <a href="http://blog.fernandocueto.com/" class="submenu__list--link"
+              >Blog</a
+            >
+          </li>
+          <li class="submenu__list--item">
+            <a href="#contact" class="submenu__list--link">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-	<!-- Introduction -->
-	<section class="intro" id="home">
-		<h1 class="section__title section__title--intro">
-			Hi, I am <strong>Fernando Cueto</strong>
-		</h1>
-		<p class="section__subtitle section__subtitle--intro">
-			full-stack dev
-		</p>
-		<img src="./images/me-TO.jpg" alt="a picture of Ferna smiling on Toronto" class="intro__img">
-		<div class="section__submenu">
-			<ul class="section__submenu--list">
-				<li class="submenu__list--item"><a href="#services" class="submenu__list--link">Services</a></li>
-				<li class="submenu__list--item"><a href="#about" class="submenu__list--link">About me</a></li>
-				<li class="submenu__list--item"><a href="#my-work" class="submenu__list--link">My Work</a></li>
-				<li class="submenu__list--item"><a href="http://blog.fernandocueto.com/" class="submenu__list--link">Blog</a></li>
-				<li class="submenu__list--item"><a href="#contact" class="submenu__list--link">Contact</a></li>
-			</ul>
-		</div>
-	</section>
+    <!-- My Services -->
+    <section class="my-services" id="services">
+      <h2 class="section__title section__title--services">What I do</h2>
+      <div class="section__services">
+        <div class="services">
+          <div class="service">
+            <h3>Backend Development</h3>
+            <p>
+              Translating your complex business logics into fast, secure and
+              maintainable code.
+            </p>
+            <p>
+              Custom websites or services development with PHP (Laravel), C# or
+              Go and integrations with any SaaS platform or API.
+            </p>
+          </div>
 
-	<!-- My Services -->
-	<section class="my-services" id="services">
-		<h2 class="section__title section__title--services">What I do</h2>
-		<div class="section__services">
-			<div class="services">
-				<div class="service">
-					<h3>Backend Development</h3>
-					<p>Translating your complex business logics into fast, secure and maintainable code.</p>
+          <div class="service">
+            <h3>Frontend Development</h3>
+            <p>
+              Building your awesome product from a visual concept to a fully
+              functional application.
+            </p>
 
-					<p>Custom websites or services development with PHP (Laravel), C# or Go and integrations with any SaaS platform like Stripe or Amazon Web Services.</p>
-				</div>
-				
-				<div class="service">
-					<h3>Frontend Development</h3>
-					<p>Building your awesome product from a visual concept to a fully functional application.</p>
+            <p>
+              Sketch integrations in Boostrap or plain HTML/CSS and modern
+              single page apps development with VueJS or React.
+            </p>
+          </div>
+        </div>
 
-					<p>Sketch integrations in Boostrap or Material Design and modern single page apps development with Vue or React.</p>
-				</div>
-			</div>
-	
-			<a href="#work" class="btn">My Work</a>
-		</div>
-	</section>
+        <a href="#work" class="btn">My Work</a>
+      </div>
+    </section>
 
-	<!-- About me -->
-	<section class="about-me" id="about">
-		<h2 class="section__title section__title--about">Who I am</h2>
-		<p class="section__subtitle section__subtitle--about">Fullstack developer based on Colombia</p>
+    <!-- About me -->
+    <section class="about-me" id="about">
+      <h2 class="section__title section__title--about">Who I am</h2>
+      <p class="section__subtitle section__subtitle--about">
+        Fullstack developer based on Colombia
+      </p>
 
-		<div class="aboute-me__body">
-			<p>I am a Fullstack developer with industry experience building software and web applications. I have professional experience working with PHP (Laravel), .Net Core (C# and Visual Basic), Go, and JavaScript. I also have experience working with HTML, CSS, Responsive Design, Bootstrap, Git, and Github.</p>
-			<p>I am located in Colombia, and I am fluent in English. Thanks to modern communications tools like Slack, Zoom or Teams, I can collaborate with clients around the globe.</p>
-		</div>
+      <div class="aboute-me__body">
+        <p>
+          I am a Fullstack developer with industry experience building software
+          and web applications. I have professional experience working with PHP
+          (Laravel), .Net Core (C# and Visual Basic), Go, and JavaScript. I also
+          have experience working with HTML, CSS, Responsive Design, Bootstrap,
+          Git, and Github. I'm passionate about all the processes of both
+          Front-End and Back-End
+        </p>
+        <p>
+          I am located in Colombia, and I am fluent in English. Thanks to modern
+          communications tools like Slack, Zoom or Teams, I can collaborate with
+          clients around the globe and help them translate their business goals
+          to reality.
+        </p>
+      </div>
 
-		<img src="./images/me-TO.jpg" alt="a picture of ferna smiling" class="about-me__img">
+      <img
+        src="./images/me-TO.jpg"
+        alt="a picture of ferna smiling"
+        class="about-me__img"
+      />
 
-		<ul class="social-list">
-			<li class="social__list--item">
-				<a href="https://www.linkedin.com/in/fernando-cueto/" class="social__list--link"><i class="fab fa-linkedin"></i></a>
-			</li>
-			<li class="social__list--item">
-				<a href="https://github.com/fernastereo" class="social__list--link"><i class="fab fa-github"></i></a>
-			</li>
-			<li class="social__list--item">
-				<a href="https://twitter.com/fernastereo" class="social__list--link"><i class="fab fa-twitter"></i></a>
-			</li>
-			<li class="social__list--item">
-				<a href="fernandocueto.pdf" class="social__list--link" data-toggle="tooltip" data-placement="bottom" title="Download my resume here!" target="_BLANK"><i class="fas fa-file-pdf"></i></a>
-			</li>
-			<li class="social__list--item">
-				<a href="https://wa.me/+573017560109" class="social__list--link"><i class="fab fa-whatsapp"></i></a><!-- <i class="fab fa-whatsapp-square"></i></a> -->
-			</li>
-			<li class="social__list--item">
-				<a href="skype:fernando.cueto?chat" class="social__list--link"><i class="fab fa-skype"></i></a>
-			</li>
-		</ul>
-	</section>
+      <ul class="social-list">
+        <li class="social__list--item">
+          <a
+            href="https://www.linkedin.com/in/fernando-cueto/"
+            class="social__list--link"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+        </li>
+        <li class="social__list--item">
+          <a href="https://github.com/fernastereo" class="social__list--link"
+            ><i class="fab fa-github"></i
+          ></a>
+        </li>
+        <li class="social__list--item">
+          <a href="https://twitter.com/fernastereo" class="social__list--link"
+            ><i class="fab fa-twitter"></i
+          ></a>
+        </li>
+        <li class="social__list--item">
+          <a
+            href="fernandocueto.pdf"
+            class="social__list--link"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            title="Download my resume here!"
+            target="_BLANK"
+            ><i class="fas fa-file-pdf"></i
+          ></a>
+        </li>
+        <li class="social__list--item">
+          <a href="https://wa.me/+573017560109" class="social__list--link"
+            ><i class="fab fa-whatsapp"></i></a
+          ><!-- <i class="fab fa-whatsapp-square"></i></a> -->
+        </li>
+        <li class="social__list--item">
+          <a href="skype:fernando.cueto?chat" class="social__list--link"
+            ><i class="fab fa-skype"></i
+          ></a>
+        </li>
+      </ul>
+    </section>
 
-	<!-- My Work -->
-	<section class="my-work" id="my-work">
-		<h2 class="section__title">My Work</h2>
-		<p class="section__subtitle section__subtitle--work">A selection of my range of work</p>
+    <!-- My Work -->
+    <section class="my-work" id="my-work">
+      <h2 class="section__title">My Work</h2>
+      <p class="section__subtitle section__subtitle--work">
+        A selection of my range of work
+      </p>
 
-		<div class="portfolio">
-			<!-- portfolio item 01 -->
-			<div class="wrapper">
-				<div class="cols">
-					<div class="col" ontouchstart="this.classList.toggle('hover');">
-						<div class="container">
-							<div id="curaduriapp" class="front">
-								<div class="inner">
-									<p>Curaduriapp</p>
-								</div>
-							</div>
-							<div class="back">
-								<div class="inner outer">
-									<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
-									<div class="my-work__cards--buttons">
-										<a href="#" class="btn">Repo</a>
-										<a href="#" class="btn">Live</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-				
-			<!-- portfolio item 02 -->
-			<div class="wrapper">
-				<div class="cols">
-					<div class="col" ontouchstart="this.classList.toggle('hover');">
-						<div class="container">
-							<div class="front">
-								<div class="inner">
-									<p>Diligord</p>
-								</div>
-							</div>
-							<div class="back">
-								<div class="inner outer">
-									<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+      <div class="portfolio">
+        <!-- portfolio item 01 -->
+        <div class="wrapper">
+          <div class="cols">
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+              <div class="container">
+                <div id="curaduriapp" class="front">
+                  <div class="inner">
+                    <p>Curaduriapp</p>
+                  </div>
+                </div>
+                <div class="back">
+                  <div class="inner outer">
+                    <p>
+                      Web application for request construction permissions in
+                      Colombia according to the current urban and legal code.
+                    </p>
+                    <div class="my-work__cards--buttons">
+                      <a
+                        href="https://github.com/fernastereo/curaduriapp"
+                        target="_blank"
+                        class="btn custom-btn-curaduriapp"
+                        >View Backend</a
+                      >
+                      <a
+                        href="https://github.com/fernastereo/curaduriapp-frontend"
+                        target="_blank"
+                        class="btn custom-btn-curaduriapp"
+                        >View Frontend</a
+                      >
+                      <a
+                        href="http://54.215.27.25/?id=1#/"
+                        target="_blank"
+                        class="btn custom-btn-curaduriapp"
+                        >Live Demo</a
+                      >
+                    </div>
 
-			<!-- portfolio item 03 -->
-			<div class="wrapper">
-				<div class="cols">
-					<div class="col" ontouchstart="this.classList.toggle('hover');">
-						<div class="container">
-							<div class="front">
-								<div class="inner">
-									<p>Diligord</p>
-								</div>
-							</div>
-							<div class="back">
-								<div class="inner outer">
-									<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<!-- portfolio item 04 -->
-			<div class="wrapper">
-				<div class="cols">
-					<div class="col" ontouchstart="this.classList.toggle('hover');">
-						<div class="container">
-							<div class="front">
-								<div class="inner">
-									<p>Diligord</p>
-								</div>
-							</div>
-							<div class="back">
-								<div class="inner outer">
-									<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-				
-			<!-- portfolio item 05 -->
-			<div class="wrapper">
-				<div class="cols">
-					<div class="col" ontouchstart="this.classList.toggle('hover');">
-						<div class="container">
-							<div class="front">
-								<div class="inner">
-									<p>Diligord</p>
-								</div>
-							</div>
-							<div class="back">
-								<div class="inner outer">
-									<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                    <div class="my-work__cards--skills">
+                      <i class="fab fa-laravel"></i>
+                      <i class="fab fa-php"></i>
+                      <i class="fab fa-vuejs"></i>
+                      <i class="fab fa-js-square"></i>
+                      <i class="fab fa-html5"></i>
+                      <i class="fab fa-css3-alt"></i>
+                      <i class="fab fa-bootstrap"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-			<!-- portfolio item 06 -->
-			<div class="wrapper">
-				<div class="cols">
-					<div class="col" ontouchstart="this.classList.toggle('hover');">
-						<div class="container">
-							<div class="front">
-								<div class="inner">
-									<p>Diligord</p>
-								</div>
-							</div>
-							<div class="back">
-								<div class="inner outer">
-									<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+        <!-- portfolio item 02 -->
+        <div class="wrapper">
+          <div class="cols">
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+              <div class="container">
+                <div class="front">
+                  <div class="inner">
+                    <p>Diligord</p>
+                  </div>
+                </div>
+                <div class="back">
+                  <div class="inner outer">
+                    <p>
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Alias cum repellat velit quae suscipit c.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-		</div>
-	</section>
+        <!-- portfolio item 03 -->
+        <div class="wrapper">
+          <div class="cols">
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+              <div class="container">
+                <div class="front">
+                  <div class="inner">
+                    <p>Diligord</p>
+                  </div>
+                </div>
+                <div class="back">
+                  <div class="inner outer">
+                    <p>
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Alias cum repellat velit quae suscipit c.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-	<!-- Footer -->
-	<footer class="footer" id="contact">
-		<div class="container colorTitle">
-			<div class="row">
-				<div class="col-12 col-md-5 mt-5">
-					<h3>Fernando Cueto</h3>
-					<p><a class="email" href="mailto:hey@fernandocueto.com">hey@fernandocueto.com</a></p>
-					<p id="contact__description">I’m a software developer. I can help you solve 
-						a problem, build a product or grow existing project.</p>
-				</div>
-				<div class="col-12 col-md-6 offset-md-1">
-					<h5 id="contact__title" class="mt-4 text-center">Thanks for taking the time to reach out.</h5>
-					<h6 id="contact__subtitle" class="mb-4 text-center">How can I help you today?</h6>
-					<form class="needs-validation" novalidate>
-						<div class="form-row">
-							<div class="col-md-6 mb-3">
-								<label id="contact__label__name" for="validationCustom01">Your name</label>
-								<input type="text" class="form-control form-control-sm" id="validationCustom01" name="fullname" required>
-								<div class="valid-feedback">
-									Looks good!
-								</div>
-								<div class="invalid-feedback">
-									Your Name please	
-								</div>
-							</div>
-							<div class="col-md-6 mb-3">
-								<label for="validationCustom02">E-mail</label>
-								<input type="email" class="form-control form-control-sm" id="validationCustom02" name="email" required>
-								<div class="valid-feedback">
-									Looks good!
-								</div>
-								<div class="invalid-feedback">
-									Your Email please
-								</div>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col-md-12 mb-3">
-								<label id="contact__label__message" for="validationCustom03">Message</label>
-								<textarea class="form-control form-control-sm" id="validationCustom03" name="message" rows="4" required></textarea>
-								<div class="valid-feedback">
-									Great!
-								</div>
-								<div class="invalid-feedback">
-									Write a Message please
-								</div>
-							</div>
-						</div>
-						<div class="container">
-							<div class="row">
-								<div class="col-4 col-md-5">
-									<button id="contact__button" class="btn" onclick="sendEmail(); return false;">Send</button>
-								</div>
-								<div id="answer" class="col-8 col-md-7">									
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-12 mt-4 mb-4 text-center">
-					<span>Handcrafted by me. Copyright © 2020</span>
-				</div>
-			</div>
-		</div>
-	</footer>
+        <!-- portfolio item 04 -->
+        <div class="wrapper">
+          <div class="cols">
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+              <div class="container">
+                <div class="front">
+                  <div class="inner">
+                    <p>Diligord</p>
+                  </div>
+                </div>
+                <div class="back">
+                  <div class="inner outer">
+                    <p>
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Alias cum repellat velit quae suscipit c.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-	<script src="./js/index.js"></script>
-</body>
+        <!-- portfolio item 05 -->
+        <div class="wrapper">
+          <div class="cols">
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+              <div class="container">
+                <div class="front">
+                  <div class="inner">
+                    <p>Diligord</p>
+                  </div>
+                </div>
+                <div class="back">
+                  <div class="inner outer">
+                    <p>
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Alias cum repellat velit quae suscipit c.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- portfolio item 06 -->
+        <div class="wrapper">
+          <div class="cols">
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+              <div class="container">
+                <div class="front">
+                  <div class="inner">
+                    <p>Diligord</p>
+                  </div>
+                </div>
+                <div class="back">
+                  <div class="inner outer">
+                    <p>
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Alias cum repellat velit quae suscipit c.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+      <div class="container colorTitle">
+        <div class="row">
+          <div class="col-12 col-md-5 mt-5">
+            <h3>Fernando Cueto</h3>
+            <p>
+              <a class="email" href="mailto:hey@fernandocueto.com"
+                >hey@fernandocueto.com</a
+              >
+            </p>
+            <p id="contact__description">
+              I’m a software developer. I can help you solve a problem, build a
+              product or grow existing project.
+            </p>
+          </div>
+          <div class="col-12 col-md-6 offset-md-1">
+            <h5 id="contact__title" class="mt-4 text-center">
+              Thanks for taking the time to reach out.
+            </h5>
+            <h6 id="contact__subtitle" class="mb-4 text-center">
+              How can I help you today?
+            </h6>
+            <form class="needs-validation" novalidate>
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label id="contact__label__name" for="validationCustom01"
+                    >Your name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    id="validationCustom01"
+                    name="fullname"
+                    required
+                  />
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback">
+                    Your Name please
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="validationCustom02">E-mail</label>
+                  <input
+                    type="email"
+                    class="form-control form-control-sm"
+                    id="validationCustom02"
+                    name="email"
+                    required
+                  />
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback">
+                    Your Email please
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-12 mb-3">
+                  <label id="contact__label__message" for="validationCustom03"
+                    >Message</label
+                  >
+                  <textarea
+                    class="form-control form-control-sm"
+                    id="validationCustom03"
+                    name="message"
+                    rows="4"
+                    required
+                  ></textarea>
+                  <div class="valid-feedback">
+                    Great!
+                  </div>
+                  <div class="invalid-feedback">
+                    Write a Message please
+                  </div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-4 col-md-5">
+                    <button
+                      id="contact__button"
+                      class="btn"
+                      onclick="sendEmail(); return false;"
+                    >
+                      Send
+                    </button>
+                  </div>
+                  <div id="answer" class="col-8 col-md-7"></div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 mt-4 mb-4 text-center">
+            <span>Handcrafted by me. Copyright © 2020</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./js/index.js"></script>
+  </body>
 </html>
