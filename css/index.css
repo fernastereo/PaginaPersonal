@@ -550,8 +550,50 @@ header {
 .front {
   background-image: url(https://unsplash.it/500/500/);
 }
+
+.img-dotnet {
+  width: 40px;
+}
+
+.color-laravel {
+  color: #ff2d20;
+}
+.color-php {
+  color: #8892bf;
+}
+.color-vue {
+  color: #41b883;
+}
+.color-js {
+  color: #f7df1e;
+}
+.color-html5 {
+  color: #e44d26;
+}
+.color-css3 {
+  color: #016cb9;
+}
+.color-bootstrap {
+  color: #7952b3;
+}
+
 #curaduriapp {
   background-image: url("../images/curaduriapp01.png");
+}
+#messengerapp {
+  background-image: url("../images/messenger01.png");
+}
+#signatureapp {
+  background-image: url("../images/signature01.png");
+}
+#sacapp {
+  background-image: url("../images/sac01.png");
+}
+#docusapp {
+  background-image: url("../images/docusapp01.png");
+}
+#censophapp {
+  background-image: url("../images/censophapp01.png");
 }
 
 .front,
