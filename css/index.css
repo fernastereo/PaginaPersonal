@@ -61,7 +61,7 @@ body {
 }
 
 section {
-  padding: 5em 2em;
+  padding: 5em 2em 2em 2em;
 }
 
 img {
@@ -120,6 +120,15 @@ h3 {
   font-size: var(--fs-h3);
 }
 
+.section__arrow--up {
+  padding-top: 2em;
+  text-align: center;
+}
+
+.section__arrow--up i {
+  font-size: 2rem;
+  color: var(--clr-accent);
+}
 /* styling the titles and subtitles */
 .section__title {
   margin-bottom: 0.25em;
