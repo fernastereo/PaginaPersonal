@@ -448,10 +448,6 @@ header {
   margin: 0 auto;
 }
 
-.footer__link:hover {
-  /* text-decoration: underline; */
-}
-
 .section__title--footer {
   color: var(--clr-accent);
   position: relative;
@@ -520,22 +516,6 @@ header {
   border-bottom: 1px solid var(--clr-accent);
   outline: none;
 }
-
-/* #peq1w {
-  background-color: chartreuse;
-}
-#peq2w {
-  background-color: rgb(255, 115, 0);
-}
-#peq3w {
-  background-color: rgb(0, 255, 200);
-}
-#peq4w {
-  background-color: rgb(255, 0, 212);
-}
-#peq5 {
-  background-color: gold;
-} */
 
 #item--message {
   margin-top: 30px;
