@@ -481,109 +481,93 @@
 
     <!-- Footer -->
     <footer class="footer" id="contact">
-      <div class="container colorTitle">
-        <div class="row">
-          <div class="col-12 col-md-5 mt-5">
-            <h3>Fernando Cueto</h3>
-            <p>
-              <a class="email" href="mailto:hey@fernandocueto.com"
-                >hey@fernandocueto.com</a
-              >
-            </p>
-            <p id="contact__description">
-              I’m a software developer. I can help you solve a problem, build a
-              product or grow existing project.
-            </p>
-          </div>
-          <div class="col-12 col-md-6 offset-md-1">
-            <h5 id="contact__title" class="mt-4 text-center">
-              Thanks for taking the time to reach out.
-            </h5>
-            <h6 id="contact__subtitle" class="mb-4 text-center">
-              How can I help you today?
-            </h6>
-            <form class="needs-validation" novalidate>
-              <div class="form-row">
-                <div class="col-md-6 mb-3">
-                  <label id="contact__label__name" for="validationCustom01"
-                    >Your name</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control form-control-sm"
-                    id="validationCustom01"
-                    name="fullname"
-                    required
-                  />
-                  <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                  <div class="invalid-feedback">
-                    Your Name please
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="validationCustom02">E-mail</label>
-                  <input
-                    type="email"
-                    class="form-control form-control-sm"
-                    id="validationCustom02"
-                    name="email"
-                    required
-                  />
-                  <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                  <div class="invalid-feedback">
-                    Your Email please
-                  </div>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="col-md-12 mb-3">
-                  <label id="contact__label__message" for="validationCustom03"
-                    >Message</label
-                  >
-                  <textarea
-                    class="form-control form-control-sm"
-                    id="validationCustom03"
-                    name="message"
-                    rows="4"
-                    required
-                  ></textarea>
-                  <div class="valid-feedback">
-                    Great!
-                  </div>
-                  <div class="invalid-feedback">
-                    Write a Message please
-                  </div>
-                </div>
-              </div>
-              <div class="container">
-                <div class="row">
-                  <div class="col-4 col-md-5">
-                    <button
-                      id="contact__button"
-                      class="btn"
-                      onclick="sendEmail(); return false;"
-                    >
-                      Send
-                    </button>
-                  </div>
-                  <div id="answer" class="col-8 col-md-7"></div>
-                </div>
-              </div>
-            </form>
-          </div>
+      <div class="section__contact--footer">
+        <div class="contact--footer__info">
+          <h3 class="section__title--footer">Fernando Cueto</h3>
+          <p>
+            <a class="email" href="mailto:hey@fernandocueto.com"
+              >hey@fernandocueto.com</a
+            >
+          </p>
+          <p id="contact__description">
+            I’m a software developer. I can help you solve a problem, build a
+            product or grow existing project.
+          </p>
         </div>
-        <div class="row">
-          <div class="col-12 mt-4 mb-4 text-center">
-            <span>Handcrafted by me. Copyright © 2020</span>
-          </div>
+        <div class="contact--footer__form">
+          <h5 id="contact__title" class="mt-4 text-center">
+            Thanks for taking the time to reach out.
+          </h5>
+          <h6 id="contact__subtitle" class="mb-4 text-center">
+            How can I help you today?
+          </h6>
+          <form>
+            <div class="contact__form">
+              <div class="contact__form--item">
+                <label class="contact__form--label" for="fullname"
+                  >Your name</label
+                >
+              </div>
+              <div class="contact__form--item">
+                <label class="contact__form--label" for="email">E-mail</label>
+              </div>
+              <div class="contact__form--item">
+                <input
+                  type="text"
+                  class="contact__form--input"
+                  id="fullname"
+                  name="fullname"
+                />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Your name is required</small>
+              </div>
+              <div class="contact__form--item">
+                <input
+                  type="email"
+                  class="contact__form--input"
+                  id="email"
+                  name="email"
+                />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Your email is required</small>
+              </div>
+              <div id="item--message" class="contact__form--item item--message">
+                <label class="contact__form--label" for="message"
+                  >Message</label
+                >
+              </div>
+              <div class="contact__form--item item--message">
+                <textarea
+                  class="contact__form--input"
+                  id="message"
+                  name="message"
+                ></textarea>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Write a Message please</small>
+              </div>
+            </div>
+            <div class="container">
+              <div class="">
+                <button
+                  id="contact__button"
+                  class="btn"
+                  onclick="sendEmail(); return false;"
+                >
+                  Send
+                </button>
+                <div id="answer" class=""></div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
+      <div class="section__credits--footer">
+        <span>Handcrafted by me. Copyright © 2020</span>
+      </div>
     </footer>
-
     <script src="./js/index.js"></script>
   </body>
 </html>
