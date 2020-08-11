@@ -5,11 +5,17 @@ const setErrorAlert = (input) => {
   parentControl.classList.add("error");
 };
 
-const setSuccessFor = (input) => {
+const setSuccessAlert = (input) => {
   const parentControl = input.parentElement;
 
   parentControl.classList.remove("error");
   parentControl.classList.add("success");
+};
+
+const setClearAlert = (input) => {
+  const parentControl = input.parentElement;
+
+  parentControl.classList.remove("success");
 };
 
 const checkInputs = (name, email, body) => {
@@ -19,19 +25,19 @@ const checkInputs = (name, email, body) => {
     setErrorAlert(name);
     result = false;
   } else {
-    setSuccessFor(name);
+    setSuccessAlert(name);
   }
   if (email.value.trim() === "") {
     setErrorAlert(email);
     result = false;
   } else {
-    setSuccessFor(email);
+    setSuccessAlert(email);
   }
   if (message.value.trim() === "") {
     setErrorAlert(message);
     result = false;
   } else {
-    setSuccessFor(message);
+    setSuccessAlert(message);
   }
 
   return result;
@@ -41,14 +47,8 @@ const sendEmail = () => {
   const name = document.getElementById("fullname");
   const email = document.getElementById("email");
   const body = document.getElementById("message");
-  const answer = document.getElementById("answer");
 
   if (!checkInputs(name, email, body)) return;
-  // if (!name.value || !email.value || !body.value) {
-  //   answer.innerHTML = `<h6  class="mb-4 text-center">No data was sent!</h6>`;
-  //   console.log("not sent!");
-  //   return false;
-  // }
 
   Email.send({
     SecureToken: "2c0a952d-c47c-4bf6-a9dc-272f25851ae8",
@@ -60,6 +60,15 @@ const sendEmail = () => {
     (name.value = ""),
     (email.value = ""),
     (body.value = ""),
-    (answer.innerHTML = `<h6 class="mb-4 text-center">Thanks. I'll be in touch soon!</h6>`)
+    Swal.fire({
+      title: "Thanks!",
+      text: "Your message was sent. I'll be in touch soon!!",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 2500,
+    }),
+    setClearAlert(name),
+    setClearAlert(email),
+    setClearAlert(body)
   );
 };
