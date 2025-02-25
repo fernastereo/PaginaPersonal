@@ -8,6 +8,7 @@
   const AboutSection = defineAsyncComponent(() => import('@/components/AboutSection.vue'))
   const ExperienceSection = defineAsyncComponent(() => import('@/components/ExperienceSection.vue'))
   const ProjectsSection = defineAsyncComponent(() => import('@/components/ProjectsSection.vue'))
+  const ContactSection = defineAsyncComponent(() => import('@/components/ContactSection.vue'))
 </script>
 
 <template>
@@ -18,6 +19,7 @@
     <AboutSection />
     <ExperienceSection />
     <ProjectsSection />
+    <ContactSection />
   </div>
 </template>
 
