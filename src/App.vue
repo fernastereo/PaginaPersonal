@@ -1,7 +1,7 @@
 <script setup>
   // import components asynchronously
   import { defineAsyncComponent } from 'vue'
-
+  
   const NavBar = defineAsyncComponent(() => import('@/components/NavBar.vue'))
   const HeroSection = defineAsyncComponent(() => import('@/components/HeroSection.vue'))
   const ServicesSection = defineAsyncComponent(() => import('@/components/ServicesSection.vue'))
@@ -9,6 +9,7 @@
   const ExperienceSection = defineAsyncComponent(() => import('@/components/ExperienceSection.vue'))
   const ProjectsSection = defineAsyncComponent(() => import('@/components/ProjectsSection.vue'))
   const ContactSection = defineAsyncComponent(() => import('@/components/ContactSection.vue'))
+  const TestimonialsSection = defineAsyncComponent(() => import('@/components/TestimonialsSection.vue'))
 </script>
 
 <template>
@@ -20,6 +21,7 @@
     <ExperienceSection />
     <ProjectsSection />
     <ContactSection />
+    <TestimonialsSection />
   </div>
 </template>
 
