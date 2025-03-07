@@ -24,6 +24,7 @@
         </Slide>
         <template #addons>
           <Navigation />
+          <Pagination />
         </template>
       </Carousel>
     </div>
@@ -32,7 +33,7 @@
 
 <script setup>
   import { ref } from 'vue'
-  import { Carousel, Navigation, Slide } from 'vue3-carousel'
+  import { Carousel, Navigation, Slide, Pagination } from 'vue3-carousel'
   import 'vue3-carousel/dist/carousel.css'
 
   //carousel settings
