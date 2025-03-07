@@ -7,7 +7,7 @@
       <div v-for="service in services" :key="service.id" :data-aos="service.effect"
         class="px-8 py-12 rounded-xl bg-[#111a3e] shadow-lg border border-[#1f1641]"
       >
-        <div class="mx-auto h-24 text-center xl:h-28 xl:w-28">
+        <div class="mx-auto h-24 w-24 text-center xl:h-28 xl:w-28">
           <div><img :src="service.icon" alt="{{ service.name }}"></div>
         </div>
         <div class="text-center">
@@ -43,7 +43,7 @@
     },
     {
       id: 3,
-      icon: 'https://img.icons8.com/external-vectorslab-glyph-vectorslab/1000/fffeee/external-Technical-Writing-mobile-app-development-vectorslab-glyph-vectorslab.png',
+      icon: 'https://img.icons8.com/external-vectorslab-glyph-vectorslab/100/fffeee/external-Technical-Writing-mobile-app-development-vectorslab-glyph-vectorslab.png',
       name: 'Technical Writing',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae accusantium amet ab, tenetur nulla mollitia magni rerum. Quia, vero hic corporis, labore neque eos, dolorem voluptatem unde doloribus modi molestias.',
       effect: 'fade-left'

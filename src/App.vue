@@ -1,7 +1,8 @@
 <script setup>
   // import components asynchronously
   import { defineAsyncComponent } from 'vue'
-  
+  import LoadingSpinner from './components/LoadingSpinner.vue'
+
   const NavBar = defineAsyncComponent(() => import('@/components/NavBar.vue'))
   const HeroSection = defineAsyncComponent(() => import('@/components/HeroSection.vue'))
   const ServicesSection = defineAsyncComponent(() => import('@/components/ServicesSection.vue'))
@@ -16,19 +17,35 @@
 
 <template>
   <div class="bg-[#111827] min-h-screen">
-    <NavBar />
-    <HeroSection />
-    <ServicesSection />
-    <AboutSection />
-    <ExperienceSection />
-    <ProjectsSection />
-    <ContactSection />
-    <TestimonialsSection />
-    <FooterSection />
-    <BackToTop />
+    <!-- Wrap components in Suspense to handle loading -->
+    <Suspense>
+      <template #default>
+        <!-- Wrap all Components inside a single root element -->
+        <div>
+          <NavBar />
+          <HeroSection />
+          <ServicesSection />
+          <AboutSection />
+          <ExperienceSection />
+          <ProjectsSection />
+          <ContactSection />
+          <TestimonialsSection />
+          <FooterSection />
+          <BackToTop />
+        </div>
+      </template>
+      <template #fallback>
+        <div class="flex justify-center items-center min-h-screen">
+          <LoadingSpinner />
+        </div>
+      </template>
+    </Suspense>
   </div>
 </template>
 
-<style scoped>
-
+<style>
+  *{
+    scrollbar-width: thin;
+    scrollbar-color: #111827 #f1f1f1;
+  }
 </style>
