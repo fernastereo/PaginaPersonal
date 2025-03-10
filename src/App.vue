@@ -16,7 +16,7 @@
 </script>
 
 <template>
-  <div class="bg-[#111827] min-h-screen">
+  <div class="bg-background min-h-screen">
     <!-- Wrap components in Suspense to handle loading -->
     <Suspense>
       <template #default>
