@@ -1,14 +1,15 @@
 <script setup>
   import { ref } from 'vue'
+  import LanguageSelector from './LanguageSelector.vue'
 
   const menu = ref([
     {
-      name: 'Services',
-      href: '#services'
-    },
-    {
       name: 'About Me',
       href: '#about'
+    },
+    {
+      name: 'Services',
+      href: '#services'
     },
     {
       name: 'Skills',
@@ -56,15 +57,11 @@
       </button>
     </div>
     <!-- NavBar Link -->
-    <nav :class="['w-dvw h-dvh fixed inset-0 z-20 flex flex-col items-center justify-evenly bg-background md:relative md:bg-transparent md:flex md:justify-between md:flex-row',
+    <nav :class="['w-dvw h-dvh md:h-auto fixed inset-0 z-20 flex flex-col items-center justify-evenly bg-background md:relative md:bg-transparent md:flex md:justify-start md:flex-row-reverse md:gap-8',
       isMenuOpen ? 'block' : 'hidden'
     ]">
-      <div class="flex flex-row justify-evenly w-4/5">
-        <img src="/PaginaPersonal/001-colombia.png" alt="Spanish">
-        <img src="/PaginaPersonal/002-usa.png" alt="English">
-        <img src="/PaginaPersonal/003-germany.png" alt="Deutsch">
-      </div>
-      <ul class="flex flex-col items-center space-y-12 md:flex-row md:space-x-5 md:space-y-0">
+      <LanguageSelector/>
+      <ul class="flex flex-col items-center space-y-12 md:flex-row md:space-x-12 md:space-y-0">
         <li v-for="item in menu" :key="item.name">
           <a :href="item.href" 
             class="block text-textBaseColor font-semibold transition hover:text-primary ease-linear text-2xl md:text-lg"
