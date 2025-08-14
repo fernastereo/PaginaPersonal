@@ -1,70 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
+@layer base {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    /* Base Colors */
+    --background: 0 0% 100%;
+    --foreground: 215 25% 15%;
+    
+    /* Blue-Green Primary Palette */
+    --primary: 195 100% 40%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 195 100% 50%;
+    --primary-dark: 195 100% 30%;
+    
+    /* Accent Colors */
+    --accent: 170 75% 42%;
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 170 75% 52%;
+    
+    /* Neutral Colors */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 215 25% 25%;
+    --muted: 210 40% 94%;
+    --muted-foreground: 215 13% 45%;
+    
+    /* Card & Popover */
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+    
+    /* Border & Input */
+    --border: 215 15% 88%;
+    --input: 215 15% 90%;
+    --ring: 195 100% 40%;
+    
+    /* Success & Error */
+    --success: 142 85% 35%;
+    --success-foreground: 0 0% 100%;
+    --destructive: 0 90% 58%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(195, 100%, 40%), hsl(170, 75%, 42%));
+    --gradient-hero: linear-gradient(135deg, hsl(195, 100%, 40%) 0%, hsl(170, 75%, 42%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0, 0%, 100%) 0%, hsl(210, 40%, 98%) 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(215, 25%, 15%, 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(215, 25%, 15%, 0.1), 0 2px 4px -1px hsl(215, 25%, 15%, 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(215, 25%, 15%, 0.1), 0 4px 6px -2px hsl(215, 25%, 15%, 0.05);
+    --shadow-glow: 0 0 20px hsl(195, 100%, 40%, 0.4);
+    
+    /* Spacing & Border Radius */
+    --radius: 0.75rem;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+
+  .dark {
+    /* Base Colors */
+    --background: 215 28% 8%;
+    --foreground: 210 40% 95%;
+    
+    /* Blue-Green Primary Palette */
+    --primary: 195 100% 50%;
+    --primary-foreground: 215 28% 8%;
+    --primary-light: 195 100% 60%;
+    --primary-dark: 195 100% 40%;
+    
+    /* Accent Colors */
+    --accent: 170 75% 50%;
+    --accent-foreground: 215 28% 8%;
+    --accent-light: 170 75% 60%;
+    
+    /* Neutral Colors */
+    --secondary: 215 28% 12%;
+    --secondary-foreground: 210 40% 90%;
+    --muted: 215 28% 14%;
+    --muted-foreground: 215 13% 65%;
+    
+    /* Card & Popover */
+    --card: 215 28% 10%;
+    --card-foreground: 210 40% 95%;
+    --popover: 215 28% 10%;
+    --popover-foreground: 210 40% 95%;
+    
+    /* Border & Input */
+    --border: 215 28% 18%;
+    --input: 215 28% 16%;
+    --ring: 195 100% 50%;
+    
+    /* Success & Error */
+    --success: 142 85% 45%;
+    --success-foreground: 215 28% 8%;
+    --destructive: 0 90% 60%;
+    --destructive-foreground: 215 28% 8%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(195, 100%, 50%), hsl(170, 75%, 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(195, 100%, 50%) 0%, hsl(170, 75%, 50%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(215, 28%, 10%) 0%, hsl(215, 28%, 12%) 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(0, 0%, 0%, 0.2);
+    --shadow-md: 0 4px 6px -1px hsl(0, 0%, 0%, 0.3), 0 2px 4px -1px hsl(0, 0%, 0%, 0.2);
+    --shadow-lg: 0 10px 15px -3px hsl(0, 0%, 0%, 0.4), 0 4px 6px -2px hsl(0, 0%, 0%, 0.3);
+    --shadow-glow: 0 0 30px hsl(195, 100%, 50%, 0.4);
   }
 }
