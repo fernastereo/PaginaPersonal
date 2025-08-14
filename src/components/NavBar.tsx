@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LanguageToggle } from './LanguageToggle';
+import { ThemeToggle } from './ThemeToggle';
 
 export const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -68,6 +69,7 @@ export const NavBar = () => {
 
           <div className='flex items-center space-x-2'>
             <LanguageToggle />
+            <ThemeToggle />
             {/* Mobile menu button */}
             <Button
               variant='ghost'
