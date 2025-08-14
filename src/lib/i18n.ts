@@ -85,6 +85,9 @@ const resources = {
       'footer.scrollTop': 'Scroll to top',
       'footer.rights': 'All rights reserved.',
       'footer.madeWith': 'Made with',
+      'footer.madeBy': 'by',
+      'footer.passionate':
+        'Full Stack Developer passionate about creating innovative solutions.',
     },
   },
   es: {
@@ -170,6 +173,9 @@ const resources = {
       'footer.scrollTop': 'Volver arriba',
       'footer.rights': 'Todos los derechos reservados.',
       'footer.madeWith': 'Hecho con',
+      'footer.madeBy': 'por',
+      'footer.passionate':
+        'Full Stack Developer apasionado por crear soluciones innovadoras.',
     },
   },
 };
