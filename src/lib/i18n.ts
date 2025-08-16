@@ -20,8 +20,8 @@ const resources = {
       'hero.role': 'Full Stack Developer',
       'hero.description':
         'I create exceptional digital experiences through innovative web solutions. Specialized in React, Node.js, and modern technologies.',
-      'hero.viewProjects': 'View Projects',
-      'hero.getInTouch': 'Get in Touch',
+      'hero.viewProjects': 'View my Work',
+      'hero.getInTouch': 'Contact me',
       'hero.download': 'Download CV',
       'hero.scrollDown': 'Scroll down to discover more',
 
@@ -108,7 +108,7 @@ const resources = {
       'hero.role': 'Desarrollador Full Stack',
       'hero.description':
         'Creo experiencias digitales excepcionales a través de soluciones web innovadoras. Especializado en React, Node.js y tecnologías modernas.',
-      'hero.viewProjects': 'Ver Proyectos',
+      'hero.viewProjects': 'Ver mi Trabajo',
       'hero.getInTouch': 'Contactar',
       'hero.download': 'Descargar CV',
       'hero.scrollDown': 'Desplázate para descubrir más',
