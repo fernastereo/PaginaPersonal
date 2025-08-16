@@ -240,6 +240,15 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
   
+  /* Section Padding */
+  .section-padding {
+    @apply py-16 md:py-20 px-4 md:px-8;
+  }
+
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+  
   /* Subrayado animado de izquierda a derecha */
   .hover-underline-animation {
     position: relative;
