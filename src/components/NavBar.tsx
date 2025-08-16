@@ -44,16 +44,16 @@ export const NavBar = () => {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-background/80 backdrop-blur-md shadow-custom-md border-b border-border'
+          ? 'bg-background/80 backdrop-blur-md shadow-custom-md border-border'
           : 'bg-transparent'
       }`}>
       <div className='container-custom'>
         <div className='flex items-center justify-between h-16 px-4'>
           <motion.div
             className='font-bold text-xl text-gradient cursor-pointer'
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.15 }}
             onClick={() => scrollToSection('#hero')}>
-            Portfolio
+            FC
           </motion.div>
 
           <div className='hidden md:flex items-center space-x-8'>
@@ -61,7 +61,7 @@ export const NavBar = () => {
               <button
                 key={item.key}
                 onClick={() => scrollToSection(item.href)}
-                className='text-foreground hover:text-primary transition-colors hover-underline'>
+                className='text-foreground font-semibold cursor-pointer hover:text-primary transition-colors hover-underline-animation'>
                 {t(`nav.${item.key}`)}
               </button>
             ))}
@@ -90,15 +90,21 @@ export const NavBar = () => {
           {isMobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{
+                opacity: 1,
+                height: '95vh',
+                position: 'absolute',
+                left: 0,
+                width: '100%',
+              }}
               exit={{ opacity: 0, height: 0 }}
-              className='md:hidden bg-background/95 backdrop-blur-md border-t border-border'>
-              <div className='py-4 space-y-2'>
+              className='md:hidden bg-background/95 backdrop-blur-md border-t border-primary-foreground'>
+              <div className='py-16 space-y-2'>
                 {navItems.map((item) => (
                   <button
                     key={item.key}
                     onClick={() => scrollToSection(item.href)}
-                    className='block w-full text-left px-4 py-2 text-foreground hover:text-primary hover:bg-secondary transition-colors'>
+                    className='block w-full text-center px-4 py-6 text-xl font-semibold text-foreground hover:text-primary hover:bg-secondary transition-colors'>
                     {t(`nav.${item.key}`)}
                   </button>
                 ))}
