@@ -51,6 +51,9 @@ const resources = {
       // Skills Section
       'skills.title': 'Skills & Technologies',
       'skills.subtitle': 'Technologies I work with',
+      'skills.frontend': 'Frontend',
+      'skills.backend': 'Backend',
+      'skills.tools': 'Tools',
 
       // Experience Section
       'experience.title': 'Work Experience',
@@ -139,6 +142,9 @@ const resources = {
       // Skills Section
       'skills.title': 'Habilidades y Tecnologías',
       'skills.subtitle': 'Tecnologías con las que trabajo',
+      'skills.frontend': 'Frontend',
+      'skills.backend': 'Backend',
+      'skills.tools': 'Herramientas',
 
       // Experience Section
       'experience.title': 'Experiencia Laboral',
