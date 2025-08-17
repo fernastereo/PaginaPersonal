@@ -72,14 +72,14 @@ const resources = {
       // Contact Section
       'contact.title': 'Get In Touch',
       'contact.subtitle': "Let's work together",
-      'contact.form.name': 'Name',
-      'contact.form.email': 'Email',
-      'contact.form.message': 'Message',
-      'contact.form.send': 'Send Message',
-      'contact.form.success':
+      'contact.name': 'Name',
+      'contact.email': 'Email',
+      'contact.message': 'Message',
+      'contact.send': 'Send Message',
+      'contact.success':
         "Message sent successfully! I'll get back to you soon.",
+      'contact.info': 'Contact me',
       'contact.info.email': 'Email',
-      'contact.info.phone': 'Phone',
       'contact.info.location': 'Location',
       'contact.cta':
         "Ready to start your project? Let's discuss how I can help bring your ideas to life.",
@@ -163,14 +163,13 @@ const resources = {
       // Contact Section
       'contact.title': 'Ponte en Contacto',
       'contact.subtitle': 'Trabajemos juntos',
-      'contact.form.name': 'Nombre',
-      'contact.form.email': 'Email',
-      'contact.form.message': 'Mensaje',
-      'contact.form.send': 'Enviar Mensaje',
-      'contact.form.success':
-        '¡Mensaje enviado exitosamente! Te responderé pronto.',
+      'contact.name': 'Nombre',
+      'contact.email': 'Email',
+      'contact.message': 'Mensaje',
+      'contact.send': 'Enviar Mensaje',
+      'contact.success': '¡Mensaje enviado exitosamente! Te responderé pronto.',
+      'contact.info': 'Contactame',
       'contact.info.email': 'Email',
-      'contact.info.phone': 'Teléfono',
       'contact.info.location': 'Ubicación',
       'contact.cta':
         '¿Listo para comenzar tu proyecto? Hablemos sobre cómo puedo ayudarte a hacer realidad tus ideas.',
