@@ -1,0 +1,49 @@
+[
+  {
+    "title": "Frontend",
+    "skills": [
+      "Javascript",
+      "TypeScript", 
+      "Vue.js",
+      "React",
+      "Next.js",
+      "Nuxt.js",
+      "Wordpress",
+      "Shopify",
+      "Tailwind CSS",
+      "HTML/CSS"
+    ]
+  },
+  {
+    "title": "Backend",
+    "skills": [
+      "PHP",
+      "Laravel",
+      "Symfony",
+      ".NET",
+      ".Net Framework",
+      "C#",
+      "Node.js",
+      "Express.js",
+      "MySQL",
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "API REST",
+      "GraphQL"
+    ]
+  },
+  {
+    "title": "Tools",
+    "skills": [
+      "Git",
+      "Docker",
+      "AWS",
+      "Azure",
+      "Google Cloud",
+      "TDD",
+      "CI/CD",
+      "Github Actions"
+    ]
+  }
+]
