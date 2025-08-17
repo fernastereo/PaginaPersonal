@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import linkedinIcon from '@/assets/linkedin-icon.svg';
 import githubIcon from '@/assets/github-icon.svg';
 import upworkIcon from '@/assets/upwork.png';
+import { SocialLink } from './custom-ui/SocialLink';
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -47,16 +48,12 @@ export const Footer = () => {
           {/* Social Links */}
           <div className="flex justify-center space-x-4">
             {socialLinks.map((social, index) => (
-              <a
+              <SocialLink
                 key={index}
-                className="px-3 py-3 rounded-full hover:scale-105 hover:bg-primary/30 hover:shadow-md transition-all duration-300"
-                title={social.label}
+                icon={social.icon}
                 href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={social.icon} alt={social.label} className="h-6 w-6" />
-              </a>
+                label={social.label}
+              />
             ))}
           </div>
 
