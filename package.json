@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier --write .",
+    "format:staged": "prettier --write $(git diff --cached --name-only --diff-filter=ACMR | grep '\\.(ts|tsx|js|jsx|json|css|md)$')"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
