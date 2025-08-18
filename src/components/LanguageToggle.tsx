@@ -11,11 +11,14 @@ export const LanguageToggle = () => {
   }
 
   return (
-    <Button variant='ghost' size='sm' onClick={toggleLanguage}
-      className='hover:bg-secondary transition-colors'
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={toggleLanguage}
+      className="hover:bg-secondary-foreground transition-colors"
     >
-      <Languages className='h-4 w-4 mr-2' />
+      <Languages className="h-4 w-4 mr-2" />
       {i18n.language.toUpperCase()}
     </Button>
-  )
+  );
 }

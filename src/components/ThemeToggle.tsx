@@ -25,8 +25,13 @@ export const ThemeToggle = () => {
   }
 
   return (
-    <Button variant='ghost' size='icon' onClick={toggleTheme} className='hover:bg-secondary transition-colors'>
-      {isDark ? <Sun className='h-4 w-4' /> : <Moon className='h-4 w-4' />}
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={toggleTheme}
+      className="hover:bg-secondary-foreground transition-colors"
+    >
+      {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
     </Button>
-  )
+  );
 }
