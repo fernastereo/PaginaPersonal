@@ -38,16 +38,16 @@ export const Contact = () => {
   const contactInfo = [
     {
       icon: Mail,
-      label: "Email",
-      value: "hey@fernandocueto.com",
-      href: "mailto:hey@fernandocueto.com"
+      label: 'Email',
+      value: 'hey@fernandocueto.com',
+      href: 'mailto:hey@fernandocueto.com',
     },
     {
       icon: MapPin,
-      label: "Ubicación",
-      value: "Berlin, Alemania",
-      href: "#"
-    }
+      label: 'Ubicación',
+      value: 'Berlin, Alemania',
+      href: 'https://maps.app.goo.gl/aCShhFbYoAh1YD1r9',
+    },
   ];
 
   return (
