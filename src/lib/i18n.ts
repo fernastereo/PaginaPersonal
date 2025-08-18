@@ -60,13 +60,29 @@ const resources = {
 
       // Experience Section
       'experience.title': 'Work Experience',
-      'experience.subtitle': 'My professional journey',
+      'experience.subtitle':
+        'Throughout my career, I’ve collaborated with companies across various industries, contributing to challenging projects and leveraging modern technologies to build scalable, high-impact digital solutions.',
 
       // Projects Section
       'projects.title': 'Featured Projects',
-      'projects.subtitle': 'Some of my recent work',
+      'projects.subtitle':
+        "Here are some of the projects I've worked on, combining innovation, scalability, and user experience. Each project reflects my holistic approach as a Fullstack Developer and my ability to turn ideas into concrete digital solutions.",
       'projects.viewProject': 'View Project',
       'projects.viewCode': 'View Code',
+
+      // Individual Projects
+      'projects.publicaciones.title': 'Document Publication Management App',
+      'projects.publicaciones.description':
+        'Application created to manage the publication of documents required by Curaduría Urbana 2 in Cartagena to comply with current regulations. The solution includes a REST API in PHP that centralizes all necessary functionalities and a Vue.js interface that allows documents to be managed efficiently and in an organized manner, ensuring that legal processes are carried out effectively and transparently.',
+      'projects.chat.title': 'Real-time Chat Application',
+      'projects.chat.description':
+        'Chat application developed to enable instant communication between users, combining a REST API in PHP with Laravel and a Vue.js frontend interface. The solution integrates Sockets using Laravel Echo and Pusher, allowing real-time updates of messages and notifications, providing a smooth and responsive user experience in collaborative environments.',
+      'projects.weather.title': 'Weather Dashboard',
+      'projects.weather.description':
+        'Real-time weather application with geolocation, weather forecasts, and beautiful data visualizations using Chart.js.',
+      'projects.portfolio.title': 'Portfolio Website',
+      'projects.portfolio.description':
+        'Responsive portfolio website built with modern technologies, featuring smooth animations and dark mode support.',
 
       // Testimonials Section
       'testimonials.title': 'Testimonials',
@@ -154,13 +170,29 @@ const resources = {
 
       // Experience Section
       'experience.title': 'Experiencia Laboral',
-      'experience.subtitle': 'Mi trayectoria profesional',
+      'experience.subtitle':
+        'A lo largo de mi carrera he colaborado con empresas de diferentes sectores, contribuyendo a proyectos desafiantes y aplicando tecnologías modernas para crear soluciones digitales escalables y de alto impacto.',
 
       // Projects Section
       'projects.title': 'Proyectos Destacados',
-      'projects.subtitle': 'Algunos de mis trabajos recientes',
+      'projects.subtitle':
+        'Estos son algunos de los proyectos en los que he trabajado, combinando innovación, escalabilidad y experiencia de usuario. Cada proyecto refleja mi enfoque integral como desarrollador Fullstack y mi capacidad para transformar ideas en soluciones digitales concretas.',
       'projects.viewProject': 'Ver Proyecto',
       'projects.viewCode': 'Ver Código',
+
+      // Individual Projects
+      'projects.publicaciones.title': 'Aplicación de gestión de publicaciones',
+      'projects.publicaciones.description':
+        'Aplicación diseñada para gestionar las publicaciones de documentos que la Curaduría Urbana 2 de Cartagena debe realizar para cumplir con la normativa vigente. La solución incluye una API REST en PHP que centraliza todas las funcionalidades necesarias y una interfaz en Vue.js que permite administrar los documentos de manera ágil y organizada, asegurando que los procesos legales se cumplan de forma eficiente y transparente.',
+      'projects.chat.title': 'Aplicación de chat en tiempo real',
+      'projects.chat.description':
+        'Aplicación de chat desarrollada para permitir la comunicación instantánea entre usuarios, combinando una API REST en PHP con Laravel y una interfaz frontend en Vue.js. La solución integra Sockets utilizando Laravel Echo y Pusher, permitiendo la actualización en tiempo real de los mensajes y notificaciones, ofreciendo una experiencia de usuario ágil y fluida en entornos colaborativos.',
+      'projects.weather.title': 'Dashboard del Clima',
+      'projects.weather.description':
+        'Aplicación meteorológica en tiempo real con geolocalización, pronósticos del tiempo y hermosas visualizaciones de datos usando Chart.js.',
+      'projects.portfolio.title': 'Sitio Web Portfolio',
+      'projects.portfolio.description':
+        'Sitio web portfolio responsivo construido con tecnologías modernas, con animaciones suaves y soporte para modo oscuro.',
 
       // Testimonials Section
       'testimonials.title': 'Testimonios',

@@ -21,7 +21,7 @@ export const Projects = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             {t('projects.title')}
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-muted-foreground px-24">
             {t('projects.subtitle')}
           </p>
         </motion.div>
@@ -39,19 +39,19 @@ export const Projects = () => {
                 <div className="relative overflow-hidden">
                   <img
                     src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                    alt={t(project.titleKey)}
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
 
                 <CardContent className="p-6">
                   <h3 className="text-xl font-semibold mb-3 text-gradient">
-                    {project.title}
+                    {t(project.titleKey)}
                   </h3>
 
                   <p className="text-muted-foreground mb-4 leading-relaxed">
-                    {project.description}
+                    {t(project.descriptionKey)}
                   </p>
 
                   {/* Technologies */}
@@ -68,22 +68,40 @@ export const Projects = () => {
 
                   {/* Action Buttons */}
                   <div className="flex gap-3">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      {t('projects.viewProject')}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex-1 hover:text-primary-foreground"
-                    >
-                      <Github className="h-4 w-4 mr-2" />
-                      {t('projects.viewCode')}
-                    </Button>
+                    {project.liveUrl && project.liveUrl !== '#' && (
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="sm"
+                        className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                      >
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          {t('projects.viewProject')}
+                        </a>
+                      </Button>
+                    )}
+                    {project.githubUrl && project.githubUrl !== '#' && (
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="sm"
+                        className="flex-1 hover:text-primary-foreground"
+                      >
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Github className="h-4 w-4 mr-2" />
+                          {t('projects.viewCode')}
+                        </a>
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -93,4 +111,4 @@ export const Projects = () => {
       </div>
     </section>
   );
-}
+};

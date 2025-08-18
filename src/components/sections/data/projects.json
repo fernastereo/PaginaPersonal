@@ -1,33 +1,53 @@
 [
   {
-    "title": "E-Commerce Platform",
-    "description": "Full-stack e-commerce solution with React, Node.js, and Stripe integration. Features include user authentication, product management, and order tracking.",
+    "titleKey": "projects.publicaciones.title",
+    "descriptionKey": "projects.publicaciones.description",
+    "image": "/publicaciones-app.png",
+    "technologies": ["PHP", "Vuejs", "MySQL", "Tailwind CSS", "AWS-S3"],
+    "liveUrl": "https://projects.fernandocueto.com/front_apicuraduria2ca/#/",
+    "githubUrl": "https://github.com/fernastereo/notificaciones2ca"
+  },
+  {
+    "titleKey": "projects.chat.title",
+    "descriptionKey": "projects.chat.description",
+    "image": "/chat-app.png",
+    "technologies": [
+      "PHP",
+      "Laravel",
+      "Vue.js",
+      "MySQL",
+      "Pusher",
+      "Laravel Echo",
+      "AWS-S3"
+    ],
+    "liveUrl": "https://github.com/fernastereo/fokoretail-test",
+    "githubUrl": "https://github.com/fernastereo/fokoretail-test"
+  },
+  {
+    "titleKey": "projects.weather.title",
+    "descriptionKey": "projects.weather.description",
     "image": "/placeholder.svg",
-    "technologies": ["React", "Node.js", "MongoDB", "Stripe", "Tailwind CSS"],
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Chart.js",
+      "Weather API",
+      "Styled Components"
+    ],
     "liveUrl": "#",
     "githubUrl": "#"
   },
   {
-    "title": "Task Management App",
-    "description": "Collaborative project management tool with real-time updates, drag-and-drop functionality, and team collaboration features.",
+    "titleKey": "projects.portfolio.title",
+    "descriptionKey": "projects.portfolio.description",
     "image": "/placeholder.svg",
-    "technologies": ["Vue.js", "Express.js", "Socket.io", "PostgreSQL", "Vuetify"],
-    "liveUrl": "#",
-    "githubUrl": "#"
-  },
-  {
-    "title": "Weather Dashboard",
-    "description": "Real-time weather application with geolocation, weather forecasts, and beautiful data visualizations using Chart.js.",
-    "image": "/placeholder.svg",
-    "technologies": ["React", "TypeScript", "Chart.js", "Weather API", "Styled Components"],
-    "liveUrl": "#",
-    "githubUrl": "#"
-  },
-  {
-    "title": "Portfolio Website",
-    "description": "Responsive portfolio website built with modern technologies, featuring smooth animations and dark mode support.",
-    "image": "/placeholder.svg",
-    "technologies": ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS", "Vercel"],
+    "technologies": [
+      "Next.js",
+      "TypeScript",
+      "Framer Motion",
+      "Tailwind CSS",
+      "Vercel"
+    ],
     "liveUrl": "#",
     "githubUrl": "#"
   }
