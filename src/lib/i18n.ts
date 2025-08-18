@@ -19,7 +19,7 @@ const resources = {
       'hero.name': 'Fernando Cueto',
       'hero.role': 'Full Stack Developer',
       'hero.description':
-        'I create exceptional digital experiences through innovative web solutions. Specialized in React, Node.js, and modern technologies.',
+        'I transform ideas into scalable digital solutions, powered by technology, innovation, and Artificial Intelligence.',
       'hero.viewProjects': 'View my Work',
       'hero.getInTouch': 'Contact me',
       'hero.download': 'Download CV',
@@ -28,12 +28,14 @@ const resources = {
       // About Section
       'about.title': 'About Me',
       'about.subtitle': 'Get to know me better',
-      'about.description':
-        "I'm a passionate full-stack developer with 5+ years of experience creating web applications. I love turning complex problems into simple, beautiful solutions.",
-      'about.stats.projects': 'Projects',
+      'about.description1':
+        'I’m <bold>Fernando E. Cueto</bold>, a Fullstack Developer with over 10 years of experience building modern, scalable web applications. I’ve worked in corporate environments, startups, and as a freelancer, which has given me a broad perspective on how to adapt technology to different needs and contexts.',
+      'about.description2':
+        'My approach goes beyond coding: I strive to create solutions that deliver real value, optimizing processes and crafting memorable digital experiences. I’m passionate about continuous learning, working with technologies such as PHP, Laravel, C#, Javascript,Typescript, Node.js, Vue.js, and React, while exploring how Artificial Intelligence can enhance automation, performance, and personalization in applications.',
+      'about.stats.projects': 'Successful Projects',
       'about.stats.clients': 'Happy Clients',
       'about.stats.experience': 'Years Experience',
-      'about.stats.technologies': 'Technologies',
+      'about.stats.technologies': 'Used Technologies',
 
       // Services Section
       'services.title': 'Services',
@@ -110,7 +112,7 @@ const resources = {
       'hero.name': 'Fernando Cueto',
       'hero.role': 'Desarrollador Full Stack',
       'hero.description':
-        'Creo experiencias digitales excepcionales a través de soluciones web innovadoras. Especializado en React, Node.js y tecnologías modernas.',
+        'Transformo ideas en soluciones digitales escalables, impulsadas por tecnología, innovación e Inteligencia Artificial.',
       'hero.viewProjects': 'Ver mi Trabajo',
       'hero.getInTouch': 'Contactar',
       'hero.download': 'Descargar CV',
@@ -119,12 +121,14 @@ const resources = {
       // About Section
       'about.title': 'Acerca de Mí',
       'about.subtitle': 'Conoce más sobre mí',
-      'about.description':
-        'Soy un desarrollador full-stack apasionado con más de 5 años de experiencia creando aplicaciones web. Me encanta convertir problemas complejos en soluciones simples y hermosas.',
-      'about.stats.projects': 'Proyectos',
+      'about.description1':
+        'Soy <bold>Fernando E. Cueto</bold>, Desarrollador Fullstack con más de 10 años de experiencia construyendo aplicaciones web modernas y escalables. He trabajado en entornos corporativos, startups y como freelancer, lo que me ha dado una visión amplia sobre cómo adaptar la tecnología a diferentes necesidades y contextos.',
+      'about.description2':
+        'Mi enfoque va más allá del código: busco crear soluciones que aporten valor real, optimizando procesos y generando experiencias digitales memorables. Me apasiona mantenerme en constante aprendizaje, integrando tecnologías como PHP, Laravel, C#, Javascript,Typescript, Node.js, Vue.js y React. También explorando cómo la Inteligencia Artificial puede potenciar la automatización, el rendimiento y la personalización de las aplicaciones.',
+      'about.stats.projects': 'Proyectos Exitosos',
       'about.stats.clients': 'Clientes Satisfechos',
       'about.stats.experience': 'Años de Experiencia',
-      'about.stats.technologies': 'Tecnologías',
+      'about.stats.technologies': 'Tecnologías Usadas',
 
       // Services Section
       'services.title': 'Servicios',
