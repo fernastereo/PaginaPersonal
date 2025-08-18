@@ -52,7 +52,8 @@ const resources = {
 
       // Skills Section
       'skills.title': 'Skills & Technologies',
-      'skills.subtitle': 'Technologies I work with',
+      'skills.subtitle':
+        'My expertise is built on a modern and adaptable stack that allows me to build solid, scalable, and user-focused applications. Here are the technologies I work with every day:',
       'skills.frontend': 'Frontend',
       'skills.backend': 'Backend',
       'skills.tools': 'Tools',
@@ -145,7 +146,8 @@ const resources = {
 
       // Skills Section
       'skills.title': 'Habilidades y Tecnologías',
-      'skills.subtitle': 'Tecnologías con las que trabajo',
+      'skills.subtitle':
+        'Mi experiencia se basa en un stack moderno y adaptable, que me permite construir aplicaciones sólidas, escalables y centradas en el usuario. Estas son las tecnologías con las que trabajo día a día:',
       'skills.frontend': 'Frontend',
       'skills.backend': 'Backend',
       'skills.tools': 'Herramientas',

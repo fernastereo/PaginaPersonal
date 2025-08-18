@@ -51,9 +51,9 @@ export const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="section-padding bg-secondary/50">
+    <section id="contact" className="section-padding">
       <div className="container-custom">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +90,7 @@ export const Contact = () => {
                       className="border-border focus:border-primary transition-colors"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="email">{t('contact.email')}</Label>
                     <Input
@@ -103,7 +103,7 @@ export const Contact = () => {
                       className="border-border focus:border-primary transition-colors"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="message">{t('contact.message')}</Label>
                     <Textarea
@@ -116,9 +116,9 @@ export const Contact = () => {
                       className="border-border focus:border-primary transition-colors resize-none"
                     />
                   </div>
-                  
-                  <Button 
-                    type="submit" 
+
+                  <Button
+                    type="submit"
                     className="w-full bg-gradient-primary hover:opacity-90 transition-all duration-300 glow-effect"
                     size="lg"
                   >
@@ -156,8 +156,10 @@ export const Contact = () => {
                       <info.icon className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <p className="font-medium text-foreground">{info.label}</p>
-                      <a 
+                      <p className="font-medium text-foreground">
+                        {info.label}
+                      </p>
+                      <a
                         href={info.href}
                         className="text-muted-foreground hover:text-primary transition-colors"
                       >
@@ -177,10 +179,12 @@ export const Contact = () => {
               viewport={{ once: true }}
               className="p-6 bg-gradient-primary rounded-lg text-white"
             >
-              <h4 className="font-semibold mb-2">¿Listo para empezar tu proyecto?</h4>
+              <h4 className="font-semibold mb-2">
+                ¿Listo para empezar tu proyecto?
+              </h4>
               <p className="text-sm opacity-90">
-                Estoy disponible para nuevos proyectos y colaboraciones. 
-                No dudes en contactarme para discutir tus ideas.
+                Estoy disponible para nuevos proyectos y colaboraciones. No
+                dudes en contactarme para discutir tus ideas.
               </p>
             </motion.div>
           </motion.div>
