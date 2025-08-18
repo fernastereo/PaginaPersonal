@@ -15,7 +15,6 @@ export const NavBar = () => {
   const navItems = [
     { key: 'about', href: '#about' },
     { key: 'skills', href: '#skills' },
-    { key: 'services', href: '#services' },
     { key: 'experience', href: '#experience' },
     { key: 'projects', href: '#projects' },
     { key: 'testimonials', href: '#testimonials' },

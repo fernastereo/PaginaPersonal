@@ -38,10 +38,10 @@
     "skills": [
       "Git",
       "Docker",
+      "TDD",
       "AWS",
       "Azure",
       "Google Cloud",
-      "TDD",
       "CI/CD",
       "Github Actions"
     ]
