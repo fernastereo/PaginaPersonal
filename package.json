@@ -12,6 +12,7 @@
     "format:staged": "prettier --write $(git diff --cached --name-only --diff-filter=ACMR | grep '\\.(ts|tsx|js|jsx|json|css|md)$')"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "@tailwindcss/vite": "^4.1.12",

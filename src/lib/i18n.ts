@@ -95,6 +95,7 @@ const resources = {
       'contact.email': 'Email',
       'contact.message': 'Message',
       'contact.send': 'Send Message',
+      'contact.sending': 'Sending...',
       'contact.success':
         "Message sent successfully! I'll get back to you soon.",
       'contact.info': 'Contact me',
@@ -102,7 +103,9 @@ const resources = {
       'contact.info.location': 'Location',
       'contact.cta':
         "Ready to start your project? Let's discuss how I can help bring your ideas to life.",
-
+      'contact.cta.description':
+        'I am available for new projects and collaborations. Feel free to contact me to discuss your ideas.',
+      'contact.error': 'Error sending message. Please try again.',
       // Footer
       'footer.scrollTop': 'Scroll to top',
       'footer.rights': 'All rights reserved.',
@@ -205,13 +208,16 @@ const resources = {
       'contact.email': 'Email',
       'contact.message': 'Mensaje',
       'contact.send': 'Enviar Mensaje',
+      'contact.sending': 'Enviando...',
       'contact.success': '¡Mensaje enviado exitosamente! Te responderé pronto.',
       'contact.info': 'Contactame',
       'contact.info.email': 'Email',
       'contact.info.location': 'Ubicación',
       'contact.cta':
         '¿Listo para comenzar tu proyecto? Hablemos sobre cómo puedo ayudarte a hacer realidad tus ideas.',
-
+      'contact.cta.description':
+        'Estoy disponible para nuevos proyectos y colaboraciones. No dudes en contactarme para discutir tus ideas.',
+      'contact.error': 'Error al enviar el mensaje. Inténtalo de nuevo.',
       // Footer
       'footer.scrollTop': 'Volver arriba',
       'footer.rights': 'Todos los derechos reservados.',
