@@ -67,7 +67,7 @@ const resources = {
       'projects.title': 'Featured Projects',
       'projects.subtitle':
         "Here are some of the projects I've worked on, combining innovation, scalability, and user experience. Each project reflects my holistic approach as a Fullstack Developer and my ability to turn ideas into concrete digital solutions.",
-      'projects.viewProject': 'View Project',
+      'projects.viewProject': 'View Demo',
       'projects.viewCode': 'View Code',
 
       // Individual Projects
@@ -177,7 +177,7 @@ const resources = {
       'projects.title': 'Proyectos Destacados',
       'projects.subtitle':
         'Estos son algunos de los proyectos en los que he trabajado, combinando innovación, escalabilidad y experiencia de usuario. Cada proyecto refleja mi enfoque integral como desarrollador Fullstack y mi capacidad para transformar ideas en soluciones digitales concretas.',
-      'projects.viewProject': 'Ver Proyecto',
+      'projects.viewProject': 'Ver Demo',
       'projects.viewCode': 'Ver Código',
 
       // Individual Projects

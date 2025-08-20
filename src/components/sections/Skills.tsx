@@ -19,7 +19,7 @@ export const Skills = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             {t('skills.title')}
           </h2>
-          <p className="text-xl text-muted-foreground px-24">
+          <p className="md:text-xl text-muted-foreground md:px-24">
             {t('skills.subtitle')}
           </p>
         </motion.div>

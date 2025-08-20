@@ -21,7 +21,7 @@ export const Projects = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             {t('projects.title')}
           </h2>
-          <p className="text-xl text-muted-foreground px-24">
+          <p className="md:text-xl text-muted-foreground md:px-24">
             {t('projects.subtitle')}
           </p>
         </motion.div>
@@ -40,12 +40,12 @@ export const Projects = () => {
                   <img
                     src={project.image}
                     alt={t(project.titleKey)}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-60 md:h-72 object-center group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
 
-                <CardContent className="p-6">
+                <CardContent className="pt-6">
                   <h3 className="text-xl font-semibold mb-3 text-gradient">
                     {t(project.titleKey)}
                   </h3>
@@ -103,6 +103,19 @@ export const Projects = () => {
                       </Button>
                     )}
                   </div>
+
+                  {project.demo && (
+                    <div className="flex flex-col gap-0 md:flex-row md:gap-2 mt-6 text-sm text-muted-foreground">
+                      <div className="flex gap-2">
+                        <span className="font-semibold">User-demo:</span>
+                        <span className="italic">{project.demo.user}</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="font-semibold">Password:</span>
+                        <span className="italic">{project.demo.password}</span>
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>

@@ -5,7 +5,11 @@
     "image": "/publicaciones-app.png",
     "technologies": ["PHP", "Vuejs", "MySQL", "Tailwind CSS", "AWS-S3"],
     "liveUrl": "https://projects.fernandocueto.com/front_apicuraduria2ca/#/",
-    "githubUrl": "https://github.com/fernastereo/notificaciones2ca"
+    "githubUrl": "https://github.com/fernastereo/notificaciones2ca",
+    "demo": {
+      "user": "demo",
+      "password": "demopassword"
+    }
   },
   {
     "titleKey": "projects.chat.title",
@@ -20,35 +24,11 @@
       "Laravel Echo",
       "AWS-S3"
     ],
-    "liveUrl": "https://github.com/fernastereo/fokoretail-test",
-    "githubUrl": "https://github.com/fernastereo/fokoretail-test"
-  },
-  {
-    "titleKey": "projects.weather.title",
-    "descriptionKey": "projects.weather.description",
-    "image": "/placeholder.svg",
-    "technologies": [
-      "React",
-      "TypeScript",
-      "Chart.js",
-      "Weather API",
-      "Styled Components"
-    ],
-    "liveUrl": "#",
-    "githubUrl": "#"
-  },
-  {
-    "titleKey": "projects.portfolio.title",
-    "descriptionKey": "projects.portfolio.description",
-    "image": "/placeholder.svg",
-    "technologies": [
-      "Next.js",
-      "TypeScript",
-      "Framer Motion",
-      "Tailwind CSS",
-      "Vercel"
-    ],
-    "liveUrl": "#",
-    "githubUrl": "#"
+    "liveUrl": "https://fokochat.click",
+    "githubUrl": "https://github.com/fernastereo/fokoretail-test",
+    "demo": {
+      "user": "demo@fokochat.click",
+      "password": "demosecret"
+    }
   }
 ]
