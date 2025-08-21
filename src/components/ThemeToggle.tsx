@@ -31,7 +31,11 @@ export const ThemeToggle = () => {
       onClick={toggleTheme}
       className="hover:bg-secondary-foreground transition-colors"
     >
-      {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+      {isDark ? (
+        <Sun className="h-4 w-4" data-testid="sun-icon" />
+      ) : (
+        <Moon className="h-4 w-4" data-testid="moon-icon" />
+      )}
     </Button>
   );
 }
