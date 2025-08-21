@@ -124,7 +124,23 @@ The contact form uses EmailJS for sending emails. To set it up:
 
 ### 🚀 Deployment
 
-#### For Static Hosting (Namecheap, cPanel, etc.)
+#### Automatic Deployment (Recommended)
+
+This project includes **GitHub Actions** for automatic deployment:
+
+- ✅ **Continuous Integration**: Runs on every push/PR
+- 🚀 **Auto-Deploy**: Deploys to production on push to main/master
+- 📧 **Email Integration**: Includes EmailJS configuration
+- 🔐 **Secure**: Uses GitHub Secrets for credentials
+
+**Setup:**
+1. Configure [GitHub Secrets](.github/DEPLOYMENT.md#-secrets-requeridos)
+2. Push to main/master branch
+3. Automatic deployment via FTP to your hosting
+
+**See:** [Complete CI/CD Setup Guide](.github/DEPLOYMENT.md)
+
+#### Manual Deployment (Static Hosting)
 
 1. **Build the project**
    ```bash
@@ -236,7 +252,23 @@ Visita: [fernandocueto.com](https://fernandocueto.com)
 
 ### 🚀 Despliegue
 
-#### Para Hosting Estático (Namecheap, cPanel, etc.)
+#### Despliegue Automático (Recomendado)
+
+Este proyecto incluye **GitHub Actions** para despliegue automático:
+
+- ✅ **Integración Continua**: Se ejecuta en cada push/PR
+- 🚀 **Auto-Deploy**: Despliega a producción en push a main/master
+- 📧 **Integración Email**: Incluye configuración de EmailJS
+- 🔐 **Seguro**: Usa GitHub Secrets para credenciales
+
+**Configuración:**
+1. Configurar [GitHub Secrets](.github/DEPLOYMENT.md#-secrets-requeridos)
+2. Push a la rama main/master
+3. Despliegue automático vía FTP a tu hosting
+
+**Ver:** [Guía Completa de CI/CD](.github/DEPLOYMENT.md)
+
+#### Despliegue Manual (Hosting Estático)
 
 1. **Construir el proyecto**
    ```bash
