@@ -101,6 +101,7 @@ const resources = {
       'contact.info': 'Contact me',
       'contact.info.email': 'Email',
       'contact.info.location': 'Location',
+      'contact.info.location.value': 'Berlin, Germany',
       'contact.cta':
         "Ready to start your project? Let's discuss how I can help bring your ideas to life.",
       'contact.cta.description':
@@ -213,6 +214,7 @@ const resources = {
       'contact.info': 'Contactame',
       'contact.info.email': 'Email',
       'contact.info.location': 'Ubicación',
+      'contact.info.location.value': 'Berlin, Alemania',
       'contact.cta':
         '¿Listo para comenzar tu proyecto? Hablemos sobre cómo puedo ayudarte a hacer realidad tus ideas.',
       'contact.cta.description':

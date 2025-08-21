@@ -89,8 +89,8 @@ export const Contact = () => {
     },
     {
       icon: MapPin,
-      label: 'Ubicación',
-      value: 'Berlin, Alemania',
+      label: t('contact.info.location'),
+      value: t('contact.info.location.value'),
       href: 'https://maps.app.goo.gl/aCShhFbYoAh1YD1r9',
     },
   ];

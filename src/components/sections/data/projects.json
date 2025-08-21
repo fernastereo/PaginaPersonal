@@ -2,7 +2,7 @@
   {
     "titleKey": "projects.publicaciones.title",
     "descriptionKey": "projects.publicaciones.description",
-    "image": "/publicaciones-app.png",
+    "image": "/images/publicaciones-app.png",
     "technologies": ["PHP", "Vuejs", "MySQL", "Tailwind CSS", "AWS-S3"],
     "liveUrl": "https://projects.fernandocueto.com/front_apicuraduria2ca/#/",
     "githubUrl": "https://github.com/fernastereo/notificaciones2ca",
@@ -14,7 +14,7 @@
   {
     "titleKey": "projects.chat.title",
     "descriptionKey": "projects.chat.description",
-    "image": "/chat-app.png",
+    "image": "/images/chat-app.png",
     "technologies": [
       "PHP",
       "Laravel",
