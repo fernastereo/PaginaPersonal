@@ -8,9 +8,7 @@
     "build": "tsc -b && vite build",
     "build:production": "node build-production.js",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "format": "prettier --write .",
-    "format:staged": "prettier --write $(git diff --cached --name-only --diff-filter=ACMR | grep '\\.(ts|tsx|js|jsx|json|css|md)$')"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

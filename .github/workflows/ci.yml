@@ -27,9 +27,6 @@ jobs:
       - name: 🔍 Run ESLint
         run: npm run lint
 
-      - name: 🎨 Check code formatting
-        run: npm run format -- --check
-
       - name: 🏗️ Test build (without secrets)
         run: |
           export VITE_EMAILJS_SERVICE_ID="test_service"
