@@ -30,6 +30,9 @@ jobs:
       - name: 🔍 Run linting
         run: npm run lint
 
+      - name: 🧪 Run tests
+        run: npm run test
+
       - name: 🏗️ Test build
         run: npm run build
         env:
@@ -60,6 +63,9 @@ jobs:
 
       - name: 🔍 Run linting
         run: npm run lint
+
+      - name: 🧪 Run tests
+        run: npm run test
 
       - name: 🏗️ Build for production
         run: npm run build

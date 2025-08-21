@@ -21,6 +21,8 @@ Visit: [fernandocueto.com](https://fernandocueto.com)
 - **Smooth Animations**: Beautiful animations using Framer Motion
 - **Modern UI Components**: Built with shadcn/ui (powered by Radix UI + Tailwind CSS)
 - **Fast Performance**: Optimized bundle with Vite build system
+- **Unit Testing**: Comprehensive test suite with Vitest and React Testing Library
+- **CI/CD Pipeline**: Automated testing and deployment with GitHub Actions
 
 ### 🛠️ Tech Stack
 
@@ -35,6 +37,8 @@ Visit: [fernandocueto.com](https://fernandocueto.com)
 | **EmailJS** | 4.4.1 | Contact form functionality |
 | **Lucide React** | 0.539.0 | Icon library |
 | **shadcn/ui** | - | Modern UI components (Radix + Tailwind) |
+| **Vitest** | Latest | Unit testing framework |
+| **React Testing Library** | Latest | Component testing utilities |
 
 ### 📦 Installation & Setup
 
@@ -80,6 +84,8 @@ Visit: [fernandocueto.com](https://fernandocueto.com)
 | `npm run build:production` | Build with environment validation |
 | `npm run preview` | Preview production build |
 | `npm run lint` | Run ESLint |
+| `npm run test` | Run unit tests |
+| `npm run test:watch` | Run tests in watch mode |
 | `npm run format` | Format code with Prettier |
 
 ### 📁 Project Structure
@@ -109,6 +115,13 @@ src/
 ├── pages/
 │   ├── Index.tsx        # Main page
 │   └── NotFound.tsx     # 404 page
+├── test/                # Test files
+│   ├── setup.ts         # Test configuration
+│   ├── basic.test.ts    # Basic unit tests
+│   ├── components/      # Component tests
+│   │   └── themeToggle.test.tsx
+│   ├── data/            # Data validation tests
+│   └── lib/             # Utility function tests
 └── assets/              # Images and static files
 ```
 
@@ -121,6 +134,51 @@ The contact form uses EmailJS for sending emails. To set it up:
 3. Create an email template
 4. Get your Service ID, Template ID, and Public Key
 5. Add them to your `.env` file
+
+### 🧪 Testing
+
+This project includes a comprehensive test suite to ensure code quality and reliability.
+
+#### Test Structure
+- **Unit Tests**: Test individual functions and utilities
+- **Component Tests**: Test React components in isolation
+- **Integration Tests**: Test component interactions and routing
+- **Data Validation Tests**: Validate JSON data structure
+
+#### Running Tests
+```bash
+# Run all tests once
+npm run test
+
+# Run tests in watch mode (for development)
+npm run test:watch
+
+# Run tests with coverage (if configured)
+npm run test:coverage
+```
+
+#### Test Files
+```
+src/test/
+├── setup.ts              # Test configuration and mocks
+├── basic.test.ts          # Basic utility tests
+├── App.test.tsx           # App routing logic tests
+├── main.test.tsx          # Main application tests
+├── components/
+│   └── themeToggle.test.tsx  # ThemeToggle component tests
+├── data/
+│   ├── skills.test.ts     # Skills data validation
+│   ├── projects.test.ts   # Projects data validation
+│   └── testimonials.test.ts  # Testimonials data validation
+└── lib/
+    └── utils.test.ts      # Utility functions tests
+```
+
+#### Testing Technologies
+- **Vitest**: Fast unit testing framework
+- **React Testing Library**: Component testing utilities
+- **jsdom**: DOM simulation for browser APIs
+- **Mocking**: i18n, localStorage, and browser APIs
 
 ### 🚀 Deployment
 
@@ -189,6 +247,8 @@ Visita: [fernandocueto.com](https://fernandocueto.com)
 - **Animaciones Suaves**: Hermosas animaciones usando Framer Motion
 - **Componentes UI Modernos**: Construido con shadcn/ui (Radix UI + Tailwind CSS)
 - **Rendimiento Rápido**: Bundle optimizado con sistema de build Vite
+- **Testing Unitario**: Suite completa de tests con Vitest y React Testing Library
+- **Pipeline CI/CD**: Testing automatizado y deployment con GitHub Actions
 
 ### 🛠️ Stack Tecnológico
 
@@ -203,6 +263,8 @@ Visita: [fernandocueto.com](https://fernandocueto.com)
 | **EmailJS** | 4.4.1 | Funcionalidad del formulario |
 | **Lucide React** | 0.539.0 | Librería de iconos |
 | **shadcn/ui** | - | Componentes UI modernos (Radix + Tailwind) |
+| **Vitest** | Latest | Framework de testing unitario |
+| **React Testing Library** | Latest | Utilidades para testing de componentes |
 
 ### 📦 Instalación y Configuración
 
@@ -248,6 +310,8 @@ Visita: [fernandocueto.com](https://fernandocueto.com)
 | `npm run build:production` | Build con validación de entorno |
 | `npm run preview` | Preview del build de producción |
 | `npm run lint` | Ejecutar ESLint |
+| `npm run test` | Ejecutar tests unitarios |
+| `npm run test:watch` | Ejecutar tests en modo watch |
 | `npm run format` | Formatear código con Prettier |
 
 ### 🚀 Despliegue
@@ -290,6 +354,31 @@ Este proyecto incluye **GitHub Actions** para despliegue automático:
 - **Email**: hey@fernandocueto.com
 - **Ubicación**: Berlín, Alemania
 
+### 🧪 Testing (Español)
+
+Este proyecto incluye una suite completa de tests para asegurar la calidad y confiabilidad del código.
+
+#### Ejecutar Tests
+```bash
+# Ejecutar todos los tests una vez
+npm run test
+
+# Ejecutar tests en modo watch (para desarrollo)
+npm run test:watch
+```
+
+#### Tecnologías de Testing
+- **Vitest**: Framework de testing rápido y moderno
+- **React Testing Library**: Utilidades para testing de componentes
+- **jsdom**: Simulación de DOM para APIs del navegador
+- **Mocking**: Simulación de i18n, localStorage y APIs del navegador
+
 ---
 
 ⭐ Si te gusta este proyecto, ¡dale una estrella en GitHub!
+
+**Características destacadas:**
+- ✅ **Testing Completo**: Unit tests, component tests, e integration tests
+- ✅ **CI/CD Automatizado**: GitHub Actions para deployment automático
+- ✅ **Código de Calidad**: ESLint + Testing para mantener estándares altos
+- ✅ **Documentación Completa**: README bilingüe con guías detalladas
