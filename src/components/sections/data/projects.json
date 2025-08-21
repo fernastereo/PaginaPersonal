@@ -1,0 +1,34 @@
+[
+  {
+    "titleKey": "projects.publicaciones.title",
+    "descriptionKey": "projects.publicaciones.description",
+    "image": "/images/publicaciones-app.png",
+    "technologies": ["PHP", "Vuejs", "MySQL", "Tailwind CSS", "AWS-S3"],
+    "liveUrl": "https://projects.fernandocueto.com/front_apicuraduria2ca/#/",
+    "githubUrl": "https://github.com/fernastereo/notificaciones2ca",
+    "demo": {
+      "user": "demo",
+      "password": "demopassword"
+    }
+  },
+  {
+    "titleKey": "projects.chat.title",
+    "descriptionKey": "projects.chat.description",
+    "image": "/images/chat-app.png",
+    "technologies": [
+      "PHP",
+      "Laravel",
+      "Vue.js",
+      "MySQL",
+      "Pusher",
+      "Laravel Echo",
+      "AWS-S3"
+    ],
+    "liveUrl": "https://fokochat.click",
+    "githubUrl": "https://github.com/fernastereo/fokoretail-test",
+    "demo": {
+      "user": "demo@fokochat.click",
+      "password": "demosecret"
+    }
+  }
+]

@@ -1,0 +1,100 @@
+[
+  {
+    "position": "Senior Fullstack Developer",
+    "company": "Oceans Apart",
+    "location": "Berlin - Germany",
+    "period": "2023 - 2024",
+    "description": "Developed and support backend and frontend features to company’s ecommerce platform. Added and supported features on the backend with PHP. Developed new megamenu feature increasing client’s conversion in 23%. Rewrote HTML to meet industry and company standards for SEO and accessibility.",
+    "technologies": [
+      "PHP",
+      "Laravel",
+      "Wordpress",
+      "Woocommerce",
+      "Shopify",
+      "JavaScript",
+      "TypeScript",
+      "Tailwind CSS",
+      "Vuejs",
+      "Docker",
+      "Git",
+      "TDD",
+      "CI/CD"
+    ]
+  },
+  {
+    "position": "Senior Frontend Developer",
+    "company": "Krieger Digital",
+    "location": "Berlin - Germany",
+    "period": "2022 - 2023",
+    "description": "Developed and support React components to company/’s ecommerce platform. Created new services and apis on the backend for frontend with Nodejs. Created unit tests to every developed component. Maintained graphic standards and branding throughout the product/’s interfaces.",
+    "technologies": [
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Nodejs",
+      "Docker",
+      "Git",
+      "TDD",
+      "CI/CD"
+    ]
+  },
+  {
+    "position": "Senior Fullstack Developer",
+    "company": "Gorilla Logic",
+    "location": "United States (Remote from Colombia)",
+    "period": "2020 - 2022",
+    "description": "Developed and support microservices and other legacy projects of assigned clients. Delivered new features and bring support to existing ones on the core software of the client’s project. Used of TDD as rule for implementation and assuring quality.",
+    "technologies": [
+      ".NET",
+      "C#",
+      "Blazor",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "SQL Server",
+      "Docker",
+      "Git",
+      "TDD",
+      "CI/CD"
+    ]
+  },
+  {
+    "position": "Senior Fullstack Developer",
+    "company": "NCM Technology",
+    "location": "United States (Remote from Colombia)",
+    "period": "2018 - 2020",
+    "description": "Developed new functionalities to different projects of clients of the company. Support and fix issues in legacy code with Php and Laravel. Add new modules and create microservices. Refactor and review code, create and support tests.",
+    "technologies": [
+      "PHP",
+      "Laravel",
+      "JavaScript",
+      "React",
+      "Vuejs",
+      "MySQL",
+      "Redis",
+      "Docker",
+      "Git",
+      "TDD",
+      "CI/CD"
+    ]
+  },
+  {
+    "position": "Backend Developer",
+    "company": "Consultoría y Servicios de Software S.A.S.",
+    "location": "Colombia",
+    "period": "2014 - 2019",
+    "description": "Designed and developed a payroll and HR web application with PHP-Laravel. Designed and developed an urban planning web application with PHP-Laravel, this application made an online connection between three government offices in the city for sharing information of each one in real-time. ",
+    "technologies": [
+      ".NET",
+      "C#",
+      "PHP",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "jQuery",
+      "MySQL",
+      "Git",
+      "TDD"
+    ]
+  }
+]

@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@variant dark (&:is(.dark *)); /* variant personalizado para modo oscuro */
+
+@theme inline {
+  /* Está SOBRESCRIBIENDO los colores predeterminados de Tailwind */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  
+  /* Colors */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+  
+  /* Background Gradients */
+  --color-gradient-primary: hsl(var(--gradient-primary));
+  --color-gradient-hero: hsl(var(--gradient-hero));
+  --color-gradient-card: hsl(var(--gradient-card));
+  
+  /* Extended Colors (variantes no estándar) */
+  --color-primary-light: hsl(var(--primary-light));
+  --color-primary-dark: hsl(var(--primary-dark));
+  --color-accent-light: hsl(var(--accent-light));
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  
+  /* Box Shadows */
+  --shadow-xs: hsl(var(--shadow-sm));
+  --shadow-custom-md: hsl(var(--shadow-md));
+}
+
+:root {
+  /* define modo claro */
+  /* Base Colors */
+  --background: 0 0% 100%;
+  --foreground: 215 25% 15%;
+  
+  /* Blue-Green Primary Palette */
+  --primary: 195 100% 40%;
+  --primary-foreground: 0 0% 100%;
+  --primary-light: 195 100% 50%;
+  --primary-dark: 195 100% 30%;
+  
+  /* Accent Colors */
+  --accent: 170 75% 42%;
+  --accent-foreground: 0 0% 100%;
+  --accent-light: 170 75% 52%;
+  
+  /* Neutral Colors */
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 215 25% 25%;
+  --muted: 210 40% 94%;
+  --muted-foreground: 215 13% 45%;
+  
+  /* Card & Popover */
+  --card: 0 0% 100%;
+  --card-foreground: 215 25% 15%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 215 25% 15%;
+  
+  /* Border & Input */
+  --border: 215 15% 88%;
+  --input: 215 15% 90%;
+  --ring: 195 100% 40%;
+  
+  /* Success & Error */
+  --success: 142 85% 35%;
+  --success-foreground: 0 0% 100%;
+  --destructive: 0 90% 58%;
+  --destructive-foreground: 0 0% 100%;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, hsl(195, 100%, 40%), hsl(170, 75%, 42%));
+  --gradient-hero: linear-gradient(135deg, hsl(195, 100%, 40%) 0%, hsl(170, 75%, 42%) 100%);
+  --gradient-card: linear-gradient(145deg, hsl(0, 0%, 100%) 0%, hsl(210, 40%, 98%) 100%);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 hsl(215, 25%, 15%, 0.05);
+  --shadow-md: 0 4px 6px -1px hsl(215, 25%, 15%, 0.1), 0 2px 4px -1px hsl(215, 25%, 15%, 0.06);
+  --shadow-lg: 0 10px 15px -3px hsl(215, 25%, 15%, 0.1), 0 4px 6px -2px hsl(215, 25%, 15%, 0.05);
+  --shadow-glow: 0 0 20px hsl(195, 100%, 40%, 0.4);
+  
+  /* Spacing & Border Radius */
+  --radius: 0.75rem;
+
+  /* Chart Colors (mantienen compatibilidad) */
+  --chart-1: 195 100% 40%;
+  --chart-2: 170 75% 42%;
+  --chart-3: 142 85% 35%;
+  --chart-4: 0 90% 58%;
+  --chart-5: 215 25% 15%;
+
+  /* Sidebar Colors (usando tu paleta) */
+  --sidebar: 0 0% 100%;
+  --sidebar-foreground: 215 25% 15%;
+  --sidebar-primary: 195 100% 40%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 210 40% 96%;
+  --sidebar-accent-foreground: 215 25% 25%;
+  --sidebar-border: 215 15% 88%;
+  --sidebar-ring: 195 100% 40%;
+}
+
+.dark {
+  /* define modo oscuro */
+  /* Base Colors */
+  --background: 215 28% 8%;
+  --foreground: 210 40% 95%;
+  
+  /* Blue-Green Primary Palette */
+  --primary: 195 100% 50%;
+  --primary-foreground: 215 28% 8%;
+  --primary-light: 195 100% 60%;
+  --primary-dark: 195 100% 40%;
+  
+  /* Accent Colors */
+  --accent: 170 75% 50%;
+  --accent-foreground: 215 28% 8%;
+  --accent-light: 170 75% 60%;
+  
+  /* Neutral Colors */
+  --secondary: 215 28% 12%;
+  --secondary-foreground: 210 40% 90%;
+  --muted: 215 28% 14%;
+  --muted-foreground: 215 13% 65%;
+    
+  /* Card & Popover */
+  --card: 215 28% 10%;
+  --card-foreground: 210 40% 95%;
+  --popover: 215 28% 10%;
+  --popover-foreground: 210 40% 95%;
+  
+  /* Border & Input */
+  --border: 215 28% 18%;
+  --input: 215 28% 16%;
+  --ring: 195 100% 50%;
+  
+  /* Success & Error */
+  --success: 142 85% 45%;
+  --success-foreground: 215 28% 8%;
+  --destructive: 0 90% 60%;
+  --destructive-foreground: 215 28% 8%;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, hsl(195, 100%, 50%), hsl(170, 75%, 50%));
+  --gradient-hero: linear-gradient(135deg, hsl(195, 100%, 50%) 0%, hsl(170, 75%, 50%) 100%);
+  --gradient-card: linear-gradient(145deg, hsl(215, 28%, 10%) 0%, hsl(215, 28%, 12%) 100%);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 hsl(0, 0%, 0%, 0.2);
+  --shadow-md: 0 4px 6px -1px hsl(0, 0%, 0%, 0.3), 0 2px 4px -1px hsl(0, 0%, 0%, 0.2);
+  --shadow-lg: 0 10px 15px -3px hsl(0, 0%, 0%, 0.4), 0 4px 6px -2px hsl(0, 0%, 0%, 0.3);
+  --shadow-glow: 0 0 30px hsl(195, 100%, 50%, 0.4);
+
+  /* Chart Colors */
+  --chart-1: 195 100% 50%;
+  --chart-2: 170 75% 50%;
+  --chart-3: 142 85% 45%;
+  --chart-4: 0 90% 60%;
+  --chart-5: 210 40% 95%;
+
+  /* Sidebar Colors */
+  --sidebar: 215 28% 10%;
+  --sidebar-foreground: 210 40% 95%;
+  --sidebar-primary: 195 100% 50%;
+  --sidebar-primary-foreground: 215 28% 8%;
+  --sidebar-accent: 215 28% 12%;
+  --sidebar-accent-foreground: 210 40% 90%;
+  --sidebar-border: 215 28% 18%;
+  --sidebar-ring: 195 100% 50%;
+}
+
+@layer base {
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer utilities {
+  /* Gradient Backgrounds */
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+  
+  /* Text Gradient */
+  .text-gradient {
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Glow Effect */
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Container Custom */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Section Padding */
+  .section-padding {
+    @apply py-16 md:py-20 px-4 md:px-8;
+  }
+
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+  
+  /* Subrayado animado de izquierda a derecha */
+  .hover-underline-animation {
+    position: relative;
+  }
+  
+  .hover-underline-animation::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: hsl(var(--primary));
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .hover-underline-animation:hover::after {
+    width: 100%;
+  }
+  
+  /* Extended Color Backgrounds */
+  .bg-primary-light {
+    background-color: hsl(var(--primary-light));
+  }
+  
+  .bg-primary-dark {
+    background-color: hsl(var(--primary-dark));
+  }
+  
+  .bg-accent-light {
+    background-color: hsl(var(--accent-light));
+  }
+  
+  .bg-success {
+    background-color: hsl(var(--success));
+  }
+  
+  /* Extended Color Text */
+  .text-primary-light {
+    color: hsl(var(--primary-light));
+  }
+  
+  .text-primary-dark {
+    color: hsl(var(--primary-dark));
+  }
+  
+  .text-accent-light {
+    color: hsl(var(--accent-light));
+  }
+  
+  .text-success {
+    color: hsl(var(--success));
+  }
+  
+  .text-success-foreground {
+    color: hsl(var(--success-foreground));
+  }
+  
+  /* Extended Border Colors */
+  .border-primary-light {
+    border-color: hsl(var(--primary-light));
+  }
+  
+  .border-primary-dark {
+    border-color: hsl(var(--primary-dark));
+  }
+  
+  .border-accent-light {
+    border-color: hsl(var(--accent-light));
+  }
+  
+  .border-success {
+    border-color: hsl(var(--success));
+  }
+  
+  /* Custom Shadows */
+  .shadow-xs {
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .shadow-custom-md {
+    box-shadow: var(--shadow-md);
+  }
+  
+  .shadow-custom-lg {
+    box-shadow: var(--shadow-lg);
+  }
+  
+  /* Hover Variants for Extended Colors */
+  .hover\:bg-primary-light:hover {
+    background-color: hsl(var(--primary-light));
+  }
+  
+  .hover\:bg-primary-dark:hover {
+    background-color: hsl(var(--primary-dark));
+  }
+  
+  .hover\:bg-accent-light:hover {
+    background-color: hsl(var(--accent-light));
+  }
+  
+  .hover\:bg-success:hover {
+    background-color: hsl(var(--success));
+  }
+}
