@@ -45,40 +45,45 @@ export const NavBar = () => {
         isScrolled
           ? 'bg-background/80 backdrop-blur-md shadow-custom-md'
           : 'bg-transparent'
-      }`}>
-      <div className='container-custom'>
-        <div className='flex items-center justify-between h-16 px-4'>
+      }`}
+    >
+      <div className="container-custom">
+        <div className="flex items-center justify-between h-16 px-4">
           <motion.div
-            className='font-bold text-2xl text-gradient cursor-pointer'
+            className="font-bold text-2xl text-gradient cursor-pointer"
             whileHover={{ scale: 1.15 }}
-            onClick={() => scrollToSection('#hero')}>
+            onClick={() => scrollToSection('#hero')}
+          >
             &lt;FC /&gt;
           </motion.div>
 
-          <div className='hidden md:flex items-center space-x-8'>
-            {navItems.map((item) => (
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map(item => (
               <button
                 key={item.key}
                 onClick={() => scrollToSection(item.href)}
-                className='text-foreground font-semibold cursor-pointer hover:text-primary transition-colors hover-underline-animation'>
+                className="text-foreground font-semibold cursor-pointer hover:text-primary transition-colors hover-underline-animation"
+              >
                 {t(`nav.${item.key}`)}
               </button>
             ))}
           </div>
 
-          <div className='flex items-center space-x-2'>
+          <div className="flex items-center space-x-2">
             <LanguageToggle />
             <ThemeToggle />
             {/* Mobile menu button */}
             <Button
-              variant='ghost'
-              size='icon'
-              className='md:hidden'
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              data-testid="mobile-menu-button"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
               {isMobileMenuOpen ? (
-                <X className='h-6 w-6' />
+                <X className="h-6 w-6" />
               ) : (
-                <Menu className='h-6 w-6' />
+                <Menu className="h-6 w-6" />
               )}
             </Button>
           </div>
@@ -97,13 +102,15 @@ export const NavBar = () => {
                 width: '100%',
               }}
               exit={{ opacity: 0, height: 0 }}
-              className='md:hidden bg-background/95 backdrop-blur-md border-t border-primary-foreground'>
-              <div className='py-16 space-y-2'>
-                {navItems.map((item) => (
+              className="md:hidden bg-background/95 backdrop-blur-md border-t border-primary-foreground"
+            >
+              <div className="py-16 space-y-2">
+                {navItems.map(item => (
                   <button
                     key={item.key}
                     onClick={() => scrollToSection(item.href)}
-                    className='block w-full text-center px-4 py-6 text-xl font-semibold text-foreground hover:text-primary hover:bg-secondary transition-colors'>
+                    className="block w-full text-center px-4 py-6 text-xl font-semibold text-foreground hover:text-primary hover:bg-secondary transition-colors"
+                  >
                     {t(`nav.${item.key}`)}
                   </button>
                 ))}
