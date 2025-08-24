@@ -30,5 +30,13 @@
       "user": "demo@fokochat.click",
       "password": "demosecret"
     }
+  },
+  {
+    "titleKey": "projects.docutrack.title",
+    "descriptionKey": "projects.docutrack.description",
+    "image": "/images/docutrack-landing.png",
+    "technologies": ["Vuejs", "Firebase", "Tailwind CSS"],
+    "liveUrl": "https://docutrack.cloud",
+    "githubUrl": "https://github.com/fernastereo/docutrack-landing"
   }
 ]

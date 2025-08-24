@@ -77,12 +77,9 @@ const resources = {
       'projects.chat.title': 'Real-time Chat Application',
       'projects.chat.description':
         'Chat application developed to enable instant communication between users, combining a REST API in PHP with Laravel and a Vue.js frontend interface. The solution integrates Sockets using Laravel Echo and Pusher, allowing real-time updates of messages and notifications, providing a smooth and responsive user experience in collaborative environments.',
-      'projects.weather.title': 'Weather Dashboard',
-      'projects.weather.description':
-        'Real-time weather application with geolocation, weather forecasts, and beautiful data visualizations using Chart.js.',
-      'projects.portfolio.title': 'Portfolio Website',
-      'projects.portfolio.description':
-        'Responsive portfolio website built with modern technologies, featuring smooth animations and dark mode support.',
+      'projects.docutrack.title': 'Docutrack Landing Page',
+      'projects.docutrack.description':
+        'Official landing page of DocuTrack, designed to clearly and attractively showcase the platform’s features. The site combines a modern, responsive design optimized for SEO, with a strong focus on converting visitors into potential clients. DocuTrack is a cloud-based platform that streamlines the management and tracking of document processes, enabling centralized information, workflow automation, and full traceability at every stage.',
 
       // Testimonials Section
       'testimonials.title': 'Testimonials',
@@ -191,12 +188,9 @@ const resources = {
       'projects.chat.title': 'Aplicación de chat en tiempo real',
       'projects.chat.description':
         'Aplicación de chat desarrollada para permitir la comunicación instantánea entre usuarios, combinando una API REST en PHP con Laravel y una interfaz frontend en Vue.js. La solución integra Sockets utilizando Laravel Echo y Pusher, permitiendo la actualización en tiempo real de los mensajes y notificaciones, ofreciendo una experiencia de usuario ágil y fluida en entornos colaborativos.',
-      'projects.weather.title': 'Dashboard del Clima',
-      'projects.weather.description':
-        'Aplicación meteorológica en tiempo real con geolocalización, pronósticos del tiempo y hermosas visualizaciones de datos usando Chart.js.',
-      'projects.portfolio.title': 'Sitio Web Portfolio',
-      'projects.portfolio.description':
-        'Sitio web portfolio responsivo construido con tecnologías modernas, con animaciones suaves y soporte para modo oscuro.',
+      'projects.docutrack.title': 'Landing Page de DocuTrack',
+      'projects.docutrack.description':
+        'Landing page oficial de DocuTrack, diseñada para presentar de forma clara y atractiva las funcionalidades de la plataforma. El sitio combina un diseño moderno, responsive y optimizado para SEO, con un enfoque en la conversión de visitantes en potenciales clientes. DocuTrack es una plataforma en la nube que optimiza la gestión y el seguimiento de procesos documentales, permitiendo centralizar información, automatizar flujos de trabajo y garantizar trazabilidad en cada etapa.',
 
       // Testimonials Section
       'testimonials.title': 'Testimonios',
