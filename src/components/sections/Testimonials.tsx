@@ -43,7 +43,7 @@ export const Testimonials = () => {
           <Carousel
             plugins={[
               Autoplay({
-                delay: 4000,
+                delay: 5000,
               }),
             ]}
           >

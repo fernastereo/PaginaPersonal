@@ -22,5 +22,13 @@
     "rating": 5,
     "text": "Fernando, or Mr. Cueto as how I like to say, is an extraordinary developer, no fuss, no nothing, he just gets the job done, in a brilliant fashion. If you have the opportunity to work with him, you will have a pleasant experience.",
     "link": "https://www.upwork.com/freelancers/~017634675ca5b18ef3"
+  },
+  {
+    "name": "Ariel Rodríguez",
+    "position": "CEO, Docutrack S.A.S",
+    "avatar": "/placeholder.svg",
+    "rating": 4,
+    "text": "Trabajar con Fernando en el proyecto DocuTrack fue una excelente experiencia. Desarrolló una landing page moderna, clara y enfocada en resultados, que logró transmitir perfectamente el valor de la plataforma. Su capacidad de proponer soluciones y enfoque en la conversión hicieron que el resultado superara nuestras expectativas.",
+    "link": "https://docutrack.cloud"
   }
 ]
