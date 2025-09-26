@@ -4,7 +4,7 @@
     "descriptionKey": "projects.publicaciones.description",
     "image": "/images/publicaciones-app.png",
     "technologies": ["PHP", "Vuejs", "MySQL", "Tailwind CSS", "AWS-S3"],
-    "liveUrl": "https://projects.fernandocueto.com/admin/#/",
+    "liveUrl": "https://projects.fernandocueto.com/2ca/admin/#/",
     "githubUrl": "https://github.com/fernastereo/notificaciones2ca",
     "demo": {
       "user": "demo",

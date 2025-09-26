@@ -32,3 +32,4 @@ dist-ssr
 *.sw?
 
 migracion_guia.md
+.early.coverage
