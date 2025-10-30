@@ -13,6 +13,7 @@ const resources = {
       'nav.testimonials': 'Testimonials',
       'nav.contact': 'Contact',
       'nav.skills': 'Skills',
+      'nav.clients': 'Clients Portal',
 
       // Hero Section
       'hero.greeting': "Hello, I'm",
@@ -124,6 +125,7 @@ const resources = {
       'nav.testimonials': 'Testimonios',
       'nav.contact': 'Contacto',
       'nav.skills': 'Habilidades',
+      'nav.clients': 'Portal de Clientes',
 
       // Hero Section
       'hero.greeting': 'Hola, soy',

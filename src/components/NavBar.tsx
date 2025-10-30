@@ -5,20 +5,22 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LanguageToggle } from './LanguageToggle';
 import { ThemeToggle } from './ThemeToggle';
+import { useNavigate } from 'react-router-dom';
 
 export const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const navItems = [
-    { key: 'about', href: '#about' },
-    { key: 'skills', href: '#skills' },
-    { key: 'experience', href: '#experience' },
-    { key: 'projects', href: '#projects' },
-    { key: 'testimonials', href: '#testimonials' },
-    { key: 'contact', href: '#contact' },
+    { key: 'about', onClick: () => scrollToSection('#about') },
+    { key: 'skills', onClick: () => scrollToSection('#skills') },
+    { key: 'experience', onClick: () => scrollToSection('#experience') },
+    { key: 'projects', onClick: () => scrollToSection('#projects') },
+    { key: 'testimonials', onClick: () => scrollToSection('#testimonials') },
+    { key: 'contact', onClick: () => scrollToSection('#contact') },
+    { key: 'clients', onClick: () => navigate('/clients/login') },
   ];
 
   useEffect(() => {
@@ -61,7 +63,7 @@ export const NavBar = () => {
             {navItems.map(item => (
               <button
                 key={item.key}
-                onClick={() => scrollToSection(item.href)}
+                onClick={item.onClick}
                 className="text-foreground font-semibold cursor-pointer hover:text-primary transition-colors hover-underline-animation"
               >
                 {t(`nav.${item.key}`)}
@@ -108,7 +110,7 @@ export const NavBar = () => {
                 {navItems.map(item => (
                   <button
                     key={item.key}
-                    onClick={() => scrollToSection(item.href)}
+                    onClick={item.onClick}
                     className="block w-full text-center px-4 py-6 text-xl font-semibold text-foreground hover:text-primary hover:bg-secondary transition-colors"
                   >
                     {t(`nav.${item.key}`)}
