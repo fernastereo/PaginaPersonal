@@ -7,6 +7,7 @@ export interface UserProfile {
   ciudad: string;
   tipoUsuario: UserRole;
   telefono?: string;
+  client_id?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -18,5 +19,6 @@ export interface CreateUserData {
   ciudad: string;
   tipoUsuario: UserRole;
   telefono?: string;
+  client_id?: string;
 }
 
