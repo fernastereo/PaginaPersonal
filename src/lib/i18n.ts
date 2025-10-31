@@ -112,6 +112,19 @@ const resources = {
       'footer.madeBy': 'by',
       'footer.passionate':
         'Full Stack Developer passionate about creating innovative solutions.',
+
+      // Clients Section
+      'clients.title': 'Clients Portal',
+      'clients.subtitle':
+        'Access your account to view and manage your incidents.',
+      'clients.login': 'Login',
+      'clients.login.description':
+        'Enter your credentials to access your account.',
+      'clients.login.email': 'Email',
+      'clients.login.password': 'Password',
+      'clients.login.submit': 'Login',
+      'clients.login.loading': 'Loading...',
+      'clients.login.error': 'Error logging in. Please try again.',
     },
   },
   es: {
@@ -223,6 +236,19 @@ const resources = {
       'footer.madeBy': 'por',
       'footer.passionate':
         'Full Stack Developer apasionado por crear soluciones innovadoras.',
+
+      // Clients Section
+      'clients.title': 'Portal de Clientes',
+      'clients.subtitle':
+        'Accede a tu cuenta para ver y gestionar tus incidencias.',
+      'clients.login': 'Iniciar Sesión',
+      'clients.login.description':
+        'Ingresa tus credenciales para acceder a tu cuenta.',
+      'clients.login.email': 'Email',
+      'clients.login.password': 'Contraseña',
+      'clients.login.submit': 'Iniciar Sesión',
+      'clients.login.loading': 'Cargando...',
+      'clients.login.error': 'Error al iniciar sesión. Inténtalo de nuevo.',
     },
   },
 };
