@@ -4,9 +4,9 @@ import './lib/i18n';
 import Index from './pages/Index';
 import NotFound from './pages/NotFound';
 import Login from './pages/clients/Login';
-import Dashboard from './pages/clients/Dashboard';
 import { AuthProvider } from './components/auth/AuthProvider';
 import RequireAuth from './components/auth/RequireAuth';
+import Home from './pages/clients/Home';
 
 const queryClient = new QueryClient();
 function App() {
@@ -19,7 +19,7 @@ function App() {
             <Route path="/clients">
               <Route path="login" element={<Login />} />
               <Route element={<RequireAuth />}>
-                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="home" element={<Home />} />
               </Route>
             </Route>
             <Route path="*" element={<NotFound />} />
