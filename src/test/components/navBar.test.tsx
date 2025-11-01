@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest'
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { NavBar } from '@/components/NavBar';
+import { MemoryRouter } from 'react-router-dom';
 
 // Mock de react-i18next
 const mockT = vi.fn((key: string) => {
@@ -11,6 +12,7 @@ const mockT = vi.fn((key: string) => {
     'nav.projects': 'Projects',
     'nav.testimonials': 'Testimonials',
     'nav.contact': 'Contact',
+    'nav.clients': 'Clients Portal',
   };
   return translations[key] || key;
 });
@@ -60,6 +62,17 @@ vi.mock('@/components/ThemeToggle', () => ({
   ThemeToggle: () => <div data-testid="theme-toggle">Theme Toggle</div>,
 }));
 
+const mockNavigate = vi.fn();
+
+// Mock useNavigate
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual('react-router-dom');
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate,
+  };
+});
+
 // Mock de document.querySelector y scrollIntoView
 const mockScrollIntoView = vi.fn();
 const mockQuerySelector = vi.fn();
@@ -106,7 +119,11 @@ describe('NavBar component', () => {
   });
 
   it('should render correctly with all navigation elements', () => {
-    render(<NavBar />);
+    render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
     // Verificar que el nav está presente
     const nav = screen.getByRole('navigation');
@@ -125,7 +142,11 @@ describe('NavBar component', () => {
   });
 
   it('should render all navigation items in desktop view', () => {
-    render(<NavBar />);
+    render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
     // Verificar que todos los elementos de navegación están presentes
     expect(screen.getByText('About')).toBeInTheDocument();
@@ -137,7 +158,11 @@ describe('NavBar component', () => {
   });
 
   it('should call translation function with correct nav keys', () => {
-    render(<NavBar />);
+    render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
     // Verificar que se llamaron las traducciones correctas
     expect(mockT).toHaveBeenCalledWith('nav.about');
@@ -149,7 +174,11 @@ describe('NavBar component', () => {
   });
 
   it('should add scroll event listener on mount', () => {
-    render(<NavBar />);
+    render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
     expect(mockAddEventListener).toHaveBeenCalledWith(
       'scroll',
@@ -158,7 +187,11 @@ describe('NavBar component', () => {
   });
 
   it('should navigate to section when nav item is clicked', () => {
-    render(<NavBar />);
+    render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
     const aboutButton = screen.getByText('About');
     fireEvent.click(aboutButton);
@@ -168,7 +201,11 @@ describe('NavBar component', () => {
   });
 
   it('should navigate to hero section when logo is clicked', () => {
-    render(<NavBar />);
+    render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
     const logo = screen.getByText('<FC />');
     fireEvent.click(logo);
@@ -178,7 +215,11 @@ describe('NavBar component', () => {
   });
 
   it('should toggle mobile menu when hamburger button is clicked', async () => {
-    render(<NavBar />);
+    render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
     // Inicialmente el menú móvil no debería estar visible
     expect(screen.queryByText('About')).toBeInTheDocument(); // Desktop version
@@ -203,7 +244,11 @@ describe('NavBar component', () => {
   });
 
   it('should close mobile menu when navigation item is clicked', async () => {
-    render(<NavBar />);
+    render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
     // Abrir el menú móvil primero
     const buttons = screen.getAllByRole('button');
@@ -237,7 +282,11 @@ describe('NavBar component', () => {
   });
 
   it('should have correct styling classes', () => {
-    render(<NavBar />);
+    render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
     const nav = screen.getByRole('navigation');
     expect(nav).toHaveClass('fixed', 'top-0', 'left-0', 'right-0', 'z-50');
@@ -253,7 +302,11 @@ describe('NavBar component', () => {
   });
 
   it('should handle scroll effect correctly', async () => {
-    const { rerender } = render(<NavBar />);
+    const { rerender } = render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
     // Simular scroll event
     const scrollHandler = mockAddEventListener.mock.calls.find(
@@ -270,7 +323,11 @@ describe('NavBar component', () => {
       scrollHandler();
     });
 
-    rerender(<NavBar />);
+    rerender(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
     // El nav debería tener clases de scroll
     const nav = screen.getByRole('navigation');
@@ -278,7 +335,11 @@ describe('NavBar component', () => {
   });
 
   it('should show correct mobile menu icon states', async () => {
-    render(<NavBar />);
+    render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
     // Encontrar el botón del menú móvil
     const buttons = screen.getAllByRole('button');
@@ -300,7 +361,11 @@ describe('NavBar component', () => {
   });
 
   it('should clean up scroll event listener on unmount', () => {
-    const { unmount } = render(<NavBar />);
+    const { unmount } = render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
     unmount();
 
@@ -314,7 +379,11 @@ describe('NavBar component', () => {
     // Mock querySelector para retornar null
     mockQuerySelector.mockReturnValue(null);
 
-    render(<NavBar />);
+    render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
     const aboutButton = screen.getByText('About');
     fireEvent.click(aboutButton);
@@ -325,7 +394,11 @@ describe('NavBar component', () => {
   });
 
   it('should have proper responsive classes', () => {
-    render(<NavBar />);
+    render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
 
     // Verificar clases responsivas en el menú desktop
     const desktopMenu = screen
@@ -339,5 +412,19 @@ describe('NavBar component', () => {
       button.classList.contains('md:hidden')
     );
     expect(mobileMenuButton).toHaveClass('md:hidden');
+  });
+
+  it('should navigate to /clients/login when click on Clients Portal item', async () => {
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <NavBar />
+      </MemoryRouter>
+    );
+
+    const clientsPortalButton = screen.getByTestId('nav-clients');
+    fireEvent.click(clientsPortalButton);
+
+    // Verificar que navigate fue llamado con la ruta correcta
+    expect(mockNavigate).toHaveBeenCalledWith('/clients/login');
   });
 });

@@ -62,6 +62,7 @@ export const NavBar = () => {
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map(item => (
               <button
+                data-testid={`nav-${item.key}`}
                 key={item.key}
                 onClick={item.onClick}
                 className="text-foreground font-semibold cursor-pointer hover:text-primary transition-colors hover-underline-animation"
@@ -109,6 +110,7 @@ export const NavBar = () => {
               <div className="py-16 space-y-2">
                 {navItems.map(item => (
                   <button
+                    data-testid={`nav-${item.key}`}
                     key={item.key}
                     onClick={item.onClick}
                     className="block w-full text-center px-4 py-6 text-xl font-semibold text-foreground hover:text-primary hover:bg-secondary transition-colors"
