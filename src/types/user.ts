@@ -12,13 +12,4 @@ export interface UserProfile {
   updatedAt: string;
 }
 
-export interface CreateUserData {
-  email: string;
-  password: string;
-  name: string;
-  city: string;
-  role: UserRole;
-  phone?: string;
-  client_id?: string;
-}
 
