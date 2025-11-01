@@ -3,10 +3,10 @@ export type UserRole = "admin" | "user" | "guest";
 export interface UserProfile {
   uid: string;
   email: string;
-  nombre: string;
-  ciudad: string;
-  tipoUsuario: UserRole;
-  telefono?: string;
+  name: string;
+  city: string;
+  role: UserRole;
+  phone?: string;
   client_id?: string;
   createdAt: string;
   updatedAt: string;
@@ -15,10 +15,10 @@ export interface UserProfile {
 export interface CreateUserData {
   email: string;
   password: string;
-  nombre: string;
-  ciudad: string;
-  tipoUsuario: UserRole;
-  telefono?: string;
+  name: string;
+  city: string;
+  role: UserRole;
+  phone?: string;
   client_id?: string;
 }
 

@@ -27,12 +27,12 @@ const Profile = () => {
   };
 
   const [formData, setFormData] = useState({
-    nombre: "",
-    ciudad: "",
-    tipoUsuario: "user" as UserProfile["tipoUsuario"],
-    email: "",
-    telefono: "",
-    client_id: "",
+    name: '',
+    city: '',
+    role: 'user' as UserProfile['role'],
+    email: '',
+    phone: '',
+    client_id: '',
   });
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const Profile = () => {
   const loadProfile = async () => {
     if (!user) return;
 
-    setFormData({ ...formData, email: user.email || ""});
+    setFormData({ ...formData, email: user.email || '' });
 
     try {
       setLoading(true);
@@ -52,17 +52,17 @@ const Profile = () => {
       if (data) {
         setProfile(data);
         setFormData({
-          nombre: data.nombre,
-          ciudad: data.ciudad,
-          tipoUsuario: data.tipoUsuario,
-          email: data.email || "",
-          telefono: data.telefono || "",
-          client_id: data.client_id || "",
+          name: data.name,
+          city: data.city,
+          role: data.role,
+          email: data.email || '',
+          phone: data.phone || '',
+          client_id: data.client_id || '',
         });
       }
     } catch (error) {
-      console.error("Error loading profile:", error);
-      toast.error("Error al cargar el perfil", toastOptions);
+      console.error('Error loading profile:', error);
+      toast.error('Error al cargar el perfil', toastOptions);
     } finally {
       setLoading(false);
     }
@@ -75,11 +75,10 @@ const Profile = () => {
     try {
       setSaving(true);
       await firestoreService.updateUserProfile(user.uid, formData);
-      toast.success("Perfil actualizado correctamente", toastOptions);
-
+      toast.success('Perfil actualizado correctamente', toastOptions);
     } catch (error) {
-      console.error("Error updating profile:", error);
-      toast.error("Error al actualizar el perfil", toastOptions);
+      console.error('Error updating profile:', error);
+      toast.error('Error al actualizar el perfil', toastOptions);
     } finally {
       setSaving(false);
     }
@@ -112,7 +111,7 @@ const Profile = () => {
               <UserCircle className="w-10 h-10 text-primary" />
             </div>
             <div>
-              <CardTitle>{profile?.nombre || "Usuario"}</CardTitle>
+              <CardTitle>{profile?.name || 'Usuario'}</CardTitle>
               <CardDescription>{user?.email}</CardDescription>
             </div>
           </div>
@@ -121,11 +120,13 @@ const Profile = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="nombre">Nombre completo</Label>
+                <Label htmlFor="name">Nombre completo</Label>
                 <Input
-                  id="nombre"
-                  value={formData.nombre}
-                  onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
+                  id="name"
+                  value={formData.name}
+                  onChange={e =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
                   required
                 />
               </div>
@@ -135,51 +136,58 @@ const Profile = () => {
                 <Input
                   id="email"
                   type="email"
-                  value={user?.email || ""}
+                  value={user?.email || ''}
                   disabled
                   className="bg-muted"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="ciudad">Ciudad</Label>
+                <Label htmlFor="city">Ciudad</Label>
                 <Input
-                  id="ciudad"
-                  value={formData.ciudad}
-                  onChange={(e) => setFormData({ ...formData, ciudad: e.target.value })}
+                  id="city"
+                  value={formData.city}
+                  onChange={e =>
+                    setFormData({ ...formData, city: e.target.value })
+                  }
                   required
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="telefono">Teléfono</Label>
+                <Label htmlFor="phone">Teléfono</Label>
                 <Input
-                  id="telefono"
+                  id="phone"
                   type="tel"
-                  value={formData.telefono}
-                  onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
+                  value={formData.phone}
+                  onChange={e =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
                 />
               </div>
-              
-              { formData?.tipoUsuario === "admin" && (
-              <div className="space-y-2">
-                <Label htmlFor="tipoUsuario">Tipo de Usuario</Label>
-                <Select
-                  value={formData.tipoUsuario}
-                  onValueChange={(value) => 
-                    setFormData({ ...formData, tipoUsuario: value as UserProfile["tipoUsuario"] })
-                  }
-                >
-                  <SelectTrigger id="tipoUsuario">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="user">Usuario</SelectItem>
-                    <SelectItem value="admin">Administrador</SelectItem>
-                    <SelectItem value="guest">Invitado</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+
+              {formData?.role === 'admin' && (
+                <div className="space-y-2">
+                  <Label htmlFor="role">Tipo de Usuario</Label>
+                  <Select
+                    value={formData.role}
+                    onValueChange={value =>
+                      setFormData({
+                        ...formData,
+                        role: value as UserProfile['role'],
+                      })
+                    }
+                  >
+                    <SelectTrigger id="role">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="user">Usuario</SelectItem>
+                      <SelectItem value="admin">Administrador</SelectItem>
+                      <SelectItem value="guest">Invitado</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               )}
             </div>
 
@@ -215,11 +223,13 @@ const Profile = () => {
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Fecha de Registro:</span>
-              <span>{new Date(profile.createdAt).toLocaleString("es-ES")}</span>
+              <span>{new Date(profile.createdAt).toLocaleString('es-ES')}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-muted-foreground">Última Actualización:</span>
-              <span>{new Date(profile.updatedAt).toLocaleString("es-ES")}</span>
+              <span className="text-muted-foreground">
+                Última Actualización:
+              </span>
+              <span>{new Date(profile.updatedAt).toLocaleString('es-ES')}</span>
             </div>
           </CardContent>
         </Card>

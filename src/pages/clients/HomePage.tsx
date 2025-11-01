@@ -17,11 +17,13 @@ import type { UserProfile } from '@/types/user';
 import { firestoreService } from '@/integrations/firebase/firestoreService';
 
 const HomePage = () => {
-  const { user } = useAuth();
+  const { user, client_id } = useAuth();
+
   const navigate = useNavigate();
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [clientName, setClientName] = useState<string | null>(null);
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -37,21 +39,27 @@ const HomePage = () => {
   const loadProfile = async () => {
     const userProfile = await firestoreService.getUserProfile(user?.uid || '');
     if (userProfile) {
+      const clientProfile = await firestoreService.getClientById(
+        client_id || ''
+      );
+      if (clientProfile) {
+        setClientName(clientProfile.name);
+      }
       setUserProfile(userProfile);
     }
   };
 
   const navItems =
-    userProfile?.tipoUsuario === 'admin' && userProfile
+    userProfile?.role === 'admin' && userProfile
       ? [
           { path: '/clients/home', icon: Home, label: 'Inicio' },
-          { path: '/clients/tareas', icon: FolderKanban, label: 'Tareas' },
+          { path: '/clients/tasks', icon: FolderKanban, label: 'Tareas' },
           { path: '/clients/users', icon: Users, label: 'Usuarios' },
           { path: '/clients/profile', icon: UserCircle, label: 'Mi Perfil' },
         ]
       : [
           { path: '/clients/home', icon: Home, label: 'Inicio' },
-          { path: '/clients/tareas', icon: FolderKanban, label: 'Tareas' },
+          { path: '/clients/tasks', icon: FolderKanban, label: 'Tareas' },
           { path: '/clients/profile', icon: UserCircle, label: 'Mi Perfil' },
         ];
 
@@ -82,7 +90,12 @@ const HomePage = () => {
                 <X className="w-6 h-6" />
               </button>
             </div>
-            <p className="text-sm text-muted-foreground mt-1">{user?.email}</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              {userProfile?.name}
+            </p>
+            <span className="text-xs font-bold text-muted-foreground">
+              {clientName}
+            </span>
           </div>
 
           {/* Navigation */}
