@@ -125,6 +125,7 @@ const resources = {
       'clients.login.submit': 'Login',
       'clients.login.loading': 'Loading...',
       'clients.login.error': 'Error logging in. Please try again.',
+      'clients.login.goToHome': 'Go to Home',
     },
   },
   es: {
@@ -249,6 +250,7 @@ const resources = {
       'clients.login.submit': 'Iniciar Sesión',
       'clients.login.loading': 'Cargando...',
       'clients.login.error': 'Error al iniciar sesión. Inténtalo de nuevo.',
+      'clients.login.goToHome': 'Ir a Inicio',
     },
   },
 };

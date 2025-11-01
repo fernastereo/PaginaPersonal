@@ -17,6 +17,7 @@ import { auth } from '@/integrations/firebase/client';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useAuth } from '@/components/auth/useAuth';
 import { useTranslation } from 'react-i18next';
+import { ArrowLeft } from 'lucide-react';
 
 const authSchema = z.object({
   email: z.string().email({ message: 'Email inválido' }),
@@ -60,7 +61,7 @@ const Login = () => {
 
       await signInWithEmailAndPassword(auth, email, password);
       toast.success('Sesión iniciada correctamente', toastOptions);
-      navigate(`/home`);
+      navigate(`/clients/home`);
     } catch (error: unknown) {
       if (error instanceof z.ZodError) {
         toast.error('Error de validación', toastOptions);
@@ -82,7 +83,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background/95 to-accent/20 p-4">
+    <div className="min-h-screen flex flex-col gap-8 items-center justify-center bg-gradient-to-br from-background via-background/95 to-accent/20 p-4">
       <Toaster />
       <Card className="w-full max-w-md">
         <CardHeader>
@@ -119,6 +120,15 @@ const Login = () => {
           </form>
         </CardContent>
       </Card>
+
+      <Button
+        className="text-sm cursor-pointer"
+        variant="link"
+        onClick={() => navigate(`/`)}
+      >
+        <ArrowLeft className="w-4 h-4" />
+        {t('clients.login.goToHome')}
+      </Button>
     </div>
   );
 };
