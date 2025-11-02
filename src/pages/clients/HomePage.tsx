@@ -1,8 +1,13 @@
 import { Outlet, Link, useNavigate, useLocation } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { auth } from "@/integrations/firebase/client";
-import { useAuth } from "@/components/auth/useAuth";
-import { Button } from "@/components/ui/button";
+import {
+  analytics,
+  logEvent,
+  auth,
+  isProduction,
+} from '@/integrations/firebase/client';
+import { useAuth } from '@/components/auth/useAuth';
+import { Button } from '@/components/ui/button';
 import {
   Home,
   Users,
@@ -42,7 +47,14 @@ const HomePage = () => {
         setClientName(clientProfile.name);
       }
     }
-  }, [user, client_id]);
+
+    if (isProduction) {
+      logEvent(analytics, 'log in to clients portal', {
+        user: userProfile?.name,
+        client: clientName || '',
+      });
+    }
+  }, [user, client_id, clientName]);
 
   useEffect(() => {
     if (user) {

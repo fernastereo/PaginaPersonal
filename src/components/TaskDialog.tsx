@@ -18,6 +18,11 @@ import { useAuth } from "./auth/useAuth";
 import { taskService } from '@/integrations/firebase/taskService';
 import { firestoreService } from '@/integrations/firebase/firestoreService';
 import type { Task } from '@/types/task';
+import {
+  analytics,
+  logEvent,
+  isProduction,
+} from '@/integrations/firebase/client';
 
 const toastOptions = {
   position: 'top-right' as const,
@@ -64,7 +69,6 @@ export const TaskDialog = ({
   onSuccess,
   editingTask,
 }: TaskDialogProps) => {
-
   useEffect(() => {
     if (editingTask) {
       setFormData({
@@ -153,8 +157,19 @@ export const TaskDialog = ({
           files.length > 0 ? files : undefined
         );
       }
+      if (isProduction) {
+        logEvent(analytics, editingTask ? 'update_task' : 'create_task', {
+          task: formData.title,
+          user: userProfile?.name || '',
+        });
+      }
 
-      toast.success(editingTask ? 'Tarea actualizada correctamente' : 'Tarea creada correctamente', toastOptions);
+      toast.success(
+        editingTask
+          ? 'Tarea actualizada correctamente'
+          : 'Tarea creada correctamente',
+        toastOptions
+      );
       resetForm();
       onOpenChange(false);
       onSuccess();
@@ -164,10 +179,15 @@ export const TaskDialog = ({
           description: error.issues[0].message,
         });
       } else {
-        toast.error(editingTask ? 'No se pudo actualizar la tarea' : 'No se pudo crear la tarea', {
-          description:
-            (error as { message?: string }).message || 'Ocurrió un error',
-        });
+        toast.error(
+          editingTask
+            ? 'No se pudo actualizar la tarea'
+            : 'No se pudo crear la tarea',
+          {
+            description:
+              (error as { message?: string }).message || 'Ocurrió un error',
+          }
+        );
       }
     } finally {
       setLoading(false);
@@ -186,9 +206,13 @@ export const TaskDialog = ({
       <Toaster />
       <DialogContent className="h-[65vh] md:max-w-[calc(100%-35rem)] md:h-[61vh] block overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>{editingTask ? 'Actualizar Incidencia' : 'Nueva Incidencia'}</DialogTitle>
+          <DialogTitle>
+            {editingTask ? 'Actualizar Incidencia' : 'Nueva Incidencia'}
+          </DialogTitle>
           <DialogDescription>
-            {editingTask ? 'Actualiza los datos de la incidencia' : 'Completa los datos para registrar una nueva incidencia'}
+            {editingTask
+              ? 'Actualiza los datos de la incidencia'
+              : 'Completa los datos para registrar una nueva incidencia'}
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
@@ -290,7 +314,11 @@ export const TaskDialog = ({
               Cancelar
             </Button>
             <Button type="submit" disabled={loading}>
-              {loading ? 'Creando...' : editingTask ? 'Actualizar Incidencia' : 'Crear Incidencia'}
+              {loading
+                ? 'Creando...'
+                : editingTask
+                ? 'Actualizar Incidencia'
+                : 'Crear Incidencia'}
             </Button>
           </div>
         </form>

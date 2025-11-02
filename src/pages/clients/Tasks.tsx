@@ -41,7 +41,12 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination';
 import { useAuth } from '@/components/auth/useAuth';
-import { auth } from '@/integrations/firebase/client';
+import {
+  analytics,
+  auth,
+  logEvent,
+  isProduction,
+} from '@/integrations/firebase/client';
 import type { Task } from '@/types/task';
 
 const ITEMS_PER_PAGE = 10;
@@ -70,6 +75,9 @@ const Tasks = () => {
       const tasks = await taskService.getTasks(client_id);
       setTasks(tasks);
       setFilteredTasks(tasks);
+    }
+    if (isProduction) {
+      logEvent(analytics, 'load tasks page', {});
     }
     setLoading(false);
   }, [client_id]);
@@ -109,6 +117,9 @@ const Tasks = () => {
 
   const handleEdit = (task: Task) => {
     setEditingTask(task);
+    if (isProduction) {
+      logEvent(analytics, 'click_on_edit_task', { task: task.title });
+    }
     setDialogOpen(true);
   };
 
@@ -174,7 +185,14 @@ const Tasks = () => {
                 className="pl-9"
               />
             </div>
-            <Button onClick={() => setDialogOpen(true)}>
+            <Button
+              onClick={() => {
+                if (isProduction) {
+                  logEvent(analytics, 'click_on_new_task', {});
+                }
+                setDialogOpen(true);
+              }}
+            >
               <Plus className="mr-2 h-4 w-4" />
               Nueva Incidencia
             </Button>

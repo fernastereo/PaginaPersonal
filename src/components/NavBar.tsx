@@ -6,6 +6,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { LanguageToggle } from './LanguageToggle';
 import { ThemeToggle } from './ThemeToggle';
 import { useNavigate } from 'react-router-dom';
+import {
+  analytics,
+  isProduction,
+  logEvent,
+} from '@/integrations/firebase/client';
 
 export const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,7 +25,15 @@ export const NavBar = () => {
     { key: 'projects', onClick: () => scrollToSection('#projects') },
     { key: 'testimonials', onClick: () => scrollToSection('#testimonials') },
     { key: 'contact', onClick: () => scrollToSection('#contact') },
-    { key: 'clients', onClick: () => navigate('/clients/login') },
+    {
+      key: 'clients',
+      onClick: () => {
+        if (isProduction) {
+          logEvent(analytics, 'click_on_clients_portal', {});
+        }
+        navigate('/clients/login');
+      },
+    },
   ];
 
   useEffect(() => {
@@ -32,6 +45,9 @@ export const NavBar = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
+    if (isProduction) {
+      logEvent(analytics, 'click_scroll_to_section', { section: href });
+    }
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });

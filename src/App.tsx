@@ -12,8 +12,26 @@ import Profile from './pages/clients/Profile';
 import { AuthProvider } from './components/auth/AuthProvider';
 import RequireAuth from './components/auth/RequireAuth';
 import Tasks from './pages/clients/Tasks';
+import { analytics, logEvent, isProduction } from '@/integrations/firebase/client'
 
 const queryClient = new QueryClient();
+
+function AnalyticsListener() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (analytics && isProduction) {
+      logEvent(analytics, "page_view", {
+        page_path: location.pathname,
+        page_location: window.location.href,
+        page_title: document.title,
+      });
+    }
+  }, [location]);
+
+  return null;
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
