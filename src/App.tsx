@@ -1,5 +1,6 @@
+import { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './lib/i18n';
 import Index from './pages/Index';
 import NotFound from './pages/NotFound';
@@ -12,7 +13,11 @@ import Profile from './pages/clients/Profile';
 import { AuthProvider } from './components/auth/AuthProvider';
 import RequireAuth from './components/auth/RequireAuth';
 import Tasks from './pages/clients/Tasks';
-import { analytics, logEvent, isProduction } from '@/integrations/firebase/client'
+import {
+  analytics,
+  logEvent,
+  isProduction,
+} from '@/integrations/firebase/client';
 
 const queryClient = new QueryClient();
 
@@ -21,7 +26,7 @@ function AnalyticsListener() {
 
   useEffect(() => {
     if (analytics && isProduction) {
-      logEvent(analytics, "page_view", {
+      logEvent(analytics, 'page_view', {
         page_path: location.pathname,
         page_location: window.location.href,
         page_title: document.title,
@@ -37,6 +42,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <BrowserRouter>
+          <AnalyticsListener />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/clients">
