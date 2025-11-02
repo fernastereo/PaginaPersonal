@@ -117,7 +117,7 @@ const Profile = () => {
       </div>
 
       {/* Profile Card */}
-      <Card>
+      <Card className="border-border">
         <CardHeader>
           <div className="flex items-center gap-4">
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
@@ -225,7 +225,7 @@ const Profile = () => {
 
       {/* Metadata Card */}
       {profile && (
-        <Card>
+        <Card className="border-border">
           <CardHeader>
             <CardTitle>Información de la Cuenta</CardTitle>
           </CardHeader>

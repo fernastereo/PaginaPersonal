@@ -148,7 +148,7 @@ const Tasks = () => {
           </Button>
         </div>
 
-        <Card className="mb-6">
+        <Card className="mb-6 border-border">
           <CardHeader>
             <CardTitle>Filtros</CardTitle>
             <CardDescription>
@@ -199,23 +199,35 @@ const Tasks = () => {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Título</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Descripción</TableHead>
-                    <TableHead>Creado</TableHead>
-                    <TableHead>Actualizado</TableHead>
-                    <TableHead className="text-center w-[50px]">
+                    <TableHead className="text-muted-foreground font-semibold">
+                      Título
+                    </TableHead>
+                    <TableHead className="text-muted-foreground font-semibold">
+                      Status
+                    </TableHead>
+                    <TableHead className="text-muted-foreground font-semibold">
+                      Descripción
+                    </TableHead>
+                    <TableHead className="text-muted-foreground font-semibold">
+                      Creado
+                    </TableHead>
+                    <TableHead className="text-muted-foreground font-semibold">
+                      Actualizado
+                    </TableHead>
+                    <TableHead className="text-center w-[50px] text-muted-foreground font-semibold">
                       <Paperclip className="h-4 w-4 mx-auto" />
                     </TableHead>
-                    <TableHead className="text-center w-[50px]">
+                    <TableHead className="text-center w-[50px] text-muted-foreground font-semibold">
                       <MessageCircle className="h-4 w-4 mx-auto" />
                     </TableHead>
-                    <TableHead className="text-right">Acciones</TableHead>
+                    <TableHead className="text-right text-muted-foreground font-semibold">
+                      Acciones
+                    </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {paginatedTasks.map(task => (
-                    <TableRow key={task.uid}>
+                    <TableRow key={task.uid} className="border-border">
                       <TableCell className="font-medium">
                         {task.title}
                       </TableCell>
@@ -246,6 +258,7 @@ const Tasks = () => {
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
                           <Button
+                            className="border-border"
                             variant="outline"
                             size="icon"
                             onClick={() => handleEdit(task)}
