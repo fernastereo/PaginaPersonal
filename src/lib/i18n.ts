@@ -72,6 +72,9 @@ const resources = {
       'projects.viewCode': 'View Code',
 
       // Individual Projects
+      'projects.tasks.title': 'Incident Management Web System',
+      'projects.tasks.description':
+        'Web-based system designed to manage and track incidents or tasks reported by clients. It includes a multi-role authentication system, user administration, and a real-time analytical dashboard that provides insights through charts, filters, and performance metrics. The platform also supports file attachments and offers an organized way to monitor progress, improving task traceability and team efficiency.',
       'projects.publicaciones.title': 'Document Publication Management App',
       'projects.publicaciones.description':
         'Application created to manage the publication of documents required by Curaduría Urbana 2 in Cartagena to comply with current regulations. The solution includes a REST API in PHP that centralizes all necessary functionalities and a Vue.js interface that allows documents to be managed efficiently and in an organized manner, ensuring that legal processes are carried out effectively and transparently.',
@@ -198,6 +201,9 @@ const resources = {
       'projects.viewCode': 'Ver Código',
 
       // Individual Projects
+      'projects.tasks.title': 'Sistema Web de Gestión de Incidencias',
+      'projects.tasks.description':
+        'Sistema web desarrollado para gestionar y realizar el seguimiento de incidencias o tareas reportadas por los clientes. Incluye autenticación multi-rol, administración de usuarios y un panel analítico en tiempo real con gráficos, filtros y métricas de rendimiento. La plataforma permite también adjuntar archivos y ofrece una forma organizada de supervisar el progreso, mejorando la trazabilidad de tareas y la eficiencia del equipo.',
       'projects.publicaciones.title': 'Aplicación de gestión de publicaciones',
       'projects.publicaciones.description':
         'Aplicación diseñada para gestionar las publicaciones de documentos que la Curaduría Urbana 2 de Cartagena debe realizar para cumplir con la normativa vigente. La solución incluye una API REST en PHP que centraliza todas las funcionalidades necesarias y una interfaz en Vue.js que permite administrar los documentos de manera ágil y organizada, asegurando que los procesos legales se cumplan de forma eficiente y transparente.',

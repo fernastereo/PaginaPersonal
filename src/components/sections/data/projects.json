@@ -1,5 +1,17 @@
 [
   {
+    "titleKey": "projects.tasks.title",
+    "descriptionKey": "projects.tasks.description",
+    "image": "/images/tasks-app.png",
+    "technologies": ["React", "Firebase", "Tailwind CSS", "AWS-S3"],
+    "liveUrl": "https://fernandocueto.com/clients/login",
+    "githubUrl": "https://github.com/fernastereo/PaginaPersonal",
+    "demo": {
+      "user": "demo@fernandocueto.com",
+      "password": "demopassword"
+    }
+  },
+  {
     "titleKey": "projects.publicaciones.title",
     "descriptionKey": "projects.publicaciones.description",
     "image": "/images/publicaciones-app.png",
