@@ -1,14 +1,37 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { toast } from "sonner";
-import { Toaster } from "@/components/ui/sonner";
-import { Plus, LogOut, Search, Calendar } from "lucide-react";
-import { format } from "date-fns";
-import { es } from "date-fns/locale";
-// import { CreateIncidenciaDialog } from "@/components/CreateIncidenciaDialog";
+import { signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import {
+  Plus,
+  LogOut,
+  Search,
+  Calendar,
+  MessageCircle,
+  Paperclip,
+  Pencil,
+} from 'lucide-react';
+import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
+import { TaskDialog } from '@/components/TaskDialog';
+import { taskService } from '@/integrations/firebase/taskService';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import {
   Pagination,
   PaginationContent,
@@ -16,103 +39,108 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
-
-interface Incidencia {
-  id: string;
-  titulo: string;
-  descripcion: string;
-  archivos_adjuntos: any;
-  created_at: string;
-}
+} from '@/components/ui/pagination';
+import { useAuth } from '@/components/auth/useAuth';
+import { auth } from '@/integrations/firebase/client';
+import type { Task } from '@/types/task';
 
 const ITEMS_PER_PAGE = 10;
 
 const Tasks = () => {
-  const [incidencias, setIncidencias] = useState<Incidencia[]>([]);
-  const [filteredIncidencias, setFilteredIncidencias] = useState<Incidencia[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [searchTitulo, setSearchTitulo] = useState("");
-  const [searchFecha, setSearchFecha] = useState("");
+  const [searchTitulo, setSearchTitulo] = useState('');
+  const [searchFecha, setSearchFecha] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
   const navigate = useNavigate();
-
+  const { user, client_id } = useAuth();
 
   useEffect(() => {
     checkAuth();
-    loadIncidencias();
+    loadTasks();
   }, []);
 
   useEffect(() => {
-    filterIncidencias();
-  }, [searchTitulo, searchFecha, incidencias]);
+    filterTasks();
+  }, [searchTitulo, searchFecha, tasks]);
 
   const checkAuth = async () => {
-    // const { data: { session } } = await supabase.auth.getSession();
-    // if (!session) {
-    //   navigate("/auth");
-    // }
+    if (!user) {
+      navigate('/clients/login');
+    }
   };
 
-  const loadIncidencias = async () => {
+  const loadTasks = async () => {
     setLoading(true);
-    // const { data, error } = await supabase
-    //   .from("incidencias")
-    //   .select("*")
-    //   .order("created_at", { ascending: false });
-
-    // if (error) {
-    //   toast({
-    //     title: "Error",
-    //     description: "No se pudieron cargar las incidencias",
-    //     variant: "destructive",
-    //   });
-    // } else {
-    //   setIncidencias(data || []);
-    // }
+    if (client_id) {
+      const tasks = await taskService.getTasks(client_id);
+      setTasks(tasks);
+      setFilteredTasks(tasks);
+    }
     setLoading(false);
   };
 
-  const filterIncidencias = () => {
-    let filtered = [...incidencias];
+  const filterTasks = () => {
+    let filtered = [...tasks];
 
     if (searchTitulo) {
-      filtered = filtered.filter((inc) =>
-        inc.titulo.toLowerCase().includes(searchTitulo.toLowerCase())
+      filtered = filtered.filter(task =>
+        task.title.toLowerCase().includes(searchTitulo.toLowerCase())
       );
     }
 
     if (searchFecha) {
-      filtered = filtered.filter((inc) =>
-        format(new Date(inc.created_at), "yyyy-MM-dd").includes(searchFecha)
+      filtered = filtered.filter(task =>
+        format(new Date(task.createdAt), 'yyyy-MM-dd').includes(searchFecha)
       );
     }
 
-    setFilteredIncidencias(filtered);
+    setFilteredTasks(filtered);
     setCurrentPage(1);
   };
 
   const handleLogout = async () => {
-    // await supabase.auth.signOut();
-    navigate("/auth");
+    await signOut(auth);
+    navigate('/clients/login');
   };
 
-  const totalPages = Math.ceil(filteredIncidencias.length / ITEMS_PER_PAGE);
+  const handleEdit = (task: Task) => {
+    setEditingTask(task);
+    setDialogOpen(true);
+  };
+
+  const getStatusBadge = (status: string) => {
+    const statusConfig = {
+      pending: { label: 'Pendiente', className: 'bg-red-500' as const },
+      in_progress: { label: 'En Proceso', className: 'bg-yellow-500' as const },
+      completed: { label: 'Resuelto', className: 'bg-green-500' as const },
+      cancelled: { label: 'Cerrado', className: 'bg-gray-500' as const },
+    };
+
+    const config =
+      statusConfig[status as keyof typeof statusConfig] || statusConfig.pending;
+    return <Badge className={config.className}>{config.label}</Badge>;
+  };
+
+  const totalPages = Math.ceil(filteredTasks.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedIncidencias = filteredIncidencias.slice(
+  const paginatedTasks = filteredTasks.slice(
     startIndex,
     startIndex + ITEMS_PER_PAGE
   );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-accent/20">
-      <Toaster />
       <div className="container mx-auto p-4 md:p-8">
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold">Gestión de Incidencias</h1>
-            <p className="text-muted-foreground mt-2">Administra y registra incidencias</p>
+            <p className="text-muted-foreground mt-2">
+              Administra y registra incidencias
+            </p>
           </div>
           <Button onClick={handleLogout} variant="outline" size="sm">
             <LogOut className="mr-2 h-4 w-4" />
@@ -123,7 +151,9 @@ const Tasks = () => {
         <Card className="mb-6">
           <CardHeader>
             <CardTitle>Filtros</CardTitle>
-            <CardDescription>Busca incidencias por título o fecha</CardDescription>
+            <CardDescription>
+              Busca incidencias por título o fecha
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
@@ -131,7 +161,7 @@ const Tasks = () => {
               <Input
                 placeholder="Buscar por título..."
                 value={searchTitulo}
-                onChange={(e) => setSearchTitulo(e.target.value)}
+                onChange={e => setSearchTitulo(e.target.value)}
                 className="pl-9"
               />
             </div>
@@ -140,7 +170,7 @@ const Tasks = () => {
               <Input
                 type="date"
                 value={searchFecha}
-                onChange={(e) => setSearchFecha(e.target.value)}
+                onChange={e => setSearchFecha(e.target.value)}
                 className="pl-9"
               />
             </div>
@@ -155,37 +185,79 @@ const Tasks = () => {
           <div className="text-center py-12">
             <p className="text-muted-foreground">Cargando incidencias...</p>
           </div>
-        ) : filteredIncidencias.length === 0 ? (
+        ) : filteredTasks.length === 0 ? (
           <Card>
             <CardContent className="py-12 text-center">
-              <p className="text-muted-foreground">No se encontraron incidencias</p>
+              <p className="text-muted-foreground">
+                No se encontraron incidencias
+              </p>
             </CardContent>
           </Card>
         ) : (
           <>
             <div className="grid gap-4">
-              {paginatedIncidencias.map((incidencia) => (
-                <Card key={incidencia.id} className="hover-scale">
-                  <CardHeader>
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <CardTitle>{incidencia.titulo}</CardTitle>
-                        <CardDescription>
-                          {format(new Date(incidencia.created_at), "PPP 'a las' p", { locale: es })}
-                        </CardDescription>
-                      </div>
-                      {incidencia.archivos_adjuntos?.length > 0 && (
-                        <span className="text-sm text-muted-foreground">
-                          {incidencia.archivos_adjuntos.length} archivo(s)
-                        </span>
-                      )}
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm">{incidencia.descripcion}</p>
-                  </CardContent>
-                </Card>
-              ))}
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Título</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Descripción</TableHead>
+                    <TableHead>Creado</TableHead>
+                    <TableHead>Actualizado</TableHead>
+                    <TableHead className="text-center w-[50px]">
+                      <Paperclip className="h-4 w-4 mx-auto" />
+                    </TableHead>
+                    <TableHead className="text-center w-[50px]">
+                      <MessageCircle className="h-4 w-4 mx-auto" />
+                    </TableHead>
+                    <TableHead className="text-right">Acciones</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {paginatedTasks.map(task => (
+                    <TableRow key={task.uid}>
+                      <TableCell className="font-medium">
+                        {task.title}
+                      </TableCell>
+                      <TableCell>{getStatusBadge(task.status)}</TableCell>
+                      <TableCell className="max-w-md truncate">
+                        {task.description}
+                      </TableCell>
+                      <TableCell className="whitespace-nowrap">
+                        {format(new Date(task.createdAt), 'dd/MM/yyyy', {
+                          locale: es,
+                        })}
+                      </TableCell>
+                      <TableCell className="whitespace-nowrap">
+                        {format(new Date(task.updatedAt), 'dd/MM/yyyy', {
+                          locale: es,
+                        })}
+                      </TableCell>
+                      <TableCell className="text-center">
+                        {task.files?.length > 0 && (
+                          <Paperclip className="h-4 w-4 mx-auto text-primary" />
+                        )}
+                      </TableCell>
+                      <TableCell className="text-center">
+                        {task.comments?.length > 0 && (
+                          <MessageCircle className="h-4 w-4 mx-auto text-primary" />
+                        )}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex justify-end gap-2">
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            onClick={() => handleEdit(task)}
+                          >
+                            <Pencil className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </div>
 
             {totalPages > 1 && (
@@ -194,25 +266,37 @@ const Tasks = () => {
                   <PaginationContent>
                     <PaginationItem>
                       <PaginationPrevious
-                        onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                        className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                        onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                        className={
+                          currentPage === 1
+                            ? 'pointer-events-none opacity-50'
+                            : 'cursor-pointer'
+                        }
                       />
                     </PaginationItem>
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                      <PaginationItem key={page}>
-                        <PaginationLink
-                          onClick={() => setCurrentPage(page)}
-                          isActive={currentPage === page}
-                          className="cursor-pointer"
-                        >
-                          {page}
-                        </PaginationLink>
-                      </PaginationItem>
-                    ))}
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                      page => (
+                        <PaginationItem key={page}>
+                          <PaginationLink
+                            onClick={() => setCurrentPage(page)}
+                            isActive={currentPage === page}
+                            className="cursor-pointer"
+                          >
+                            {page}
+                          </PaginationLink>
+                        </PaginationItem>
+                      )
+                    )}
                     <PaginationItem>
                       <PaginationNext
-                        onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-                        className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                        onClick={() =>
+                          setCurrentPage(p => Math.min(totalPages, p + 1))
+                        }
+                        className={
+                          currentPage === totalPages
+                            ? 'pointer-events-none opacity-50'
+                            : 'cursor-pointer'
+                        }
                       />
                     </PaginationItem>
                   </PaginationContent>
@@ -222,11 +306,12 @@ const Tasks = () => {
           </>
         )}
 
-        {/* <CreateIncidenciaDialog
+        <TaskDialog
           open={dialogOpen}
           onOpenChange={setDialogOpen}
-          onSuccess={loadIncidencias}
-        /> */}
+          onSuccess={loadTasks}
+          editingTask={editingTask}
+        />
       </div>
     </div>
   );

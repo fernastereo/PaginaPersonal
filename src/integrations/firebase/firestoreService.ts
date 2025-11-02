@@ -78,6 +78,13 @@ export const firestoreService = {
     return snapshot.docs.map(doc => doc.data() as UserProfile);
   },
 
+  async getUsersByClientId(clientId: string): Promise<string[]> {
+    const usersRef = collection(db, USERS_COLLECTION);
+    const q = query(usersRef, where('client_id', '==', clientId));
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => doc.id as string);
+  },
+
   // Buscar usuarios por tipo
   async getUsersByRole(role: UserRole): Promise<UserProfile[]> {
     const usersRef = collection(db, USERS_COLLECTION);
