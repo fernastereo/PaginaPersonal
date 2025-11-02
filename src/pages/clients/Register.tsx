@@ -16,11 +16,15 @@ import type { UserRole } from "@/types/user";
 //TODO: Actualmente esto crea el usuario y se loguea automaticamente, 
 //Dado que el admin es el unico que puede crear usuarios, deberia crear el usuario y luego redirigir a la pagina de usuarios como admin
 const registerSchema = z.object({
-  email: z.string().email({ message: "Email inválido" }),
-  password: z.string().min(6, { message: "La contraseña debe tener al menos 6 caracteres" }),
-  nombre: z.string().min(2, { message: "El nombre debe tener al menos 2 caracteres" }),
-  ciudad: z.string().min(2, { message: "La ciudad es requerida" }),
-  telefono: z.string().optional(),
+  email: z.string().email({ message: 'Email inválido' }),
+  password: z
+    .string()
+    .min(6, { message: 'La contraseña debe tener al menos 6 caracteres' }),
+  name: z
+    .string()
+    .min(2, { message: 'El nombre debe tener al menos 2 caracteres' }),
+  city: z.string().min(2, { message: 'La ciudad es requerida' }),
+  phone: z.string().optional(),
 });
 
 const Register = () => {
@@ -42,6 +46,7 @@ const Register = () => {
 
     try {
       // Validar datos
+      console.log(formData);
       registerSchema.parse(formData);
 
       // Crear usuario en Firebase Auth
