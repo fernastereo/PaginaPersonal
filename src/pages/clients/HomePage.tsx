@@ -32,14 +32,15 @@ const HomePage = () => {
 
   const loadProfile = useCallback(async () => {
     const userProfile = await firestoreService.getUserProfile(user?.uid || '');
-    if (userProfile) {
+    setUserProfile(userProfile);
+
+    if (userProfile && client_id) {
       const clientProfile = await firestoreService.getClientById(
         client_id || ''
       );
       if (clientProfile) {
         setClientName(clientProfile.name);
       }
-      setUserProfile(userProfile);
     }
   }, [user, client_id]);
 
