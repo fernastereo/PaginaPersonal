@@ -1,15 +1,27 @@
-import { useState, useEffect } from "react";
-import { useAuth } from "@/components/auth/useAuth";
-import { firestoreService } from "@/integrations/firebase/firestoreService";
-import type { UserProfile } from "@/types/user";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { toast } from "sonner";
-import { Toaster } from "@/components/ui/sonner"
-import { UserCircle, Save, Loader2 } from "lucide-react";
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useAuth } from '@/components/auth/useAuth';
+import { firestoreService } from '@/integrations/firebase/firestoreService';
+import type { UserProfile } from '@/types/user';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { toast } from 'sonner';
+import { Toaster } from '@/components/ui/sonner';
+import { UserCircle, Save, Loader2 } from 'lucide-react';
 
 const Profile = () => {
   const { user } = useAuth();
@@ -17,14 +29,17 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
-  const toastOptions = {
-    position: 'top-right' as const,
-    style: {
-      background: 'hsl(var(--secondary))',
-      color: 'hsl(var(--primary))',
-      border: '1px solid hsl(var(--primary))',
-    },
-  };
+  const toastOptions = useMemo(
+    () => ({
+      position: 'top-right' as const,
+      style: {
+        background: 'hsl(var(--secondary))',
+        color: 'hsl(var(--primary))',
+        border: '1px solid hsl(var(--primary))',
+      },
+    }),
+    []
+  );
 
   const [formData, setFormData] = useState({
     name: '',
@@ -35,16 +50,8 @@ const Profile = () => {
     client_id: '',
   });
 
-  useEffect(() => {
-    if (user) {
-      loadProfile();
-    }
-  }, [user]);
-
-  const loadProfile = async () => {
+  const loadProfile = useCallback(async () => {
     if (!user) return;
-
-    setFormData({ ...formData, email: user.email || '' });
 
     try {
       setLoading(true);
@@ -66,7 +73,13 @@ const Profile = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user, toastOptions]);
+
+  useEffect(() => {
+    if (user) {
+      loadProfile();
+    }
+  }, [user, loadProfile]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -239,4 +252,3 @@ const Profile = () => {
 };
 
 export default Profile;
-

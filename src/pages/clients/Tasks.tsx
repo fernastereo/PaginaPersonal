@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from 'react';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -58,22 +58,13 @@ const Tasks = () => {
   const navigate = useNavigate();
   const { user, client_id } = useAuth();
 
-  useEffect(() => {
-    checkAuth();
-    loadTasks();
-  }, []);
-
-  useEffect(() => {
-    filterTasks();
-  }, [searchTitulo, searchFecha, tasks]);
-
-  const checkAuth = async () => {
+  const checkAuth = useCallback(async () => {
     if (!user) {
       navigate('/clients/login');
     }
-  };
+  }, [user, navigate]);
 
-  const loadTasks = async () => {
+  const loadTasks = useCallback(async () => {
     setLoading(true);
     if (client_id) {
       const tasks = await taskService.getTasks(client_id);
@@ -81,9 +72,14 @@ const Tasks = () => {
       setFilteredTasks(tasks);
     }
     setLoading(false);
-  };
+  }, [client_id]);
 
-  const filterTasks = () => {
+  useEffect(() => {
+    checkAuth();
+    loadTasks();
+  }, [checkAuth, loadTasks]);
+
+  const filterTasks = useCallback(() => {
     let filtered = [...tasks];
 
     if (searchTitulo) {
@@ -100,7 +96,11 @@ const Tasks = () => {
 
     setFilteredTasks(filtered);
     setCurrentPage(1);
-  };
+  }, [tasks, searchTitulo, searchFecha]);
+
+  useEffect(() => {
+    filterTasks();
+  }, [filterTasks]);
 
   const handleLogout = async () => {
     await signOut(auth);

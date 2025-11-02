@@ -27,13 +27,13 @@ const Register = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    nombre: "",
-    ciudad: "",
-    telefono: "",
-    client_id: "",
-    tipoUsuario: "user" as UserRole,
+    email: '',
+    password: '',
+    name: '',
+    city: '',
+    phone: '',
+    client_id: '',
+    role: 'user' as UserRole,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -54,26 +54,26 @@ const Register = () => {
       // Crear perfil en Firestore
       await firestoreService.createUserProfile(userCredential.user.uid, {
         email: formData.email,
-        nombre: formData.nombre,
-        ciudad: formData.ciudad,
-        telefono: formData.telefono,
-        client_id: "",
-        tipoUsuario: formData.tipoUsuario,
+        name: formData.name,
+        city: formData.city,
+        phone: formData.phone,
+        client_id: '',
+        role: formData.role,
       });
 
-      toast.success("Cuenta creada correctamente");
-      navigate("/clients/users");
+      toast.success('Cuenta creada correctamente');
+      navigate('/clients/users');
     } catch (error: unknown) {
       if (error instanceof z.ZodError) {
         toast.error(error.issues[0].message);
       } else {
         const code = (error as { code?: string }).code;
         const message =
-          code === "auth/email-already-in-use"
-            ? "Este email ya está registrado"
-            : code === "auth/weak-password"
-            ? "La contraseña es muy débil"
-            : (error as { message?: string }).message || "Ocurrió un error";
+          code === 'auth/email-already-in-use'
+            ? 'Este email ya está registrado'
+            : code === 'auth/weak-password'
+            ? 'La contraseña es muy débil'
+            : (error as { message?: string }).message || 'Ocurrió un error';
         toast.error(message);
       }
     } finally {
@@ -87,17 +87,21 @@ const Register = () => {
       <Card className="w-full max-w-2xl">
         <CardHeader>
           <CardTitle className="text-2xl">Crear Cuenta</CardTitle>
-          <CardDescription>Completa el formulario para registrarte</CardDescription>
+          <CardDescription>
+            Completa el formulario para registrarte
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="nombre">Nombre completo</Label>
+                <Label htmlFor="name">Nombre completo</Label>
                 <Input
-                  id="nombre"
-                  value={formData.nombre}
-                  onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
+                  id="name"
+                  value={formData.name}
+                  onChange={e =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
                   required
                 />
               </div>
@@ -108,7 +112,9 @@ const Register = () => {
                   id="email"
                   type="email"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={e =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   required
                 />
               </div>
@@ -119,38 +125,46 @@ const Register = () => {
                   id="password"
                   type="password"
                   value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  onChange={e =>
+                    setFormData({ ...formData, password: e.target.value })
+                  }
                   required
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="ciudad">Ciudad</Label>
+                <Label htmlFor="city">Ciudad</Label>
                 <Input
-                  id="ciudad"
-                  value={formData.ciudad}
-                  onChange={(e) => setFormData({ ...formData, ciudad: e.target.value })}
+                  id="city"
+                  value={formData.city}
+                  onChange={e =>
+                    setFormData({ ...formData, city: e.target.value })
+                  }
                   required
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="telefono">Teléfono (opcional)</Label>
+                <Label htmlFor="phone">Teléfono (opcional)</Label>
                 <Input
-                  id="telefono"
+                  id="phone"
                   type="tel"
-                  value={formData.telefono}
-                  onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
+                  value={formData.phone}
+                  onChange={e =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="tipoUsuario">Tipo de Usuario</Label>
+                <Label htmlFor="role">Tipo de Usuario</Label>
                 <Select
-                  value={formData.tipoUsuario}
-                  onValueChange={(value) => setFormData({ ...formData, tipoUsuario: value as UserRole })}
+                  value={formData.role}
+                  onValueChange={value =>
+                    setFormData({ ...formData, role: value as UserRole })
+                  }
                 >
-                  <SelectTrigger id="tipoUsuario">
+                  <SelectTrigger id="role">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -164,7 +178,7 @@ const Register = () => {
 
             <div className="flex gap-4 pt-4">
               <Button type="submit" className="flex-1" disabled={loading}>
-                {loading ? "Creando cuenta..." : "Crear Cuenta"}
+                {loading ? 'Creando cuenta...' : 'Crear Cuenta'}
               </Button>
             </div>
           </form>

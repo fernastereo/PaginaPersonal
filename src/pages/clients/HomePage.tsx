@@ -12,7 +12,7 @@ import {
   X,
   FolderKanban,
 } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { UserProfile } from '@/types/user';
 import { firestoreService } from '@/integrations/firebase/firestoreService';
 
@@ -30,13 +30,7 @@ const HomePage = () => {
     navigate('/clients/login');
   };
 
-  useEffect(() => {
-    if (user) {
-      loadProfile();
-    }
-  }, [user]);
-
-  const loadProfile = async () => {
+  const loadProfile = useCallback(async () => {
     const userProfile = await firestoreService.getUserProfile(user?.uid || '');
     if (userProfile) {
       const clientProfile = await firestoreService.getClientById(
@@ -47,7 +41,13 @@ const HomePage = () => {
       }
       setUserProfile(userProfile);
     }
-  };
+  }, [user, client_id]);
+
+  useEffect(() => {
+    if (user) {
+      loadProfile();
+    }
+  }, [user, loadProfile]);
 
   const navItems =
     userProfile?.role === 'admin' && userProfile
