@@ -10,8 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { toast } from 'sonner';
-import { Toaster } from '@/components/ui/sonner';
 import {
   LogOut,
   TrendingUp,
@@ -32,8 +30,6 @@ import {
   ChartTooltipContent,
 } from '@/components/ui/chart';
 import {
-  BarChart,
-  Bar,
   LineChart,
   Line,
   PieChart,
