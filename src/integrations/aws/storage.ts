@@ -35,13 +35,8 @@ export const uploadTaskFileToS3 = async (
     
     const response = await s3Client.send(command);
     
-    if(response.ETag) {
-      console.log('Archivo subido exitosamente:', {
-        ETag: response.ETag,
-        VersionId: response.VersionId,
-      });
-
-      const fileUrl = `${AWS_CONFIG.path}/${key}`        
+    if (response.ETag) {
+      const fileUrl = `${AWS_CONFIG.path}/${key}`;
       return fileUrl;
     }
     
