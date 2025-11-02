@@ -42,6 +42,12 @@ jobs:
           export VITE_APP_FIREBASE_MESSAGING_SENDER_ID="test_messaging_sender_id"
           export VITE_APP_FIREBASE_APP_ID="test_app_id"
           export VITE_APP_MEASUREMENT_ID="test_measurement_id"
+          export VITE_AWS_ACCESS_KEY_ID="test_aws_access_key_id"
+          export VITE_AWS_SECRET_ACCESS_KEY="test_aws_secret_access_key"
+          export VITE_AWS_BUCKET="test_aws_bucket"
+          export VITE_AWS_BUCKET_FOLDER="test_aws_bucket_folder"
+          export VITE_AWS_REGION="test_aws_region"
+          export VITE_AWS_PATH="test_aws_path"
           npm run build
 
       - name: 📊 Build size analysis
