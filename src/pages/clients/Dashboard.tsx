@@ -448,13 +448,14 @@ const Dashboard = () => {
                           key={task.uid}
                           className="flex items-start justify-between p-3 rounded-lg border bg-card hover:bg-accent/50 transition-colors"
                         >
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-1">
-                              <h4 className="font-medium text-sm">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-1 flex-wrap">
+                              <h4 className="font-medium text-sm break-words">
                                 {task.title}
                               </h4>
                               <Badge
                                 variant="secondary"
+                                className="shrink-0"
                                 style={{
                                   backgroundColor: `${getStatusColor(
                                     task.status
@@ -465,10 +466,8 @@ const Dashboard = () => {
                                 {getStatusLabel(task.status)}
                               </Badge>
                             </div>
-                            <p className="text-xs text-muted-foreground truncate">
-                              {task.description.length > 160
-                                ? `${task.description.substring(0, 160)}...`
-                                : task.description}
+                            <p className="text-xs text-muted-foreground line-clamp-2 break-words">
+                              {task.description}
                             </p>
                             <p className="text-xs text-muted-foreground mt-1">
                               {format(
