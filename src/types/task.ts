@@ -4,6 +4,7 @@ export interface Task {
   uid: string;
   user_id: string;
   user_name: string;
+  client_name: string;
   title: string;
   description: string;
   status: TaskStatus;

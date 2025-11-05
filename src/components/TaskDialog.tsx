@@ -139,6 +139,11 @@ export const TaskDialog = ({
       }
 
       const userProfile = await firestoreService.getUserProfile(user.uid);
+      const clientProfile = await firestoreService.getClientById(
+        userProfile?.client_id || []
+      );
+      const clientName =
+        userProfile?.role !== 'admin' ? clientProfile[0].name : 'Admin';
 
       if (editingTask) {
         await taskService.updateTask(editingTask.uid, {
@@ -150,6 +155,7 @@ export const TaskDialog = ({
           {
             user_id: user.uid,
             user_name: userProfile?.name || '',
+            client_name: clientName || '',
             title: formData.title,
             description: formData.description,
             status: 'pending',

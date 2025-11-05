@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -48,6 +48,8 @@ import {
   isProduction,
 } from '@/integrations/firebase/client';
 import type { Task } from '@/types/task';
+import type { UserProfile } from '@/types/user';
+import { firestoreService } from '@/integrations/firebase/firestoreService';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -56,14 +58,17 @@ const Tasks = () => {
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [searchTitulo, setSearchTitulo] = useState('');
-  const [searchFecha, setSearchFecha] = useState('');
+  const [searchTitle, setSearchTitle] = useState('');
+  const [searchDate, setSearchDate] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const navigate = useNavigate();
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const { user, client_id } = useAuth();
 
   const checkAuth = useCallback(async () => {
+    const userProfile = await firestoreService.getUserProfile(user?.uid || '');
+    setUserProfile(userProfile);
     if (!user) {
       navigate('/clients/login');
     }
@@ -90,21 +95,21 @@ const Tasks = () => {
   const filterTasks = useCallback(() => {
     let filtered = [...tasks];
 
-    if (searchTitulo) {
+    if (searchTitle) {
       filtered = filtered.filter(task =>
-        task.title.toLowerCase().includes(searchTitulo.toLowerCase())
+        task.title.toLowerCase().includes(searchTitle.toLowerCase())
       );
     }
 
-    if (searchFecha) {
+    if (searchDate) {
       filtered = filtered.filter(task =>
-        format(new Date(task.createdAt), 'yyyy-MM-dd').includes(searchFecha)
+        format(new Date(task.createdAt), 'yyyy-MM-dd').includes(searchDate)
       );
     }
 
     setFilteredTasks(filtered);
     setCurrentPage(1);
-  }, [tasks, searchTitulo, searchFecha]);
+  }, [tasks, searchTitle, searchDate]);
 
   useEffect(() => {
     filterTasks();
@@ -163,7 +168,7 @@ const Tasks = () => {
           <CardHeader>
             <CardTitle>Filtros</CardTitle>
             <CardDescription>
-              Busca incidencias por título o fecha
+              Busca incidencias por título o Date
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col md:flex-row gap-4">
@@ -171,8 +176,8 @@ const Tasks = () => {
               <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Buscar por título..."
-                value={searchTitulo}
-                onChange={e => setSearchTitulo(e.target.value)}
+                value={searchTitle}
+                onChange={e => setSearchTitle(e.target.value)}
                 className="pl-9"
               />
             </div>
@@ -180,8 +185,8 @@ const Tasks = () => {
               <Calendar className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
                 type="date"
-                value={searchFecha}
-                onChange={e => setSearchFecha(e.target.value)}
+                value={searchDate}
+                onChange={e => setSearchDate(e.target.value)}
                 className="pl-9"
               />
             </div>
@@ -204,7 +209,7 @@ const Tasks = () => {
             <p className="text-muted-foreground">Cargando incidencias...</p>
           </div>
         ) : filteredTasks.length === 0 ? (
-          <Card>
+          <Card className="border-border">
             <CardContent className="py-12 text-center">
               <p className="text-muted-foreground">
                 No se encontraron incidencias
@@ -224,7 +229,9 @@ const Tasks = () => {
                       Status
                     </TableHead>
                     <TableHead className="text-muted-foreground font-semibold">
-                      Descripción
+                      {userProfile?.role !== 'admin'
+                        ? 'Descripción'
+                        : 'Cliente'}
                     </TableHead>
                     <TableHead className="text-muted-foreground font-semibold">
                       Creado
@@ -254,7 +261,9 @@ const Tasks = () => {
                       </TableCell>
                       <TableCell>{getStatusBadge(task.status)}</TableCell>
                       <TableCell className="max-w-md truncate">
-                        {task.description}
+                        {userProfile?.role !== 'admin'
+                          ? task.description
+                          : task.client_name}
                       </TableCell>
                       <TableCell className="whitespace-nowrap">
                         {format(new Date(task.createdAt), 'dd/MM/yyyy', {
