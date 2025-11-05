@@ -246,8 +246,11 @@ const Tasks = () => {
                 <TableBody>
                   {paginatedTasks.map(task => (
                     <TableRow key={task.uid} className="border-border">
-                      <TableCell className="font-medium">
+                      <TableCell className="flex flex-col font-medium">
                         {task.title}
+                        <span className="text-xs text-muted-foreground">
+                          {task.user_name}
+                        </span>
                       </TableCell>
                       <TableCell>{getStatusBadge(task.status)}</TableCell>
                       <TableCell className="max-w-md truncate">

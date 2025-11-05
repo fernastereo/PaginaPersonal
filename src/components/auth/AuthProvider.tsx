@@ -6,7 +6,7 @@ import { firestoreService } from '@/integrations/firebase/firestoreService';
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-  const [client_id, setClient_id] = useState<string | null>(null);
+  const [client_id, setClient_id] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(
@@ -18,7 +18,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             u.uid || ''
           );
           if (userProfile) {
-            setClient_id(userProfile.client_id || '');
+            setClient_id(userProfile.client_id);
           }
         }
         setLoading(false);

@@ -61,7 +61,7 @@ export const taskService = {
     }
   },
 
-  async getTasks(clientId: string): Promise<Task[]> {
+  async getTasks(clientId: string[]): Promise<Task[]> {
     try {
       const users = await firestoreService.getUsersByClientId(clientId);
       const tasks = await this.getTasksByUserIds(users);
@@ -98,5 +98,4 @@ export const taskService = {
       throw error;
     }
   },
-
 };

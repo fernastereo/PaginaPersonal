@@ -7,7 +7,7 @@ export interface UserProfile {
   city: string;
   role: UserRole;
   phone?: string;
-  client_id?: string;
+  client_id: string[];
   createdAt: string;
   updatedAt: string;
 }

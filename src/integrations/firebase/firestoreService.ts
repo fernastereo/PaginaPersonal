@@ -78,9 +78,13 @@ export const firestoreService = {
     return snapshot.docs.map(doc => doc.data() as UserProfile);
   },
 
-  async getUsersByClientId(clientId: string): Promise<string[]> {
+  async getUsersByClientId(clientId: string[]): Promise<string[]> {
     const usersRef = collection(db, USERS_COLLECTION);
-    const q = query(usersRef, where('client_id', '==', clientId));
+    //se debe consultar los usuarios cuyo client_id(array) esté en el array client_id que se pasa como parametro.
+    const q = query(
+      usersRef,
+      where('client_id', 'array-contains-any', clientId)
+    );
     const snapshot = await getDocs(q);
     return snapshot.docs.map(doc => doc.id as string);
   },
@@ -93,15 +97,13 @@ export const firestoreService = {
     return snapshot.docs.map(doc => doc.data() as UserProfile);
   },
 
-  async getClientById(uid: string): Promise<ClientProfile | null> {
-    const clientRef = doc(db, CLIENTS_COLLECTION, uid);
-    const clientSnap = await getDoc(clientRef);
-
-    if (clientSnap.exists()) {
-      return clientSnap.data() as ClientProfile;
-    }
-
-    return null;
+  async getClientById(clientId: string[]): Promise<ClientProfile[]> {
+    const clientRef = collection(db, CLIENTS_COLLECTION);
+    const q = query(clientRef, where('uid', 'in', clientId));
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(
+      doc => doc.data() as ClientProfile
+    ) as ClientProfile[];
   },
 };
 

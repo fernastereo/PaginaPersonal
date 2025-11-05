@@ -40,11 +40,14 @@ const HomePage = () => {
     setUserProfile(userProfile);
 
     if (userProfile && client_id) {
-      const clientProfile = await firestoreService.getClientById(
-        client_id || ''
-      );
+      const clientProfile = await firestoreService.getClientById(client_id);
+
       if (clientProfile) {
-        setClientName(clientProfile.name);
+        if (userProfile.role !== 'admin') {
+          setClientName(clientProfile[0].name);
+        } else {
+          setClientName(clientProfile.map(client => client.name).join(', '));
+        }
       }
     }
 
