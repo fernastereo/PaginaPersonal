@@ -47,7 +47,7 @@ const Profile = () => {
     role: 'user' as UserProfile['role'],
     email: '',
     phone: '',
-    client_id: '',
+    client_id: [] as string[],
   });
 
   const loadProfile = useCallback(async () => {
@@ -64,7 +64,7 @@ const Profile = () => {
           role: data.role,
           email: data.email || '',
           phone: data.phone || '',
-          client_id: data.client_id || '',
+          client_id: data.client_id || [],
         });
       }
     } catch (error) {

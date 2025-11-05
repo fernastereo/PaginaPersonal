@@ -36,7 +36,7 @@ const Register = () => {
     name: '',
     city: '',
     phone: '',
-    client_id: '',
+    client_id: [],
     role: 'user' as UserRole,
   });
 
@@ -62,7 +62,7 @@ const Register = () => {
         name: formData.name,
         city: formData.city,
         phone: formData.phone,
-        client_id: '',
+        client_id: [],
         role: formData.role,
       });
 
