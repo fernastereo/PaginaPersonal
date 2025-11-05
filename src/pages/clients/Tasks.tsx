@@ -223,6 +223,9 @@ const Tasks = () => {
                 <TableHeader>
                   <TableRow>
                     <TableHead className="text-muted-foreground font-semibold">
+                      ID
+                    </TableHead>
+                    <TableHead className="text-muted-foreground font-semibold">
                       Título
                     </TableHead>
                     <TableHead className="text-muted-foreground font-semibold">
@@ -253,6 +256,15 @@ const Tasks = () => {
                 <TableBody>
                   {paginatedTasks.map(task => (
                     <TableRow key={task.uid} className="border-border">
+                      <TableCell className="font-medium">
+                        <Button
+                          variant="link"
+                          className="cursor-pointer p-0"
+                          onClick={() => handleEdit(task)}
+                        >
+                          {task.taskNumber}
+                        </Button>
+                      </TableCell>
                       <TableCell className="flex flex-col font-medium">
                         {task.title}
                         <span className="text-xs text-muted-foreground">

@@ -12,6 +12,7 @@ import {
 import type { Task } from '@/types/task';
 import { uploadTaskFileToS3 } from '@/integrations/aws/storage';
 import { firestoreService } from '@/integrations/firebase/firestoreService';
+import { counterService } from './counterService';
 
 const TASK_COLLECTION: string = 'tasks';
 
@@ -20,12 +21,13 @@ export const taskService = {
     data: Omit<
       Task,
       | 'uid'
+      | 'taskNumber'
       | 'createdAt'
       | 'updatedAt'
       | 'completedAt'
       | 'comments'
       | 'files'
-      | 'files_completed'
+      | 'filesCompleted'
     >,
     files?: File[]
   ): Promise<Task> {
@@ -33,6 +35,8 @@ export const taskService = {
       const taskRef = doc(collection(db, TASK_COLLECTION));
       const uid = taskRef.id;
       const now = new Date().toISOString();
+
+      const taskNumber = await counterService.getNextTaskNumber(data.client_id);
 
       let fileURLs: string[] | null = null;
       if (files && files.length > 0) {
@@ -45,10 +49,11 @@ export const taskService = {
       const taskData: Task = {
         ...data,
         uid,
+        taskNumber,
         files: fileURLs || [],
         completedAt: '',
         comments: [],
-        files_completed: [],
+        filesCompleted: [],
         createdAt: now,
         updatedAt: now,
       };

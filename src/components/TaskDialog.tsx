@@ -13,8 +13,8 @@ import {
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { z } from "zod";
-import { Upload, X } from "lucide-react";
-import { useAuth } from "./auth/useAuth";
+import { Upload, X, BookmarkCheck } from 'lucide-react';
+import { useAuth } from './auth/useAuth';
 import { taskService } from '@/integrations/firebase/taskService';
 import { firestoreService } from '@/integrations/firebase/firestoreService';
 import type { Task } from '@/types/task';
@@ -71,6 +71,7 @@ export const TaskDialog = ({
 }: TaskDialogProps) => {
   useEffect(() => {
     if (editingTask) {
+      setTaskNumber(editingTask.taskNumber);
       setFormData({
         title: editingTask.title,
         description: editingTask.description,
@@ -78,6 +79,7 @@ export const TaskDialog = ({
     }
   }, [editingTask, open]);
 
+  const [taskNumber, setTaskNumber] = useState('');
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -142,6 +144,7 @@ export const TaskDialog = ({
       const clientProfile = await firestoreService.getClientById(
         userProfile?.client_id || []
       );
+      const clientId = userProfile?.client_id[0] || '';
       const clientName =
         userProfile?.role !== 'admin' ? clientProfile[0].name : 'Admin';
 
@@ -155,6 +158,7 @@ export const TaskDialog = ({
           {
             user_id: user.uid,
             user_name: userProfile?.name || '',
+            client_id: clientId,
             client_name: clientName || '',
             title: formData.title,
             description: formData.description,
@@ -212,13 +216,21 @@ export const TaskDialog = ({
       <Toaster />
       <DialogContent className="h-[65vh] md:max-w-[calc(100%-35rem)] md:h-[61vh] block overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>
-            {editingTask ? 'Actualizar Incidencia' : 'Nueva Incidencia'}
+          <DialogTitle className="flex flex-row items-center gap-2">
+            <BookmarkCheck className="h-5 w-5 text-primary" />
+            <span className="text-sm font-semibold text-primary">
+              {taskNumber ? taskNumber : ''}
+            </span>
+            <h4 className="text-md font-semibold">
+              {editingTask ? 'Actualizar Incidencia' : 'Nueva Incidencia'}
+            </h4>
           </DialogTitle>
           <DialogDescription>
-            {editingTask
-              ? 'Actualiza los datos de la incidencia'
-              : 'Completa los datos para registrar una nueva incidencia'}
+            <span className="text-md text-muted-foreground">
+              {editingTask
+                ? 'Actualiza los datos de la incidencia'
+                : 'Completa los datos para registrar una nueva incidencia'}
+            </span>
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
