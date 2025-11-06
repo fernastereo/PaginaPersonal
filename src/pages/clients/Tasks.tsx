@@ -120,11 +120,19 @@ const Tasks = () => {
     navigate('/clients/login');
   };
 
+  const handleNewTask = () => {
+    if (isProduction) {
+      logEvent(analytics, 'click_on_new_task', {});
+    }
+    setEditingTask(null);
+    setDialogOpen(true);
+  };
+
   const handleEdit = (task: Task) => {
-    setEditingTask(task);
     if (isProduction) {
       logEvent(analytics, 'click_on_edit_task', { task: task.title });
     }
+    setEditingTask(task);
     setDialogOpen(true);
   };
 
@@ -190,14 +198,7 @@ const Tasks = () => {
                 className="pl-9"
               />
             </div>
-            <Button
-              onClick={() => {
-                if (isProduction) {
-                  logEvent(analytics, 'click_on_new_task', {});
-                }
-                setDialogOpen(true);
-              }}
-            >
+            <Button onClick={handleNewTask}>
               <Plus className="mr-2 h-4 w-4" />
               Nueva Incidencia
             </Button>

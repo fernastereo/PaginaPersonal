@@ -1,37 +1,35 @@
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { useState, useEffect, useMemo } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { toast } from "sonner";
-import { Toaster } from "@/components/ui/sonner";
-import { z } from "zod";
+} from '@/components/ui/dialog';
+import { toast } from 'sonner';
+import { Toaster } from '@/components/ui/sonner';
+import { z } from 'zod';
 import { Upload, X, BookmarkCheck } from 'lucide-react';
 import { useAuth } from './auth/useAuth';
 import { taskService } from '@/integrations/firebase/taskService';
 import { firestoreService } from '@/integrations/firebase/firestoreService';
-import type { Task } from '@/types/task';
+import type { Task, TaskStatus } from '@/types/task';
 import {
   analytics,
   logEvent,
   isProduction,
 } from '@/integrations/firebase/client';
-
-const toastOptions = {
-  position: 'top-right' as const,
-  style: {
-    background: 'hsl(var(--secondary))',
-    color: 'hsl(var(--primary))',
-    border: '1px solid hsl(var(--primary))',
-  },
-};
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 const taskSchema = z.object({
   title: z
@@ -69,13 +67,45 @@ export const TaskDialog = ({
   onSuccess,
   editingTask,
 }: TaskDialogProps) => {
+  const toastOptions = useMemo(
+    () => ({
+      position: 'top-right' as const,
+      style: {
+        background: 'hsl(var(--secondary))',
+        color: 'hsl(var(--primary))',
+        border: '1px solid hsl(var(--primary))',
+      },
+    }),
+    []
+  );
+
+  const taskStatus = useMemo(
+    () => ({
+      cancelled: 'Cancelado',
+      pending: 'Pendiente',
+      in_progress: 'En progreso',
+      completed: 'Completado',
+    }),
+    []
+  );
+
   useEffect(() => {
     if (editingTask) {
       setTaskNumber(editingTask.taskNumber);
       setFormData({
         title: editingTask.title,
         description: editingTask.description,
+        status: editingTask.status,
       });
+    } else {
+      // Resetear cuando no hay tarea para editar
+      setTaskNumber('');
+      setFormData({
+        title: '',
+        description: '',
+        status: 'pending' as TaskStatus,
+      });
+      setFiles([]);
     }
   }, [editingTask, open]);
 
@@ -83,6 +113,7 @@ export const TaskDialog = ({
   const [formData, setFormData] = useState({
     title: '',
     description: '',
+    status: 'pending' as TaskStatus,
   });
 
   const [files, setFiles] = useState<File[]>([]);
@@ -123,6 +154,7 @@ export const TaskDialog = ({
     setFormData({
       title: '',
       description: '',
+      status: 'pending' as TaskStatus,
     });
     setFiles([]);
   };
@@ -152,6 +184,7 @@ export const TaskDialog = ({
         await taskService.updateTask(editingTask.uid, {
           title: formData.title,
           description: formData.description,
+          status: formData.status,
         });
       } else {
         await taskService.createTask(
@@ -221,9 +254,9 @@ export const TaskDialog = ({
             <span className="text-sm font-semibold text-primary">
               {taskNumber ? taskNumber : ''}
             </span>
-            <h4 className="text-md font-semibold">
+            <span className="text-sm font-semibold">
               {editingTask ? 'Actualizar Incidencia' : 'Nueva Incidencia'}
-            </h4>
+            </span>
           </DialogTitle>
           <DialogDescription>
             <span className="text-md text-muted-foreground">
@@ -234,18 +267,46 @@ export const TaskDialog = ({
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-          <div className="space-y-2">
-            <Label htmlFor="title">Título *</Label>
-            <Input
-              id="title"
-              placeholder="Título de la incidencia"
-              value={formData.title}
-              onChange={e =>
-                setFormData({ ...formData, title: e.target.value })
-              }
-              required
-              disabled={loading}
-            />
+          <div className="flex flex-row gap-2">
+            <div className={`space-y-2 ${editingTask ? 'w-[75%]' : 'w-full'}`}>
+              <Label htmlFor="title">Título *</Label>
+              <Input
+                id="title"
+                placeholder="Título de la incidencia"
+                value={formData.title}
+                onChange={e =>
+                  setFormData({ ...formData, title: e.target.value })
+                }
+                required
+                disabled={loading}
+              />
+            </div>
+            <div
+              className={`space-y-2 ${
+                editingTask ? 'block w-[25%]' : 'hidden'
+              }`}
+            >
+              <Label htmlFor="status">Estado *</Label>
+              <Select
+                value={formData.status}
+                onValueChange={value =>
+                  setFormData({ ...formData, status: value as TaskStatus })
+                }
+                required
+                disabled={loading}
+              >
+                <SelectTrigger id="status" className="w-full">
+                  <SelectValue placeholder="Selecciona un estado" />
+                </SelectTrigger>
+                <SelectContent>
+                  {Object.entries(taskStatus).map(([key, value]) => (
+                    <SelectItem key={key} value={key}>
+                      {value}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="description">Descripción *</Label>

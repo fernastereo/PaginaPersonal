@@ -46,7 +46,7 @@ const HomePage = () => {
         if (userProfile.role !== 'admin') {
           setClientName(clientProfile[0].name);
         } else {
-          setClientName(clientProfile.map(client => client.name).join(', '));
+          setClientName('Admin');
         }
       }
     }
