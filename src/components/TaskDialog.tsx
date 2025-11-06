@@ -308,20 +308,42 @@ export const TaskDialog = ({
               </Select>
             </div>
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="description">Descripción *</Label>
-            <Textarea
-              id="description"
-              placeholder="Describe la incidencia en detalle..."
-              value={formData.description}
-              onChange={e =>
-                setFormData({ ...formData, description: e.target.value })
-              }
-              rows={12}
-              className="resize-none h-40 md:h-48"
-              required
-              disabled={loading}
-            />
+          <div className="flex flex-row gap-2">
+            <div className="space-y-2 w-[75%]">
+              <Label htmlFor="description">Descripción *</Label>
+              <Textarea
+                id="description"
+                placeholder="Describe la incidencia en detalle..."
+                value={formData.description}
+                onChange={e =>
+                  setFormData({ ...formData, description: e.target.value })
+                }
+                rows={12}
+                className="resize-none h-40 md:h-48"
+                required
+                disabled={loading}
+              />
+            </div>
+            <div className="space-y-2 w-[25%] pt-6 px-2 flex flex-col gap-2">
+              <div className="flex flex-row gap-2 justify-between">
+                <span className="text-sm font-medium">Informador</span>
+                <span className="text-sm text-muted-foreground">
+                  {editingTask?.user_name}
+                </span>
+              </div>
+              <div className="flex flex-row gap-2 justify-between">
+                <span className="text-sm font-medium">Estimación Original</span>
+                <span className="text-sm text-muted-foreground">- -</span>
+              </div>
+              <div className="flex flex-row gap-2 justify-between">
+                <span className="text-sm font-medium">Prioridad</span>
+                <span className="text-sm text-muted-foreground">- -</span>
+              </div>
+              <div className="flex flex-row gap-2 justify-between">
+                <span className="text-sm font-medium">Etiquetas</span>
+                <span className="text-sm text-muted-foreground">- -</span>
+              </div>
+            </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="archivos">Archivos Adjuntos</Label>

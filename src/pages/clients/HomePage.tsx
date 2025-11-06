@@ -82,13 +82,14 @@ const HomePage = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="h-screen bg-background flex overflow-hidden">
       {/* Sidebar */}
       <aside
         className={`
           fixed lg:static inset-y-0 left-0 z-50
           w-64 bg-card border-r border-border
           transform transition-transform duration-300 ease-in-out
+          h-screen
           ${
             sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
           }
@@ -96,7 +97,7 @@ const HomePage = () => {
       >
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="p-6 border-b border-border">
+          <div className="p-6 border-b border-border flex-shrink-0">
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-bold text-primary">Dashboard</h2>
               <button
@@ -114,8 +115,8 @@ const HomePage = () => {
             </span>
           </div>
 
-          {/* Navigation */}
-          <nav className="flex-1 p-4 space-y-2">
+          {/* Navigation - Scrollable */}
+          <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
             {navItems.map(item => (
               <Link
                 key={item.path}
@@ -138,7 +139,7 @@ const HomePage = () => {
           </nav>
 
           {/* Logout */}
-          <div className="p-4 border-t border-border">
+          <div className="p-4 border-t border-border flex-shrink-0">
             <Button
               onClick={handleLogout}
               variant="outline"
@@ -152,16 +153,16 @@ const HomePage = () => {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col min-h-screen">
+      <div className="flex-1 flex flex-col h-screen overflow-hidden">
         {/* Mobile Header */}
-        <header className="lg:hidden sticky top-0 z-40 bg-card border-b border-border p-4">
+        <header className="lg:hidden sticky top-0 z-40 bg-card border-b border-border p-4 flex-shrink-0">
           <button onClick={() => setSidebarOpen(true)}>
             <Menu className="w-6 h-6" />
           </button>
         </header>
 
-        {/* Content Area */}
-        <main className="flex-1 p-6 lg:p-8">
+        {/* Content Area - Scrollable */}
+        <main className="flex-1 p-6 lg:p-8 overflow-y-auto">
           <Outlet />
         </main>
       </div>

@@ -47,10 +47,10 @@ import { useAuth } from '@/components/auth/useAuth';
 
 interface Stats {
   total: number;
-  pendiente: number;
-  en_proceso: number;
-  resuelto: number;
-  cerrado: number;
+  pending: number;
+  in_progress: number;
+  completed: number;
+  cancelled: number;
 }
 
 const Dashboard = () => {
@@ -65,10 +65,10 @@ const Dashboard = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [stats, setStats] = useState<Stats>({
     total: 0,
-    pendiente: 0,
-    en_proceso: 0,
-    resuelto: 0,
-    cerrado: 0,
+    pending: 0,
+    in_progress: 0,
+    completed: 0,
+    cancelled: 0,
   });
   const [loading, setLoading] = useState(true);
 
@@ -96,40 +96,36 @@ const Dashboard = () => {
   const calculateStats = (data: Task[]) => {
     const stats: Stats = {
       total: data.length,
-      pendiente: data.filter(i => i.status === 'pending').length,
-      en_proceso: data.filter(i => i.status === 'in_progress').length,
-      resuelto: data.filter(i => i.status === 'completed').length,
-      cerrado: data.filter(i => i.status === 'cancelled').length,
+      pending: data.filter(i => i.status === 'pending').length,
+      in_progress: data.filter(i => i.status === 'in_progress').length,
+      completed: data.filter(i => i.status === 'completed').length,
+      cancelled: data.filter(i => i.status === 'cancelled').length,
     };
     setStats(stats);
   };
 
-  const getStatusColor = (status: string) => {
-    const colors = {
-      pendiente: '#f59e0b',
-      en_proceso: '#3b82f6',
-      resuelto: '#10b981',
-      cerrado: '#6b7280',
+  const getStatusBadge = (status: string) => {
+    const statusConfig = {
+      cancelled: { label: 'Cancelado', className: 'bg-gray-500' as const },
+      pending: { label: 'Pendiente', className: 'bg-red-500' as const },
+      in_progress: {
+        label: 'En Progreso',
+        className: 'bg-yellow-500' as const,
+      },
+      completed: { label: 'Completado', className: 'bg-green-500' as const },
     };
-    return colors[status as keyof typeof colors] || colors.pendiente;
-  };
 
-  const getStatusLabel = (status: string) => {
-    const labels = {
-      pendiente: 'Pendiente',
-      en_proceso: 'En Proceso',
-      resuelto: 'Resuelto',
-      cerrado: 'Cerrado',
-    };
-    return labels[status as keyof typeof labels] || status;
+    const config =
+      statusConfig[status as keyof typeof statusConfig] || statusConfig.pending;
+    return <Badge className={config.className}>{config.label}</Badge>;
   };
 
   // Datos para gráfico de distribución por estado
   const statusDistributionData = [
-    { name: 'Pendiente', value: stats.pendiente, color: '#f59e0b' },
-    { name: 'En Proceso', value: stats.en_proceso, color: '#3b82f6' },
-    { name: 'Resuelto', value: stats.resuelto, color: '#10b981' },
-    { name: 'Cerrado', value: stats.cerrado, color: '#6b7280' },
+    { name: 'Pendiente', value: stats.pending, color: '#f59e0b' },
+    { name: 'En Progreso', value: stats.in_progress, color: '#3b82f6' },
+    { name: 'Completado', value: stats.completed, color: '#10b981' },
+    { name: 'Cancelado', value: stats.cancelled, color: '#6b7280' },
   ].filter(item => item.value > 0);
 
   // Datos para gráfico de tendencia (últimos 7 días)
@@ -260,7 +256,7 @@ const Dashboard = () => {
                   <AlertCircle className="h-8 w-8 text-orange-500" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold">{stats.pendiente}</div>
+                  <div className="text-3xl font-bold">{stats.pending}</div>
                   <p className="text-xs text-muted-foreground mt-1">
                     Requieren atención
                   </p>
@@ -270,12 +266,12 @@ const Dashboard = () => {
               <Card className="hover:shadow-lg transition-shadow border-border py-4 gap-0 h-[130px]">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-md font-medium">
-                    En Proceso
+                    En Progreso
                   </CardTitle>
                   <Activity className="h-8 w-8 text-blue-500" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold">{stats.en_proceso}</div>
+                  <div className="text-3xl font-bold">{stats.in_progress}</div>
                   <p className="text-xs text-muted-foreground mt-1">
                     Siendo atendidas
                   </p>
@@ -285,16 +281,16 @@ const Dashboard = () => {
               <Card className="hover:shadow-lg transition-shadow border-border py-4 gap-0 h-[130px]">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-md font-medium">
-                    Resueltas
+                    Completadas
                   </CardTitle>
                   <CheckCircle2 className="h-8 w-8 text-green-500" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-3xl font-bold">
-                    {stats.resuelto + stats.cerrado}
+                    {stats.completed + stats.cancelled}
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Completadas con éxito
+                    Finalizadas con éxito
                   </p>
                 </CardContent>
               </Card>
@@ -405,12 +401,14 @@ const Dashboard = () => {
                   <p className="text-sm text-muted-foreground">días promedio</p>
                   <div className="mt-4 pt-4 border-t">
                     <div className="flex justify-between text-sm mb-2">
-                      <span className="text-muted-foreground">Resueltas:</span>
-                      <span className="font-medium">{stats.resuelto}</span>
+                      <span className="text-muted-foreground">
+                        Completadas:
+                      </span>
+                      <span className="font-medium">{stats.completed}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Cerradas:</span>
-                      <span className="font-medium">{stats.cerrado}</span>
+                      <span className="text-muted-foreground">Canceladas:</span>
+                      <span className="font-medium">{stats.cancelled}</span>
                     </div>
                   </div>
                 </CardContent>
@@ -453,18 +451,7 @@ const Dashboard = () => {
                               <h4 className="font-medium text-sm break-words">
                                 {task.title}
                               </h4>
-                              <Badge
-                                variant="secondary"
-                                className="shrink-0"
-                                style={{
-                                  backgroundColor: `${getStatusColor(
-                                    task.status
-                                  )}20`,
-                                  color: getStatusColor(task.status),
-                                }}
-                              >
-                                {getStatusLabel(task.status)}
-                              </Badge>
+                              {getStatusBadge(task.status)}
                             </div>
                             <p className="text-xs text-muted-foreground line-clamp-2 break-words">
                               {task.description}

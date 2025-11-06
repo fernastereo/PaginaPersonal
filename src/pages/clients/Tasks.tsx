@@ -138,10 +138,13 @@ const Tasks = () => {
 
   const getStatusBadge = (status: string) => {
     const statusConfig = {
+      cancelled: { label: 'Cancelado', className: 'bg-gray-500' as const },
       pending: { label: 'Pendiente', className: 'bg-red-500' as const },
-      in_progress: { label: 'En Proceso', className: 'bg-yellow-500' as const },
-      completed: { label: 'Resuelto', className: 'bg-green-500' as const },
-      cancelled: { label: 'Cerrado', className: 'bg-gray-500' as const },
+      in_progress: {
+        label: 'En Progreso',
+        className: 'bg-yellow-500' as const,
+      },
+      completed: { label: 'Completado', className: 'bg-green-500' as const },
     };
 
     const config =
