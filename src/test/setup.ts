@@ -1,6 +1,24 @@
 import '@testing-library/jest-dom'
 import { vi } from 'vitest'
 
+// Mock de Firebase Analytics ANTES de que se importe cualquier módulo que lo use
+vi.mock('firebase/analytics', () => ({
+  getAnalytics: vi.fn(() => ({
+    app: { name: '[DEFAULT]' },
+  })),
+  logEvent: vi.fn(),
+  isSupported: vi.fn(() => Promise.resolve(false)),
+}))
+
+// Mock de IndexedDB para evitar errores de Firebase Analytics
+Object.defineProperty(global, 'indexedDB', {
+  writable: true,
+  value: {
+    open: vi.fn(),
+    deleteDatabase: vi.fn(),
+  },
+})
+
 // Mock completo de i18next
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
