@@ -30,6 +30,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import type { UserProfile } from '@/types/user';
+import type { ClientProfile } from '@/types/client';
 
 const taskSchema = z.object({
   title: z
@@ -67,6 +69,24 @@ export const TaskDialog = ({
   onSuccess,
   editingTask,
 }: TaskDialogProps) => {
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [clientProfile, setClientProfile] = useState<ClientProfile[] | null>(
+    []
+  );
+  const [selectedClient, setSelectedClient] = useState<ClientProfile | null>(
+    null
+  );
+  const [taskNumber, setTaskNumber] = useState('');
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    status: 'pending' as TaskStatus,
+  });
+
+  const [files, setFiles] = useState<File[]>([]);
+  const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
+
   const toastOptions = useMemo(
     () => ({
       position: 'top-right' as const,
@@ -109,16 +129,38 @@ export const TaskDialog = ({
     }
   }, [editingTask, open]);
 
-  const [taskNumber, setTaskNumber] = useState('');
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    status: 'pending' as TaskStatus,
-  });
+  useEffect(() => {
+    const loadProfile = async () => {
+      const currentUserProfile = await firestoreService.getUserProfile(
+        user?.uid || ''
+      );
+      const currentClientProfile = await firestoreService.getClientById(
+        currentUserProfile?.client_id || []
+      );
+      setUserProfile(currentUserProfile);
 
-  const [files, setFiles] = useState<File[]>([]);
-  const [loading, setLoading] = useState(false);
-  const { user } = useAuth();
+      if (currentClientProfile) {
+        setClientProfile(currentClientProfile);
+
+        if (currentUserProfile?.role !== 'admin') {
+          setSelectedClient({
+            uid: currentClientProfile[0].uid,
+            name: currentClientProfile[0].name,
+            prefix: currentClientProfile[0].prefix,
+          });
+        } else {
+          if (editingTask) {
+            setSelectedClient({
+              uid: editingTask.client_id,
+              name: editingTask.client_name,
+              prefix: '',
+            });
+          }
+        }
+      }
+    };
+    loadProfile();
+  }, [user, editingTask]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -172,27 +214,27 @@ export const TaskDialog = ({
         return;
       }
 
-      const userProfile = await firestoreService.getUserProfile(user.uid);
-      const clientProfile = await firestoreService.getClientById(
-        userProfile?.client_id || []
-      );
-      const clientId = userProfile?.client_id[0] || '';
-      const clientName =
-        userProfile?.role !== 'admin' ? clientProfile[0].name : 'Admin';
+      if (userProfile?.role === 'admin' && !selectedClient) {
+        toast.error('No se ha seleccionado un cliente', toastOptions);
+        setLoading(false);
+        return;
+      }
 
       if (editingTask) {
         await taskService.updateTask(editingTask.uid, {
           title: formData.title,
           description: formData.description,
           status: formData.status,
+          client_id: selectedClient?.uid || '',
+          client_name: selectedClient?.name || '',
         });
       } else {
         await taskService.createTask(
           {
             user_id: user.uid,
             user_name: userProfile?.name || '',
-            client_id: clientId,
-            client_name: clientName || '',
+            client_id: selectedClient?.uid || '',
+            client_name: selectedClient?.name || '',
             title: formData.title,
             description: formData.description,
             status: 'pending',
@@ -247,7 +289,7 @@ export const TaskDialog = ({
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <Toaster />
-      <DialogContent className="h-[65vh] md:max-w-[calc(100%-35rem)] md:h-[61vh] block overflow-y-auto">
+      <DialogContent className="h-[65vh] md:max-w-[calc(100%-35rem)] md:h-[62vh] block overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex flex-row items-center gap-2">
             <BookmarkCheck className="h-5 w-5 text-primary" />
@@ -328,7 +370,7 @@ export const TaskDialog = ({
               <div className="flex flex-row gap-2 justify-between">
                 <span className="text-sm font-medium">Informador</span>
                 <span className="text-sm text-muted-foreground">
-                  {editingTask?.user_name}
+                  {editingTask?.user_name || '- -'}
                 </span>
               </div>
               <div className="flex flex-row gap-2 justify-between">
@@ -343,6 +385,42 @@ export const TaskDialog = ({
                 <span className="text-sm font-medium">Etiquetas</span>
                 <span className="text-sm text-muted-foreground">- -</span>
               </div>
+              {userProfile?.role === 'admin' && (
+                <div className="flex flex-row gap-2 justify-between">
+                  <Label htmlFor="client">Cliente</Label>
+                  <Select
+                    value={selectedClient?.uid || ''}
+                    onValueChange={value =>
+                      setSelectedClient({
+                        uid: value,
+                        name:
+                          clientProfile?.find(client => client.uid === value)
+                            ?.name || '',
+                        prefix:
+                          clientProfile?.find(client => client.uid === value)
+                            ?.prefix || '',
+                      })
+                    }
+                    required
+                    disabled={loading}
+                  >
+                    <SelectTrigger
+                      id="client"
+                      className="w-[70%] text-xs"
+                      size="sm"
+                    >
+                      <SelectValue placeholder="Selecciona un cliente" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {clientProfile?.map(client => (
+                        <SelectItem key={client.uid} value={client.uid}>
+                          {client.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
             </div>
           </div>
           <div className="space-y-2">
