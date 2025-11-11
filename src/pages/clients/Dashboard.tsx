@@ -81,7 +81,7 @@ const Dashboard = () => {
   const loadData = useCallback(async () => {
     setLoading(true);
     if (client_id) {
-      const tasks = await taskService.getTasks(client_id);
+      const tasks = await taskService.getTasksByClientId(client_id);
       setTasks(tasks);
       calculateStats(tasks);
     }

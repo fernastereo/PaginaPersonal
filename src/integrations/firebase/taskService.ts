@@ -11,7 +11,6 @@ import {
 } from 'firebase/firestore';
 import type { Task } from '@/types/task';
 import { uploadTaskFileToS3 } from '@/integrations/aws/storage';
-import { firestoreService } from '@/integrations/firebase/firestoreService';
 import { counterService } from './counterService';
 
 const TASK_COLLECTION: string = 'tasks';
@@ -66,17 +65,6 @@ export const taskService = {
     }
   },
 
-  async getTasks(clientId: string[]): Promise<Task[]> {
-    try {
-      const users = await firestoreService.getUsersByClientId(clientId);
-      const tasks = await this.getTasksByUserIds(users);
-      return tasks;
-    } catch (error) {
-      console.error('Error en getTasks:', error);
-      throw error;
-    }
-  },
-
   async getTasksByUserIds(userIds: string[]): Promise<Task[]> {
     try {
       const tasksRef = collection(db, TASK_COLLECTION);
@@ -89,6 +77,22 @@ export const taskService = {
       return snapshot.docs.map(doc => doc.data() as Task);
     } catch (error) {
       console.error('Error en getTasksByUserIds:', error);
+      throw error;
+    }
+  },
+
+  async getTasksByClientId(clientIds: string[]): Promise<Task[]> {
+    try {
+      const tasksRef = collection(db, TASK_COLLECTION);
+      const q = query(
+        tasksRef,
+        where('client_id', 'in', clientIds),
+        orderBy('createdAt', 'desc')
+      );
+      const snapshot = await getDocs(q);
+      return snapshot.docs.map(doc => doc.data() as Task);
+    } catch (error) {
+      console.error('Error en getTasksByClientId:', error);
       throw error;
     }
   },

@@ -77,7 +77,7 @@ const Tasks = () => {
   const loadTasks = useCallback(async () => {
     setLoading(true);
     if (client_id) {
-      const tasks = await taskService.getTasks(client_id);
+      const tasks = await taskService.getTasksByClientId(client_id);
       setTasks(tasks);
       setFilteredTasks(tasks);
     }
