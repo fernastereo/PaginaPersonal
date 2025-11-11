@@ -229,13 +229,13 @@ const Tasks = () => {
                     <TableHead className="text-muted-foreground font-semibold">
                       ID
                     </TableHead>
-                    <TableHead className="text-muted-foreground font-semibold">
+                    <TableHead className="text-muted-foreground font-semibold w-[150px] md:w-[450px]">
                       Título
                     </TableHead>
                     <TableHead className="text-muted-foreground font-semibold">
                       Status
                     </TableHead>
-                    <TableHead className="text-muted-foreground font-semibold">
+                    <TableHead className="text-muted-foreground font-semibold w-[150px] md:w-[450px]">
                       {userProfile?.role !== 'admin'
                         ? 'Descripción'
                         : 'Cliente'}
@@ -269,14 +269,16 @@ const Tasks = () => {
                           {task.taskNumber}
                         </Button>
                       </TableCell>
-                      <TableCell className="flex flex-col font-medium">
-                        {task.title}
-                        <span className="text-xs text-muted-foreground">
+                      <TableCell className="w-[150px] md:w-[450px] font-medium">
+                        <div className="break-words whitespace-normal">
+                          {task.title}
+                        </div>
+                        <span className="text-xs text-muted-foreground block mt-1">
                           {task.user_name}
                         </span>
                       </TableCell>
                       <TableCell>{getStatusBadge(task.status)}</TableCell>
-                      <TableCell className="max-w-md truncate">
+                      <TableCell className="max-w-md truncate w-[150px] md:w-[450px]">
                         {userProfile?.role !== 'admin'
                           ? task.description
                           : task.client_name}
