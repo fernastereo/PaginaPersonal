@@ -13,7 +13,8 @@ import {
 import { toast } from 'sonner';
 import { Toaster } from '@/components/ui/sonner';
 import { z } from 'zod';
-import { Upload, X, BookmarkCheck } from 'lucide-react';
+import { Upload, BookmarkCheck } from 'lucide-react';
+import { FileItem } from './FileItem';
 import { useAuth } from './auth/useAuth';
 import { taskService } from '@/integrations/firebase/taskService';
 import { firestoreService } from '@/integrations/firebase/firestoreService';
@@ -45,16 +46,48 @@ const taskSchema = z.object({
 });
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
-const ALLOWED_FILE_TYPES = [
+
+// Tipos MIME permitidos
+const ALLOWED_MIME_TYPES = [
   'image/jpeg',
-  'image/png',
   'image/jpg',
+  'image/png',
   'application/pdf',
-  'application/doc',
-  'application/docx',
-  'application/xls',
-  'application/xlsx',
+  'application/msword', // .doc
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
+  'application/vnd.ms-excel', // .xls
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
 ];
+
+// Extensiones permitidas (como respaldo)
+const ALLOWED_EXTENSIONS = [
+  'pdf',
+  'jpg',
+  'jpeg',
+  'png',
+  'doc',
+  'docx',
+  'xls',
+  'xlsx',
+];
+
+const isValidFileType = (file: File): boolean => {
+  const mimeType = file.type.toLowerCase();
+  const fileName = file.name.toLowerCase();
+  const extension = fileName.split('.').pop() || '';
+
+  // Verificar por tipo MIME primero
+  if (ALLOWED_MIME_TYPES.includes(mimeType)) {
+    return true;
+  }
+
+  // Verificar por extensión como respaldo
+  if (ALLOWED_EXTENSIONS.includes(extension)) {
+    return true;
+  }
+
+  return false;
+};
 
 interface TaskDialogProps {
   open: boolean;
@@ -176,8 +209,11 @@ export const TaskDialog = ({
           continue;
         }
 
-        if (!ALLOWED_FILE_TYPES.includes(file.type)) {
-          toast.error(`${file.name} no es un archivo válido`, toastOptions);
+        if (!isValidFileType(file)) {
+          toast.error(
+            `${file.name} no es un archivo válido. Tipos permitidos: PDF, JPG, PNG, DOC, DOCX, XLS, XLSX`,
+            toastOptions
+          );
           continue;
         }
 
@@ -423,14 +459,14 @@ export const TaskDialog = ({
               )}
             </div>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-2 w-[75%]">
             <Label htmlFor="archivos">Archivos Adjuntos</Label>
             <div className="flex items-center gap-2">
               <Input
                 id="archivos"
                 type="file"
                 multiple
-                accept=".pdf,.jpg,.jpeg,.png,.doc,.docx, xls, xlsx"
+                accept=".pdf,.jpg,.jpeg,.png,.doc,.docx, .xls, .xlsx"
                 onChange={handleFileChange}
                 className="hidden"
                 disabled={loading}
@@ -454,30 +490,15 @@ export const TaskDialog = ({
               PDF, JPG, PNG, DOC, DOCX, XLS, XLSX (máx. 10MB por archivo)
             </p>
             {files.length > 0 && (
-              <div className="space-y-2 mt-2">
+              <div className="space-y-2 mt-2 grid grid-cols-2 md:grid-cols-6 gap-2">
                 {files.map((file, index) => (
-                  <div
+                  <FileItem
                     key={index}
-                    className="flex items-center justify-between p-2 bg-accent/50 rounded-md"
-                  >
-                    <div className="flex-1 min-w-0">
-                      <span className="text-sm truncate block">
-                        {file.name}
-                      </span>
-                      <span className="text-xs text-muted-foreground">
-                        {(file.size / 1024).toFixed(2)} KB
-                      </span>
-                    </div>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => removeFile(index)}
-                      disabled={loading}
-                    >
-                      <X className="h-4 w-4" />
-                    </Button>
-                  </div>
+                    file={file}
+                    index={index}
+                    onRemove={removeFile}
+                    loading={loading}
+                  />
                 ))}
               </div>
             )}
