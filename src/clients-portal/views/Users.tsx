@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { firestoreService } from "@/integrations/firebase/firestoreService";
-import type { UserProfile } from "@/types/user";
+import { firestoreService } from "@/clients-portal/integrations/firebase/firestoreService";
+import type { UserProfile } from "@/clients-portal/types/user";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -87,7 +87,7 @@ const Users = () => {
       </div>
 
       {/* Search and Actions */}
-      <Card>
+      <Card className="border-border">
         <CardHeader>
           <CardTitle>Usuarios</CardTitle>
           <CardDescription>
@@ -123,8 +123,8 @@ const Users = () => {
               No se encontraron usuarios
             </div>
           ) : (
-            <div className="border rounded-lg">
-              <Table>
+            <div className="border-border rounded-lg">
+              <Table className="border-border">
                 <TableHeader>
                   <TableRow>
                     <TableHead>Nombre</TableHead>
@@ -137,7 +137,7 @@ const Users = () => {
                 </TableHeader>
                 <TableBody>
                   {filteredUsers.map(user => (
-                    <TableRow key={user.uid}>
+                    <TableRow key={user.uid} className="border-border">
                       <TableCell className="font-medium">{user.name}</TableCell>
                       <TableCell>{user.email}</TableCell>
                       <TableCell>{user.city}</TableCell>

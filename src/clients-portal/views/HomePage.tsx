@@ -5,8 +5,8 @@ import {
   logEvent,
   auth,
   isProduction,
-} from '@/integrations/firebase/client';
-import { useAuth } from '@/components/auth/useAuth';
+} from '@/clients-portal/integrations/firebase/client';
+import { useAuth } from '@/clients-portal/auth/useAuth';
 import { Button } from '@/components/ui/button';
 import {
   Home,
@@ -18,8 +18,8 @@ import {
   FolderKanban,
 } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
-import type { UserProfile } from '@/types/user';
-import { firestoreService } from '@/integrations/firebase/firestoreService';
+import type { UserProfile } from '@/clients-portal/types/user';
+import { firestoreService } from '@/clients-portal/integrations/firebase/firestoreService';
 
 const HomePage = () => {
   const { user, client_id } = useAuth();

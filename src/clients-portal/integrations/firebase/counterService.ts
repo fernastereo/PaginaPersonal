@@ -1,4 +1,4 @@
-import { db } from '@/integrations/firebase/client'
+import { db } from '@/clients-portal/integrations/firebase/client'
 import { doc, runTransaction } from 'firebase/firestore'
 import { firestoreService } from './firestoreService'
 

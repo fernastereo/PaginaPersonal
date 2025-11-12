@@ -1,4 +1,4 @@
-import { db } from "@/integrations/firebase/client";
+import { db } from "@/clients-portal/integrations/firebase/client";
 import {
   collection,
   doc,
@@ -9,8 +9,8 @@ import {
   where,
   orderBy,
 } from 'firebase/firestore';
-import type { Task } from '@/types/task';
-import { uploadTaskFileToS3 } from '@/integrations/aws/storage';
+import type { Task } from '@/clients-portal/types/task';
+import { uploadTaskFileToS3 } from '@/clients-portal/integrations/aws/storage';
 import { counterService } from './counterService';
 
 const TASK_COLLECTION: string = 'tasks';

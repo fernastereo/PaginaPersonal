@@ -10,7 +10,7 @@ import {
   analytics,
   isProduction,
   logEvent,
-} from '@/integrations/firebase/client';
+} from '@/clients-portal/integrations/firebase/client';
 
 export const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);

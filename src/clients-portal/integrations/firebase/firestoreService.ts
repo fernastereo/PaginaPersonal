@@ -8,9 +8,9 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { db } from "@/integrations/firebase/client";
-import type { UserProfile, UserRole } from '@/types/user';
-import type { ClientProfile } from '@/types/client';
+import { db } from "@/clients-portal/integrations/firebase/client";
+import type { UserProfile, UserRole } from '@/clients-portal/types/user';
+import type { ClientProfile } from '@/clients-portal/types/client';
 
 const USERS_COLLECTION: string = 'users';
 const CLIENTS_COLLECTION: string = 'clients';

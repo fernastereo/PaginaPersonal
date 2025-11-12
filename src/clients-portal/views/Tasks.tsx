@@ -22,8 +22,8 @@ import {
 } from 'lucide-react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { TaskDialog } from '@/components/TaskDialog';
-import { taskService } from '@/integrations/firebase/taskService';
+import { TaskDialog } from '@/clients-portal/components/TaskDialog';
+import { taskService } from '@/clients-portal/integrations/firebase/taskService';
 import {
   Table,
   TableBody,
@@ -40,16 +40,16 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
-import { useAuth } from '@/components/auth/useAuth';
+import { useAuth } from '@/clients-portal/auth/useAuth';
 import {
   analytics,
   auth,
   logEvent,
   isProduction,
-} from '@/integrations/firebase/client';
-import type { Task } from '@/types/task';
-import type { UserProfile } from '@/types/user';
-import { firestoreService } from '@/integrations/firebase/firestoreService';
+} from '@/clients-portal/integrations/firebase/client';
+import type { Task } from '@/clients-portal/types/task';
+import type { UserProfile } from '@/clients-portal/types/user';
+import { firestoreService } from '@/clients-portal/integrations/firebase/firestoreService';
 
 const ITEMS_PER_PAGE = 10;
 

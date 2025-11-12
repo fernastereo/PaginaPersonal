@@ -1,8 +1,8 @@
 import { onAuthStateChanged, type User } from "firebase/auth";
-import { auth } from "@/integrations/firebase/client";
-import { useEffect, useState, type ReactNode } from "react";
-import { AuthCtx } from "./AuthContext";
-import { firestoreService } from '@/integrations/firebase/firestoreService';
+import { auth } from '@/clients-portal/integrations/firebase/client';
+import { useEffect, useState, type ReactNode } from 'react';
+import { AuthCtx } from './AuthContext';
+import { firestoreService } from '@/clients-portal/integrations/firebase/firestoreService';
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);

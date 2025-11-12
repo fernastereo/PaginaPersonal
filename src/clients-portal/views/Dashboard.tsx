@@ -1,5 +1,5 @@
 import { signOut } from 'firebase/auth';
-import { auth } from '@/integrations/firebase/client';
+import { auth } from '@/clients-portal/integrations/firebase/client';
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -41,9 +41,9 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts';
-import type { Task } from '@/types/task';
-import { taskService } from '@/integrations/firebase/taskService';
-import { useAuth } from '@/components/auth/useAuth';
+import type { Task } from '@/clients-portal/types/task';
+import { taskService } from '@/clients-portal/integrations/firebase/taskService';
+import { useAuth } from '@/clients-portal/auth/useAuth';
 
 interface Stats {
   total: number;

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { useAuth } from '@/components/auth/useAuth';
-import { firestoreService } from '@/integrations/firebase/firestoreService';
-import type { UserProfile } from '@/types/user';
+import { useAuth } from '@/clients-portal/auth/useAuth';
+import { firestoreService } from '@/clients-portal/integrations/firebase/firestoreService';
+import type { UserProfile } from '@/clients-portal/types/user';
 import {
   Card,
   CardContent,

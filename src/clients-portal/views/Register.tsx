@@ -8,10 +8,10 @@ import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { z } from "zod";
-import { auth } from "@/integrations/firebase/client";
+import { auth } from "@/clients-portal/integrations/firebase/client";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { firestoreService } from "@/integrations/firebase/firestoreService";
-import type { UserRole } from "@/types/user";
+import { firestoreService } from "@/clients-portal/integrations/firebase/firestoreService";
+import type { UserRole } from "@/clients-portal/types/user";
 
 //TODO: Actualmente esto crea el usuario y se loguea automaticamente, 
 //Dado que el admin es el unico que puede crear usuarios, deberia crear el usuario y luego redirigir a la pagina de usuarios como admin

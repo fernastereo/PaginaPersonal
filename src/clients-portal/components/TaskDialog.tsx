@@ -14,16 +14,16 @@ import { toast } from 'sonner';
 import { Toaster } from '@/components/ui/sonner';
 import { z } from 'zod';
 import { Upload, BookmarkCheck } from 'lucide-react';
-import { FileItem } from './FileItem';
-import { useAuth } from './auth/useAuth';
-import { taskService } from '@/integrations/firebase/taskService';
-import { firestoreService } from '@/integrations/firebase/firestoreService';
-import type { Task, TaskStatus } from '@/types/task';
+import { FileItem } from '@/clients-portal/components/FileItem';
+import { useAuth } from '@/clients-portal/auth/useAuth';
+import { taskService } from '@/clients-portal/integrations/firebase/taskService';
+import { firestoreService } from '@/clients-portal/integrations/firebase/firestoreService';
+import type { Task, TaskStatus } from '@/clients-portal/types/task';
 import {
   analytics,
   logEvent,
   isProduction,
-} from '@/integrations/firebase/client';
+} from '@/clients-portal/integrations/firebase/client';
 import {
   Select,
   SelectContent,
@@ -31,8 +31,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import type { UserProfile } from '@/types/user';
-import type { ClientProfile } from '@/types/client';
+import type { UserProfile } from '@/clients-portal/types/user';
+import type { ClientProfile } from '@/clients-portal/types/client';
 
 const taskSchema = z.object({
   title: z
@@ -503,7 +503,7 @@ export const TaskDialog = ({
               PDF, JPG, PNG, DOC, DOCX, XLS, XLSX (máx. 10MB por archivo)
             </p>
             {(files.length > 0 || existingFiles.length > 0) && (
-              <div className="space-y-2 mt-2 grid grid-cols-2 md:grid-cols-6 gap-2">
+              <div className="space-y-2 mt-2 grid grid-cols-2 md:grid-cols-8 gap-2">
                 {/* Archivos existentes */}
                 {existingFiles.map((fileUrl, index) => (
                   <FileItem

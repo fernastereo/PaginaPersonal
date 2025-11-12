@@ -13,9 +13,9 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { z } from 'zod';
-import { auth } from '@/integrations/firebase/client';
+import { auth } from '@/clients-portal/integrations/firebase/client';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useAuth } from '@/components/auth/useAuth';
+import { useAuth } from '@/clients-portal/auth/useAuth';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft } from 'lucide-react';
 

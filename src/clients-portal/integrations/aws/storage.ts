@@ -1,5 +1,5 @@
 import { PutObjectCommand } from '@aws-sdk/client-s3';
-import { s3Client, AWS_CONFIG } from '@/integrations/aws/client';
+import { s3Client, AWS_CONFIG } from '@/clients-portal/integrations/aws/client';
 
 export const uploadTaskFileToS3 = async (
   taskId: string,
