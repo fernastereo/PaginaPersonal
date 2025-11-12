@@ -19,6 +19,7 @@ import {
   MessageCircle,
   Paperclip,
   Pencil,
+  RotateCcw,
 } from 'lucide-react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
@@ -115,6 +116,13 @@ const Tasks = () => {
     filterTasks();
   }, [filterTasks]);
 
+  const cleanAndReloadTasks = () => {
+    setSearchTitle('');
+    setSearchDate('');
+    loadTasks();
+    filterTasks();
+  };
+
   const handleLogout = async () => {
     await signOut(auth);
     navigate('/clients/login');
@@ -201,6 +209,13 @@ const Tasks = () => {
                 className="pl-9"
               />
             </div>
+            <Button
+              variant="outline"
+              className="outline text-primary hover:bg-primary/90"
+              onClick={cleanAndReloadTasks}
+            >
+              <RotateCcw className="h-4 w-4" />
+            </Button>
             <Button onClick={handleNewTask}>
               <Plus className="mr-2 h-4 w-4" />
               Nueva Incidencia
