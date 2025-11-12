@@ -115,8 +115,8 @@ export const TaskDialog = ({
     description: '',
     status: 'pending' as TaskStatus,
   });
-
   const [files, setFiles] = useState<File[]>([]);
+  const [existingFiles, setExistingFiles] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
 
@@ -150,6 +150,7 @@ export const TaskDialog = ({
         description: editingTask.description,
         status: editingTask.status,
       });
+      setExistingFiles(editingTask.files || []);
     } else {
       // Resetear cuando no hay tarea para editar
       setTaskNumber('');
@@ -159,6 +160,7 @@ export const TaskDialog = ({
         status: 'pending' as TaskStatus,
       });
       setFiles([]);
+      setExistingFiles([]);
     }
   }, [editingTask, open]);
 
@@ -228,6 +230,10 @@ export const TaskDialog = ({
     setFiles(prev => prev.filter((_, i) => i !== index));
   };
 
+  const removeExistingFile = (index: number) => {
+    setExistingFiles(prev => prev.filter((_, i) => i !== index));
+  };
+
   const resetForm = () => {
     setFormData({
       title: '',
@@ -235,6 +241,7 @@ export const TaskDialog = ({
       status: 'pending' as TaskStatus,
     });
     setFiles([]);
+    setExistingFiles([]);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -257,13 +264,19 @@ export const TaskDialog = ({
       }
 
       if (editingTask) {
-        await taskService.updateTask(editingTask.uid, {
-          title: formData.title,
-          description: formData.description,
-          status: formData.status,
-          client_id: selectedClient?.uid || '',
-          client_name: selectedClient?.name || '',
-        });
+        // Subir nuevos archivos y combinar con archivos existentes
+        await taskService.updateTask(
+          editingTask.uid,
+          {
+            title: formData.title,
+            description: formData.description,
+            status: formData.status,
+            client_id: selectedClient?.uid || '',
+            client_name: selectedClient?.name || '',
+            files: existingFiles, // Archivos existentes que no fueron eliminados
+          },
+          files.length > 0 ? files : undefined // Archivos nuevos a subir
+        );
       } else {
         await taskService.createTask(
           {
@@ -466,7 +479,7 @@ export const TaskDialog = ({
                 id="archivos"
                 type="file"
                 multiple
-                accept=".pdf,.jpg,.jpeg,.png,.doc,.docx, .xls, .xlsx"
+                accept=".pdf, .jpg, .jpeg, .png, .doc, .docx, .xls, .xlsx"
                 onChange={handleFileChange}
                 className="hidden"
                 disabled={loading}
@@ -480,20 +493,31 @@ export const TaskDialog = ({
                 <Upload className="mr-2 h-4 w-4" />
                 Seleccionar archivos
               </Button>
-              {files.length > 0 && (
+              {(files.length > 0 || existingFiles.length > 0) && (
                 <span className="text-sm text-muted-foreground">
-                  {files.length} archivo(s) seleccionado(s)
+                  {files.length + existingFiles.length} archivo(s)
                 </span>
               )}
             </div>
             <p className="text-xs text-muted-foreground">
               PDF, JPG, PNG, DOC, DOCX, XLS, XLSX (máx. 10MB por archivo)
             </p>
-            {files.length > 0 && (
+            {(files.length > 0 || existingFiles.length > 0) && (
               <div className="space-y-2 mt-2 grid grid-cols-2 md:grid-cols-6 gap-2">
+                {/* Archivos existentes */}
+                {existingFiles.map((fileUrl, index) => (
+                  <FileItem
+                    key={`existing-${index}`}
+                    fileUrl={fileUrl}
+                    index={index}
+                    onRemove={removeExistingFile}
+                    loading={loading}
+                  />
+                ))}
+                {/* Archivos nuevos */}
                 {files.map((file, index) => (
                   <FileItem
-                    key={index}
+                    key={`new-${index}`}
                     file={file}
                     index={index}
                     onRemove={removeFile}

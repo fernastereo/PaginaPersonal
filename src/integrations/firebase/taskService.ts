@@ -97,11 +97,37 @@ export const taskService = {
     }
   },
 
-  async updateTask(taskId: string, data: Partial<Task>): Promise<Task> {
+  async updateTask(
+    taskId: string,
+    data: Partial<Task>,
+    newFiles?: File[]
+  ): Promise<Task> {
     try {
       const taskRef = doc(db, TASK_COLLECTION, taskId);
-      await updateDoc(taskRef, data);
-      return data as Task;
+
+      // Si hay archivos nuevos, subirlos a S3
+      let newFileURLs: string[] = [];
+      if (newFiles && newFiles.length > 0) {
+        const uploadPromises = newFiles.map(file =>
+          uploadTaskFileToS3(taskId, file, 'original')
+        );
+        const uploadedURLs = await Promise.all(uploadPromises);
+        newFileURLs = uploadedURLs.filter((url): url is string => url !== null);
+      }
+
+      // Combinar archivos existentes con nuevos archivos
+      const existingFiles = (data.files || []) as string[];
+      const allFiles = [...existingFiles, ...newFileURLs];
+
+      // Actualizar con todos los archivos
+      const updateData = {
+        ...data,
+        files: allFiles,
+        updatedAt: new Date().toISOString(),
+      };
+
+      await updateDoc(taskRef, updateData);
+      return updateData as Task;
     } catch (error) {
       console.error('Error en updateTask:', error);
       throw error;
