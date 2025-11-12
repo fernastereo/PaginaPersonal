@@ -1,32 +1,53 @@
-import { useState, useEffect } from "react";
-import { firestoreService } from "@/clients-portal/integrations/firebase/firestoreService";
-import type { UserProfile } from "@/clients-portal/types/user";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
-} from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { Search, Trash2, Edit, UserPlus } from "lucide-react";
-import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useCallback } from 'react';
+import { firestoreService } from '@/clients-portal/integrations/firebase/firestoreService';
+import type { UserProfile } from '@/clients-portal/types/user';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import { Badge } from '@/components/ui/badge';
+import { Search, Trash2, Edit, UserPlus } from 'lucide-react';
+import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
+import { toastOptions } from '@/clients-portal/utils/toastOptions';
 
 const Users = () => {
   const [users, setUsers] = useState<UserProfile[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<UserProfile[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const loadUsers = useCallback(async () => {
+    try {
+      setLoading(true);
+      const data = await firestoreService.getAllUsers();
+      setUsers(data);
+      setFilteredUsers(data);
+    } catch (error) {
+      console.error('Error loading users:', error);
+      toast.error('Error al cargar usuarios', toastOptions);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
     loadUsers();
-  }, []);
+  }, [loadUsers]);
 
   useEffect(() => {
     if (searchTerm) {
@@ -41,20 +62,6 @@ const Users = () => {
       setFilteredUsers(users);
     }
   }, [searchTerm, users]);
-
-  const loadUsers = async () => {
-    try {
-      setLoading(true);
-      const data = await firestoreService.getAllUsers();
-      setUsers(data);
-      setFilteredUsers(data);
-    } catch (error) {
-      console.error('Error loading users:', error);
-      toast.error('Error al cargar usuarios');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleDelete = async (uid: string) => {
     console.log('Deleting user:', uid);
@@ -172,4 +179,3 @@ const Users = () => {
 };
 
 export default Users;
-

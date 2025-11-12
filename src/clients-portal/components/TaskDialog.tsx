@@ -33,6 +33,7 @@ import {
 } from '@/components/ui/select';
 import type { UserProfile } from '@/clients-portal/types/user';
 import type { ClientProfile } from '@/clients-portal/types/client';
+import { toastOptions } from '@/clients-portal/utils/toastOptions';
 
 const taskSchema = z.object({
   title: z
@@ -119,18 +120,6 @@ export const TaskDialog = ({
   const [existingFiles, setExistingFiles] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
-
-  const toastOptions = useMemo(
-    () => ({
-      position: 'top-right' as const,
-      style: {
-        background: 'hsl(var(--secondary))',
-        color: 'hsl(var(--primary))',
-        border: '1px solid hsl(var(--primary))',
-      },
-    }),
-    []
-  );
 
   const taskStatus = useMemo(
     () => ({

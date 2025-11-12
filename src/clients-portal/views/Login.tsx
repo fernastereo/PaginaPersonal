@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { toast } from "sonner"
-import { Toaster } from "@/components/ui/sonner"
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { toast } from 'sonner';
+import { Toaster } from '@/components/ui/sonner';
 import {
   Card,
   CardContent,
@@ -18,6 +18,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useAuth } from '@/clients-portal/auth/useAuth';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft } from 'lucide-react';
+import { toastOptions } from '@/clients-portal/utils/toastOptions';
 
 const authSchema = z.object({
   email: z.string().email({ message: 'Email inválido' }),
@@ -35,15 +36,6 @@ const Login = () => {
   const { clientId } = useParams();
   const { user } = useAuth();
   const { t } = useTranslation();
-
-  const toastOptions = {
-    position: 'top-right' as const,
-    style: {
-      background: 'hsl(var(--secondary))',
-      color: 'hsl(var(--primary))',
-      border: '1px solid hsl(var(--primary))',
-    },
-  };
 
   useEffect(() => {
     if (user) {

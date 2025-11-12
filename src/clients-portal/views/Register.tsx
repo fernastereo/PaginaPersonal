@@ -1,19 +1,32 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { toast } from "sonner";
-import { Toaster } from "@/components/ui/sonner";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { z } from "zod";
-import { auth } from "@/clients-portal/integrations/firebase/client";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { firestoreService } from "@/clients-portal/integrations/firebase/firestoreService";
-import type { UserRole } from "@/clients-portal/types/user";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { toast } from 'sonner';
+import { Toaster } from '@/components/ui/sonner';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { z } from 'zod';
+import { auth } from '@/clients-portal/integrations/firebase/client';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { firestoreService } from '@/clients-portal/integrations/firebase/firestoreService';
+import type { UserRole } from '@/clients-portal/types/user';
+import { toastOptions } from '@/clients-portal/utils/toastOptions';
 
-//TODO: Actualmente esto crea el usuario y se loguea automaticamente, 
+//TODO: Actualmente esto crea el usuario y se loguea automaticamente,
 //Dado que el admin es el unico que puede crear usuarios, deberia crear el usuario y luego redirigir a la pagina de usuarios como admin
 const registerSchema = z.object({
   email: z.string().email({ message: 'Email inválido' }),
@@ -66,11 +79,11 @@ const Register = () => {
         role: formData.role,
       });
 
-      toast.success('Cuenta creada correctamente');
+      toast.success('Cuenta creada correctamente', toastOptions);
       navigate('/clients/users');
     } catch (error: unknown) {
       if (error instanceof z.ZodError) {
-        toast.error(error.issues[0].message);
+        toast.error(error.issues[0].message, toastOptions);
       } else {
         const code = (error as { code?: string }).code;
         const message =
@@ -79,7 +92,7 @@ const Register = () => {
             : code === 'auth/weak-password'
             ? 'La contraseña es muy débil'
             : (error as { message?: string }).message || 'Ocurrió un error';
-        toast.error(message);
+        toast.error(message, toastOptions);
       }
     } finally {
       setLoading(false);
@@ -194,4 +207,3 @@ const Register = () => {
 };
 
 export default Register;
-

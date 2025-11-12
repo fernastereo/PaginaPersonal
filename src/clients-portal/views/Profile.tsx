@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@/clients-portal/auth/useAuth';
 import { firestoreService } from '@/clients-portal/integrations/firebase/firestoreService';
 import type { UserProfile } from '@/clients-portal/types/user';
@@ -22,24 +22,13 @@ import {
 import { toast } from 'sonner';
 import { Toaster } from '@/components/ui/sonner';
 import { UserCircle, Save, Loader2 } from 'lucide-react';
+import { toastOptions } from '@/clients-portal/utils/toastOptions';
 
 const Profile = () => {
   const { user } = useAuth();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-
-  const toastOptions = useMemo(
-    () => ({
-      position: 'top-right' as const,
-      style: {
-        background: 'hsl(var(--secondary))',
-        color: 'hsl(var(--primary))',
-        border: '1px solid hsl(var(--primary))',
-      },
-    }),
-    []
-  );
 
   const [formData, setFormData] = useState({
     name: '',
@@ -73,7 +62,7 @@ const Profile = () => {
     } finally {
       setLoading(false);
     }
-  }, [user, toastOptions]);
+  }, [user]);
 
   useEffect(() => {
     if (user) {
