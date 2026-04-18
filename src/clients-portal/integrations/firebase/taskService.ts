@@ -8,8 +8,9 @@ import {
   query,
   where,
   orderBy,
+  arrayUnion,
 } from 'firebase/firestore';
-import type { Task } from '@/clients-portal/types/task';
+import type { Task, TaskComment } from '@/clients-portal/types/task';
 import { uploadTaskFileToS3 } from '@/clients-portal/integrations/aws/storage';
 import { counterService } from './counterService';
 
@@ -130,6 +131,46 @@ export const taskService = {
       return updateData as Task;
     } catch (error) {
       console.error('Error en updateTask:', error);
+      throw error;
+    }
+  },
+
+  async addComment(
+    taskId: string,
+    comment: Omit<TaskComment, 'uid' | 'files' | 'createdAt'>,
+    files?: File[]
+  ): Promise<TaskComment> {
+    try {
+      const taskRef = doc(db, TASK_COLLECTION, taskId);
+      const uid = crypto.randomUUID();
+      const now = new Date().toISOString();
+
+      let fileURLs: string[] = [];
+      if (files && files.length > 0) {
+        const uploadPromises = files.map(file =>
+          uploadTaskFileToS3(taskId, file, 'comment')
+        );
+        const uploadedURLs = await Promise.all(uploadPromises);
+        fileURLs = uploadedURLs.filter((url): url is string => url !== null);
+      }
+
+      const newComment: TaskComment = {
+        uid,
+        text: comment.text,
+        user_id: comment.user_id,
+        user_name: comment.user_name,
+        files: fileURLs,
+        createdAt: now,
+      };
+
+      await updateDoc(taskRef, {
+        comments: arrayUnion(newComment),
+        updatedAt: now,
+      });
+
+      return newComment;
+    } catch (error) {
+      console.error('Error en addComment:', error);
       throw error;
     }
   },
