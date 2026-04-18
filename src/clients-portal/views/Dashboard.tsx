@@ -51,6 +51,7 @@ interface Stats {
   in_progress: number;
   completed: number;
   cancelled: number;
+  on_hold: number;
 }
 
 const Dashboard = () => {
@@ -69,6 +70,7 @@ const Dashboard = () => {
     in_progress: 0,
     completed: 0,
     cancelled: 0,
+    on_hold: 0,
   });
   const [loading, setLoading] = useState(true);
 
@@ -100,6 +102,7 @@ const Dashboard = () => {
       in_progress: data.filter(i => i.status === 'in_progress').length,
       completed: data.filter(i => i.status === 'completed').length,
       cancelled: data.filter(i => i.status === 'cancelled').length,
+      on_hold: data.filter(i => i.status === 'on_hold').length,
     };
     setStats(stats);
   };
@@ -113,6 +116,10 @@ const Dashboard = () => {
         className: 'bg-yellow-500' as const,
       },
       completed: { label: 'Completado', className: 'bg-green-500' as const },
+      on_hold: {
+        label: 'Requiere Feedback',
+        className: 'bg-orange-400' as const,
+      },
     };
 
     const config =
@@ -122,10 +129,15 @@ const Dashboard = () => {
 
   // Datos para gráfico de distribución por estado
   const statusDistributionData = [
-    { name: 'Pendiente', value: stats.pending, color: '#f59e0b' },
-    { name: 'En Progreso', value: stats.in_progress, color: '#3b82f6' },
-    { name: 'Completado', value: stats.completed, color: '#10b981' },
-    { name: 'Cancelado', value: stats.cancelled, color: '#6b7280' },
+    { name: 'Pendiente', value: stats.pending, color: '#fb2c36' },
+    { name: 'En Progreso', value: stats.in_progress, color: '#f0b100' },
+    { name: 'Completado', value: stats.completed, color: '#00c950' },
+    { name: 'Cancelado', value: stats.cancelled, color: '#6a7282' },
+    {
+      name: 'Requiere Feedback',
+      value: stats.on_hold,
+      color: '#ff8904',
+    },
   ].filter(item => item.value > 0);
 
   // Datos para gráfico de tendencia (últimos 7 días)

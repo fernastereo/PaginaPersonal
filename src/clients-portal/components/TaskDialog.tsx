@@ -126,6 +126,7 @@ export const TaskDialog = ({
       cancelled: 'Cancelado',
       pending: 'Pendiente',
       in_progress: 'En progreso',
+      on_hold: 'En espera',
       completed: 'Completado',
     }),
     []

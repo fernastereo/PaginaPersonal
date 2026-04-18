@@ -97,8 +97,10 @@ const Tasks = () => {
     let filtered = [...tasks];
 
     if (searchTitle) {
-      filtered = filtered.filter(task =>
-        task.title.toLowerCase().includes(searchTitle.toLowerCase())
+      filtered = filtered.filter(
+        task =>
+          task.title.toLowerCase().includes(searchTitle.toLowerCase()) ||
+          task.taskNumber.toLowerCase().includes(searchTitle.toLowerCase())
       );
     }
 
@@ -153,6 +155,10 @@ const Tasks = () => {
         className: 'bg-yellow-500' as const,
       },
       completed: { label: 'Completado', className: 'bg-green-500' as const },
+      on_hold: {
+        label: 'Requiere Feedback',
+        className: 'bg-orange-400' as const,
+      },
     };
 
     const config =
