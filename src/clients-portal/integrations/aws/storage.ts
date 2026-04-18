@@ -4,7 +4,7 @@ import { s3Client, AWS_CONFIG } from '@/clients-portal/integrations/aws/client';
 export const uploadTaskFileToS3 = async (
   taskId: string,
   file: File,
-  type: 'original' | 'completed' = 'original'
+  type: 'original' | 'completed' | 'comment' = 'original'
 ): Promise<string | null> => {
   try {
     // Validar configuración de AWS

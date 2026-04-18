@@ -15,6 +15,7 @@ import { Toaster } from '@/components/ui/sonner';
 import { z } from 'zod';
 import { Upload, BookmarkCheck } from 'lucide-react';
 import { FileItem } from '@/clients-portal/components/FileItem';
+import { TaskComments } from '@/clients-portal/components/TaskComments';
 import { useAuth } from '@/clients-portal/auth/useAuth';
 import { taskService } from '@/clients-portal/integrations/firebase/taskService';
 import { firestoreService } from '@/clients-portal/integrations/firebase/firestoreService';
@@ -328,7 +329,13 @@ export const TaskDialog = ({
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <Toaster />
-      <DialogContent className="h-[65vh] md:max-w-[calc(100%-35rem)] md:h-[62vh] block overflow-y-auto">
+      <DialogContent
+        className={`md:max-w-[calc(100%-35rem)] block overflow-y-auto ${
+          editingTask
+            ? 'h-[90vh] md:h-[88vh]'
+            : 'h-[65vh] md:h-[62vh]'
+        }`}
+      >
         <DialogHeader>
           <DialogTitle className="flex flex-row items-center gap-2">
             <BookmarkCheck className="h-5 w-5 text-primary" />
@@ -536,6 +543,18 @@ export const TaskDialog = ({
             </Button>
           </div>
         </form>
+
+        {editingTask && (
+          <TaskComments
+            taskId={editingTask.uid}
+            initialComments={editingTask.comments || []}
+            currentUserId={user?.uid || ''}
+            currentUserName={userProfile?.name || ''}
+            taskCreatorId={editingTask.user_id}
+            taskNumber={editingTask.taskNumber}
+            taskTitle={editingTask.title}
+          />
+        )}
       </DialogContent>
     </Dialog>
   );

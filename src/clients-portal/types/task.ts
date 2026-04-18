@@ -5,6 +5,15 @@ export type TaskStatus =
   | 'completed'
   | 'on_hold';
 
+export interface TaskComment {
+  uid: string;
+  text: string;
+  user_id: string;
+  user_name: string;
+  files: string[];
+  createdAt: string;
+}
+
 export interface Task {
   uid: string;
   taskNumber: string;
@@ -16,7 +25,7 @@ export interface Task {
   description: string;
   status: TaskStatus;
   completedAt: string;
-  comments: string[];
+  comments: TaskComment[];
   filesCompleted: string[];
   files: string[];
   createdAt: string;
