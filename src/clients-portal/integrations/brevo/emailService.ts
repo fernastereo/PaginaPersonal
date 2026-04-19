@@ -178,6 +178,7 @@ const sendEmail = async (params: SendEmailParams): Promise<void> => {
 export const brevoEmailService = {
   async sendCommentNotification(params: CommentNotificationParams): Promise<void> {
     if (!BREVO_API_KEY) {
+      console.warn('No hay [Brevo] API key?.');
       return;
     }
 
