@@ -216,7 +216,7 @@ const Dashboard = () => {
         {/* Header */}
         <div className="flex justify-between items-center mb-4">
           <div>
-            <h1 className="text-3xl font-bold">Dashboard de Incidencias</h1>
+            <h1 className="text-3xl font-bold">Dashboard de Tareas</h1>
             <p className="text-muted-foreground mt-2">
               Vista general y métricas
             </p>
@@ -248,14 +248,14 @@ const Dashboard = () => {
               <Card className="hover:shadow-lg transition-shadow border-border py-4 gap-0 h-[130px]">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-md font-medium">
-                    Total Incidencias
+                    Total Tareas
                   </CardTitle>
                   <FileText className="h-8 w-8 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-3xl font-bold">{stats.total}</div>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Todas las incidencias registradas
+                    Todas las tareas registradas
                   </p>
                 </CardContent>
               </Card>
@@ -317,9 +317,7 @@ const Dashboard = () => {
                     <TrendingUp className="h-5 w-5" />
                     Tendencia (Últimos 7 días)
                   </CardTitle>
-                  <CardDescription>
-                    Incidencias creadas vs resueltas
-                  </CardDescription>
+                  <CardDescription>Tareas creadas vs resueltas</CardDescription>
                 </CardHeader>
                 <CardContent className="pl-0">
                   <ChartContainer
@@ -361,7 +359,7 @@ const Dashboard = () => {
                     Distribución por Estado
                   </CardTitle>
                   <CardDescription>
-                    Porcentaje de incidencias por estado
+                    Porcentaje de tareas por estado
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -404,7 +402,7 @@ const Dashboard = () => {
                     <Clock className="h-5 w-5" />
                     Tiempo Promedio
                   </CardTitle>
-                  <CardDescription>Resolución de incidencias</CardDescription>
+                  <CardDescription>Resolución de tareas</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="text-4xl font-bold mb-2">
@@ -431,9 +429,9 @@ const Dashboard = () => {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div>
-                      <CardTitle>Incidencias Recientes</CardTitle>
+                      <CardTitle>Tareas Recientes</CardTitle>
                       <CardDescription>
-                        Últimas 3 incidencias registradas
+                        Últimas 3 tareas registradas
                       </CardDescription>
                     </div>
                     <Button
@@ -450,7 +448,7 @@ const Dashboard = () => {
                   <div className="space-y-4">
                     {recentTasks.length === 0 ? (
                       <p className="text-muted-foreground text-center py-4">
-                        No hay incidencias registradas
+                        No hay tareas registradas
                       </p>
                     ) : (
                       recentTasks.map(task => (
