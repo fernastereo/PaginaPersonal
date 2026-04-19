@@ -201,7 +201,7 @@ export const TaskComments = ({
               disabled={loading}
             />
             {files.length > 0 && (
-              <div className="grid grid-cols-4 md:grid-cols-6 gap-2">
+              <div className="flex flex-wrap gap-2">
                 {files.map((file, index) => (
                   <FileItem
                     key={`comment-new-${index}`}
@@ -303,7 +303,7 @@ export const TaskComments = ({
                   </p>
                 )}
                 {comment.files && comment.files.length > 0 && (
-                  <div className="grid grid-cols-4 md:grid-cols-6 gap-2 mt-2">
+                  <div className="flex flex-wrap gap-2 mt-2">
                     {comment.files.map((fileUrl, index) => (
                       <FileItem
                         key={`comment-file-${comment.uid}-${index}`}

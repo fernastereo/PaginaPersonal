@@ -534,7 +534,7 @@ export const TaskDialog = ({
               PDF, JPG, PNG, DOC, DOCX, XLS, XLSX (máx. 10MB por archivo)
             </p>
             {(files.length > 0 || existingFiles.length > 0) && (
-              <div className="space-y-2 mt-2 grid grid-cols-2 md:grid-cols-8 gap-2">
+              <div className="mt-2 flex flex-wrap gap-2">
                 {/* Archivos existentes */}
                 {existingFiles.map((fileUrl, index) => (
                   <FileItem
