@@ -211,6 +211,20 @@ export const brevoEmailService = {
       const creatorProfile = await firestoreService.getUserProfile(taskCreatorId);
 
       // Notificación al admin
+      console.log('Notificación al admin', {
+        to: [{ email: ADMIN_EMAIL, name: ADMIN_NAME }],
+        subject,
+        htmlContent: buildEmailHtml({
+          taskNumber,
+          taskTitle,
+          commenterName,
+          commentText,
+          commentDate,
+          commentTime,
+          filesCount,
+          recipientName: ADMIN_NAME,
+        }),
+      });
       await sendEmail({
         to: [{ email: ADMIN_EMAIL, name: ADMIN_NAME }],
         subject,
@@ -228,6 +242,20 @@ export const brevoEmailService = {
 
       // Notificación al creador si tiene email y es diferente al admin
       if (creatorProfile?.email && creatorProfile.email !== ADMIN_EMAIL) {
+        console.log('Notificación al creador', {
+          to: [{ email: creatorProfile.email, name: creatorProfile.name }],
+          subject,
+          htmlContent: buildEmailHtml({
+            taskNumber,
+            taskTitle,
+            commenterName,
+            commentText,
+            commentDate,
+            commentTime,
+            filesCount,
+            recipientName: creatorProfile.name,
+          }),
+        });
         await sendEmail({
           to: [{ email: creatorProfile.email, name: creatorProfile.name }],
           subject,
