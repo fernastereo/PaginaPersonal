@@ -82,6 +82,8 @@ const Users = () => {
   };
 
   return (
+    <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-accent/20">
+    <div className="container mx-auto p-4 md:p-8">
     <div className="space-y-6">
       {/* Header */}
       <div>
@@ -174,6 +176,8 @@ const Users = () => {
           )}
         </CardContent>
       </Card>
+    </div>
+    </div>
     </div>
   );
 };
