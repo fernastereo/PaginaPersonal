@@ -146,6 +146,17 @@ export const TaskComments = ({
       toast.success('Comentario agregado', toastOptions);
 
       // Enviar notificación por email en segundo plano (no bloquear la UI)
+      console.log('Enviando notificación por email:', {
+        taskId,
+        taskNumber,
+        taskTitle,
+        taskCreatorId,
+        commenterName: currentUserName,
+        commentText: newComment.text,
+        commentCreatedAt: newComment.createdAt,
+        filesCount: newComment.files.length,
+        currentUserId,
+      });
       brevoEmailService
         .sendCommentNotification({
           taskId,

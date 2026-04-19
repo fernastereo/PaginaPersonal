@@ -148,6 +148,12 @@ const sendEmail = async (params: SendEmailParams): Promise<void> => {
     return;
   }
 
+  console.log('Desde brevo service', {
+    sender: { name: APP_NAME, email: ADMIN_EMAIL_FROM },
+    to: params.to,
+    subject: params.subject,
+  });
+
   const response = await fetch(BREVO_API_URL, {
     method: 'POST',
     headers: {
