@@ -13,6 +13,7 @@ import Profile from '@/clients-portal/views/Profile';
 import { AuthProvider } from '@/clients-portal/auth/AuthProvider';
 import RequireAuth from '@/clients-portal/auth/RequireAuth';
 import Tasks from '@/clients-portal/views/Tasks';
+import TaskView from '@/clients-portal/views/TaskView';
 import {
   analytics,
   logEvent,
@@ -51,6 +52,8 @@ function App() {
                 <Route element={<HomePage />}>
                   <Route path="home" element={<Dashboard />} />
                   <Route path="tasks" element={<Tasks />} />
+                  <Route path="tasks/new" element={<TaskView />} />
+                  <Route path="tasks/:taskId" element={<TaskView />} />
                   <Route path="users" element={<Users />} />
                   <Route path="profile" element={<Profile />} />
                   <Route path="register" element={<Register />} />

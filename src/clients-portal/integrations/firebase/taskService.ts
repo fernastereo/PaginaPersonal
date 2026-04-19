@@ -4,6 +4,7 @@ import {
   doc,
   setDoc,
   updateDoc,
+  getDoc,
   getDocs,
   query,
   where,
@@ -62,6 +63,20 @@ export const taskService = {
       return taskData;
     } catch (error) {
       console.error('Error en createTask:', error);
+      throw error;
+    }
+  },
+
+  async getTaskById(taskId: string): Promise<Task | null> {
+    try {
+      const taskRef = doc(db, TASK_COLLECTION, taskId);
+      const taskSnap = await getDoc(taskRef);
+      if (taskSnap.exists()) {
+        return taskSnap.data() as Task;
+      }
+      return null;
+    } catch (error) {
+      console.error('Error en getTaskById:', error);
       throw error;
     }
   },

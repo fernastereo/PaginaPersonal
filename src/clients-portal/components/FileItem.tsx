@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Trash2, Download } from 'lucide-react';
+import { Trash2, Download, FileIcon } from 'lucide-react';
 import wordIcon from '@/assets/001-word.png';
 import pdfIcon from '@/assets/002-acrobat.png';
 import excelIcon from '@/assets/003-excel.png';
@@ -21,7 +21,6 @@ const getFileNameFromUrl = (url: string): string => {
     const fileName = pathname.split('/').pop() || 'archivo';
     return decodeURIComponent(fileName);
   } catch {
-    // Si no es una URL válida, intentar extraer el nombre del path
     const parts = url.split('/');
     return parts[parts.length - 1] || 'archivo';
   }
@@ -33,70 +32,41 @@ const getFileExtension = (fileName: string): string => {
 
 const isImageFile = (file?: File, fileUrl?: string): boolean => {
   if (file) {
-    const mimeType = file.type;
-    const fileName = file.name.toLowerCase();
-    const extension = fileName.split('.').pop() || '';
-
-    if (mimeType.startsWith('image/')) {
-      return true;
-    }
-
-    const imageExtensions = ['jpeg', 'jpg', 'png', 'gif', 'webp', 'svg'];
-    return imageExtensions.includes(extension);
+    if (file.type.startsWith('image/')) return true;
+    const ext = file.name.toLowerCase().split('.').pop() || '';
+    return ['jpeg', 'jpg', 'png', 'gif', 'webp', 'svg'].includes(ext);
   }
-
   if (fileUrl) {
-    const fileName = getFileNameFromUrl(fileUrl);
-    const extension = getFileExtension(fileName);
-    const imageExtensions = ['jpeg', 'jpg', 'png', 'gif', 'webp', 'svg'];
-    return imageExtensions.includes(extension);
+    const ext = getFileExtension(getFileNameFromUrl(fileUrl));
+    return ['jpeg', 'jpg', 'png', 'gif', 'webp', 'svg'].includes(ext);
   }
-
   return false;
 };
 
-const getFileTypeBackground = (
-  file?: File,
-  fileUrl?: string
-): string | null => {
-  let fileName = '';
+const getFileTypeIcon = (file?: File, fileUrl?: string): string | null => {
   let extension = '';
   let mimeType = '';
 
   if (file) {
-    fileName = file.name.toLowerCase();
-    extension = fileName.split('.').pop() || '';
+    extension = file.name.toLowerCase().split('.').pop() || '';
     mimeType = file.type.toLowerCase();
   } else if (fileUrl) {
-    fileName = getFileNameFromUrl(fileUrl).toLowerCase();
-    extension = getFileExtension(fileName);
+    extension = getFileExtension(getFileNameFromUrl(fileUrl).toLowerCase());
   }
 
-  // Detectar PDF
-  if (mimeType === 'application/pdf' || extension === 'pdf') {
-    return pdfIcon;
-  }
-
-  // Detectar Word (doc, docx)
-  if (
-    mimeType.includes('word') ||
-    extension === 'doc' ||
-    extension === 'docx'
-  ) {
-    return wordIcon;
-  }
-
-  // Detectar Excel (xls, xlsx)
-  if (
-    mimeType.includes('excel') ||
-    mimeType.includes('spreadsheet') ||
-    extension === 'xls' ||
-    extension === 'xlsx'
-  ) {
-    return excelIcon;
-  }
+  if (mimeType === 'application/pdf' || extension === 'pdf') return pdfIcon;
+  if (mimeType.includes('word') || extension === 'doc' || extension === 'docx') return wordIcon;
+  if (mimeType.includes('excel') || mimeType.includes('spreadsheet') || extension === 'xls' || extension === 'xlsx') return excelIcon;
 
   return null;
+};
+
+const truncateFileName = (name: string, maxLength = 18): string => {
+  const ext = name.split('.').pop() || '';
+  const base = name.slice(0, name.lastIndexOf('.'));
+  if (name.length <= maxLength) return name;
+  const allowedBase = maxLength - ext.length - 4;
+  return `${base.slice(0, allowedBase)}….${ext}`;
 };
 
 export const FileItem = ({
@@ -108,83 +78,89 @@ export const FileItem = ({
 }: FileItemProps) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const isImage = isImageFile(file, fileUrl);
-  const fileTypeBackground = getFileTypeBackground(file, fileUrl);
+  const fileTypeIcon = getFileTypeIcon(file, fileUrl);
 
   useEffect(() => {
     if (isImage) {
       if (file) {
-        // Archivo nuevo: crear URL del objeto File
         const url = URL.createObjectURL(file);
         setImageUrl(url);
-
-        // Limpiar la URL cuando el componente se desmonte
-        return () => {
-          URL.revokeObjectURL(url);
-        };
+        return () => URL.revokeObjectURL(url);
       } else if (fileUrl) {
-        // Archivo existente: usar la URL directamente
         setImageUrl(fileUrl);
       }
     }
   }, [file, fileUrl, isImage]);
 
-  // Determinar qué imagen usar como fondo
-  const backgroundImage = imageUrl || fileTypeBackground;
-  const hasBackground = Boolean(backgroundImage);
-
-  // Obtener nombre y tamaño del archivo
-  const fileName =
-    file?.name || (fileUrl ? getFileNameFromUrl(fileUrl) : 'archivo');
-  const fileSize = file ? (file.size / 1024).toFixed(2) : null;
+  const fileName = file?.name || (fileUrl ? getFileNameFromUrl(fileUrl) : 'archivo');
+  const fileSizeKB = file ? (file.size / 1024).toFixed(1) : null;
 
   return (
-    <div>
-      <div
-        className="flex items-center justify-between p-2 rounded-md h-[120px] relative overflow-hidden border-1 border-muted-foreground"
-        style={{
-          backgroundImage: backgroundImage
-            ? `url(${backgroundImage})`
-            : undefined,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        <div className="flex items-center justify-evenly absolute bottom-2 left-0 z-10 w-full">
-          {/* Solo mostrar botón de descarga si hay fileUrl (archivo guardado en S3) */}
+    <div className="flex flex-col gap-1 w-[76px] flex-shrink-0">
+      {/* Thumbnail / icon area */}
+      <div className="relative h-14 rounded-md border border-border bg-muted overflow-hidden group/item">
+
+        {isImage && imageUrl ? (
+          <img
+            src={imageUrl}
+            alt={fileName}
+            className="w-full h-full object-cover"
+          />
+        ) : fileTypeIcon ? (
+          <div className="w-full h-full flex items-center justify-center p-2">
+            <img
+              src={fileTypeIcon}
+              alt=""
+              className="max-h-full max-w-full object-contain"
+            />
+          </div>
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <FileIcon className="h-6 w-6 text-muted-foreground/50" />
+          </div>
+        )}
+
+        {/* Hover overlay con acciones */}
+        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover/item:opacity-100 transition-opacity flex items-center justify-center gap-1.5">
           {fileUrl && (
             <Button
               type="button"
-              variant="ghost"
-              size="sm"
+              size="icon"
+              variant="secondary"
+              className="h-7 w-7 cursor-pointer"
               onClick={() => window.open(fileUrl, '_blank')}
               disabled={loading}
-              className={`cursor-pointer ${
-                hasBackground ? 'bg-black/50 hover:bg-black/70 text-white' : ''
-              }`}
+              title="Descargar"
             >
-              <Download className="h-4 w-4" />
+              <Download className="h-3.5 w-3.5" />
             </Button>
           )}
           <Button
             type="button"
-            variant="ghost"
-            size="sm"
+            size="icon"
+            variant="destructive"
+            className="h-7 w-7 cursor-pointer"
             onClick={() => onRemove(index)}
             disabled={loading}
-            className={`cursor-pointer ${
-              hasBackground ? 'bg-black/50 hover:bg-black/70 text-white' : ''
-            }`}
+            title="Eliminar"
           >
-            <Trash2 className="h-4 w-4" />
+            <Trash2 className="h-3.5 w-3.5" />
           </Button>
         </div>
       </div>
-      <div className="flex-1 min-w-0 relative z-10">
-        <span className="text-xs truncate block">{fileName}</span>
-        <span className="text-xs text-muted-foreground">
-          {fileSize ? (Number(fileSize) / 1024).toFixed(2) : '0'} KB
-        </span>
+
+      {/* Nombre y tamaño */}
+      <div className="px-0.5">
+        <p className="text-[11px] font-medium leading-tight truncate" title={fileName}>
+          {truncateFileName(fileName)}
+        </p>
+        {fileSizeKB && (
+          <p className="text-[10px] text-muted-foreground leading-tight">
+            {Number(fileSizeKB) >= 1024
+              ? `${(Number(fileSizeKB) / 1024).toFixed(1)} MB`
+              : `${fileSizeKB} KB`}
+          </p>
+        )}
       </div>
     </div>
   );

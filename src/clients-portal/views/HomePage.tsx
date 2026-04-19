@@ -162,7 +162,7 @@ const HomePage = () => {
         </header>
 
         {/* Content Area - Scrollable */}
-        <main className="flex-1 p-6 lg:p-8 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto">
           <Outlet />
         </main>
       </div>
