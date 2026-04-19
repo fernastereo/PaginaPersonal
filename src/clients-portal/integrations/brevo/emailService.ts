@@ -40,6 +40,15 @@ interface TaskCompletedNotificationParams {
   completedAt: string;
 }
 
+interface NewTaskNotificationParams {
+  taskNumber: string;
+  taskTitle: string;
+  taskDescription: string;
+  creatorName: string;
+  clientName: string;
+  createdAt: string;
+}
+
 const buildEmailHtml = (params: {
   taskNumber: string;
   taskTitle: string;
@@ -255,6 +264,127 @@ const buildTaskCompletedEmailHtml = (params: {
 </html>`;
 };
 
+const buildNewTaskEmailHtml = (params: {
+  taskNumber: string;
+  taskTitle: string;
+  taskDescription: string;
+  creatorName: string;
+  clientName: string;
+  createdDate: string;
+  createdTime: string;
+}): string => {
+  const {
+    taskNumber,
+    taskTitle,
+    taskDescription,
+    creatorName,
+    clientName,
+    createdDate,
+    createdTime,
+  } = params;
+
+  const descriptionPreview =
+    taskDescription.length > 300
+      ? `${taskDescription.slice(0, 300)}…`
+      : taskDescription;
+
+  return `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body style="margin:0; padding:0; background-color:#f3f4f6; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f3f4f6; padding:40px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%;">
+
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(135deg,#dc2626,#ea580c); padding:28px 32px; border-radius:8px 8px 0 0;">
+              <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td>
+                    <p style="margin:0; font-size:12px; color:rgba(255,255,255,0.75); text-transform:uppercase; letter-spacing:1px;">${APP_NAME}</p>
+                    <h1 style="margin:6px 0 0 0; font-size:20px; font-weight:700; color:#ffffff;">🔔 Nueva tarea registrada</h1>
+                  </td>
+                  <td align="right">
+                    <span style="display:inline-block; background:rgba(255,255,255,0.25); color:#fff; font-size:13px; font-weight:600; padding:4px 12px; border-radius:20px;">${taskNumber}</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="background:#ffffff; padding:28px 32px;">
+
+              <p style="margin:0 0 20px 0; font-size:15px; color:#374151;">
+                Hola <strong>${ADMIN_NAME}</strong>, se ha registrado una nueva tarea que requiere tu atención:
+              </p>
+
+              <!-- Task title -->
+              <div style="background:#fef2f2; border-left:4px solid #dc2626; padding:16px 20px; border-radius:6px; margin-bottom:20px;">
+                <p style="margin:0; font-size:13px; color:#991b1b; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Tarea</p>
+                <p style="margin:6px 0 0 0; font-size:16px; color:#1f2937; font-weight:600;">${taskTitle.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+              </div>
+
+              <!-- Meta info -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:20px; border:1px solid #e5e7eb; border-radius:6px; overflow:hidden;">
+                <tr>
+                  <td style="padding:10px 16px; background:#f9fafb; border-bottom:1px solid #e5e7eb; width:40%;">
+                    <p style="margin:0; font-size:12px; color:#6b7280; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">Informador</p>
+                  </td>
+                  <td style="padding:10px 16px; background:#ffffff; border-bottom:1px solid #e5e7eb;">
+                    <p style="margin:0; font-size:14px; color:#111827; font-weight:500;">${creatorName.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:10px 16px; background:#f9fafb; border-bottom:1px solid #e5e7eb;">
+                    <p style="margin:0; font-size:12px; color:#6b7280; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">Cliente</p>
+                  </td>
+                  <td style="padding:10px 16px; background:#ffffff; border-bottom:1px solid #e5e7eb;">
+                    <p style="margin:0; font-size:14px; color:#111827; font-weight:500;">${clientName.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:10px 16px; background:#f9fafb;">
+                    <p style="margin:0; font-size:12px; color:#6b7280; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">Fecha</p>
+                  </td>
+                  <td style="padding:10px 16px; background:#ffffff;">
+                    <p style="margin:0; font-size:14px; color:#111827; font-weight:500;">${createdDate} · ${createdTime}</p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Description -->
+              <p style="margin:0 0 8px 0; font-size:13px; color:#6b7280; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">Descripción</p>
+              <div style="background:#f9fafb; border:1px solid #e5e7eb; padding:14px 16px; border-radius:6px;">
+                <p style="margin:0; font-size:14px; color:#374151; white-space:pre-wrap; line-height:1.7;">${descriptionPreview.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+              </div>
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background:#f9fafb; padding:16px 32px; border-radius:0 0 8px 8px; border-top:1px solid #e5e7eb;">
+              <p style="margin:0; font-size:12px; color:#9ca3af; text-align:center;">
+                Este mensaje fue generado automáticamente por ${APP_NAME}. Por favor no respondas a este correo.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+};
+
 const sendEmail = async (params: SendEmailParams): Promise<void> => {
   if (!BREVO_API_KEY) {
     console.warn('No hay mail service API key?.');
@@ -314,7 +444,7 @@ export const brevoEmailService = {
       minute: '2-digit',
     });
 
-    const subject = `[${taskNumber}] Nuevo comentario — ${taskTitle.slice(0, 60)}${taskTitle.length > 60 ? '…' : ''}`;
+    const subject = `💬 [${taskNumber}] Nuevo comentario — ${taskTitle.slice(0, 60)}${taskTitle.length > 60 ? '…' : ''}`;
 
     if (commenterIsCreator) {
       // El creador de la tarea comentó → solo notificar al admin
@@ -371,6 +501,51 @@ export const brevoEmailService = {
         });
       }
     }
+  },
+
+  async sendNewTaskNotification(
+    params: NewTaskNotificationParams
+  ): Promise<void> {
+    if (!BREVO_API_KEY) {
+      console.warn('No hay mail service API key?.');
+      return;
+    }
+
+    const {
+      taskNumber,
+      taskTitle,
+      taskDescription,
+      creatorName,
+      clientName,
+      createdAt,
+    } = params;
+
+    const date = new Date(createdAt);
+    const createdDate = date.toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    });
+    const createdTime = date.toLocaleTimeString('es-ES', {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+
+    const subject = `🔔 [${taskNumber}] Nueva Tarea — ${taskTitle.slice(0, 55)}${taskTitle.length > 55 ? '…' : ''}`;
+
+    await sendEmail({
+      to: [{ email: ADMIN_EMAIL, name: ADMIN_NAME }],
+      subject,
+      htmlContent: buildNewTaskEmailHtml({
+        taskNumber,
+        taskTitle,
+        taskDescription,
+        creatorName,
+        clientName,
+        createdDate,
+        createdTime,
+      }),
+    });
   },
 
   async sendTaskCompletedNotification(

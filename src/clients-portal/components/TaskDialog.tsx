@@ -289,7 +289,7 @@ export const TaskDialog = ({
             });
         }
       } else {
-        await taskService.createTask(
+        const newTask = await taskService.createTask(
           {
             user_id: user.uid,
             user_name: userProfile?.name || '',
@@ -301,6 +301,22 @@ export const TaskDialog = ({
           },
           files.length > 0 ? files : undefined
         );
+
+        brevoEmailService
+          .sendNewTaskNotification({
+            taskNumber: newTask.taskNumber,
+            taskTitle: newTask.title,
+            taskDescription: newTask.description,
+            creatorName: userProfile?.name || '',
+            clientName: selectedClient?.name || '',
+            createdAt: newTask.createdAt,
+          })
+          .catch(err => {
+            console.warn(
+              'No se pudo enviar notificación de nueva tarea:',
+              err
+            );
+          });
       }
       if (isProduction) {
         logEvent(analytics, editingTask ? 'update_task' : 'create_task', {
