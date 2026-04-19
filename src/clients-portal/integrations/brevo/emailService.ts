@@ -33,6 +33,13 @@ interface CommentNotificationParams {
   currentUserId: string;
 }
 
+interface TaskCompletedNotificationParams {
+  taskNumber: string;
+  taskTitle: string;
+  taskCreatorId: string;
+  completedAt: string;
+}
+
 const buildEmailHtml = (params: {
   taskNumber: string;
   taskTitle: string;
@@ -89,7 +96,7 @@ const buildEmailHtml = (params: {
                 <tr>
                   <td>
                     <p style="margin:0; font-size:12px; color:rgba(255,255,255,0.7); text-transform:uppercase; letter-spacing:1px;">${APP_NAME}</p>
-                    <h1 style="margin:6px 0 0 0; font-size:20px; font-weight:700; color:#ffffff;">Nuevo comentario en incidencia</h1>
+                    <h1 style="margin:6px 0 0 0; font-size:20px; font-weight:700; color:#ffffff;">Nuevo comentario en Tarea</h1>
                   </td>
                   <td align="right">
                     <span style="display:inline-block; background:rgba(255,255,255,0.2); color:#fff; font-size:13px; font-weight:600; padding:4px 12px; border-radius:20px;">${taskNumber}</span>
@@ -104,12 +111,12 @@ const buildEmailHtml = (params: {
             <td style="background:#ffffff; padding:28px 32px;">
 
               <p style="margin:0 0 20px 0; font-size:15px; color:#374151;">
-                Hola <strong>${recipientName}</strong>, hay un nuevo comentario en la incidencia:
+                Hola <strong>${recipientName}</strong>, hay un nuevo comentario en la tarea:
               </p>
 
               <!-- Task title -->
               <div style="background:#ede9fe; padding:12px 16px; border-radius:6px; margin-bottom:20px;">
-                <p style="margin:0; font-size:13px; color:#6d28d9; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Incidencia</p>
+                <p style="margin:0; font-size:13px; color:#6d28d9; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Tarea</p>
                 <p style="margin:4px 0 0 0; font-size:15px; color:#1f2937; font-weight:600;">${taskTitle.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
               </div>
 
@@ -137,6 +144,96 @@ const buildEmailHtml = (params: {
               </table>
 
               ${commentSection}
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background:#f9fafb; padding:16px 32px; border-radius:0 0 8px 8px; border-top:1px solid #e5e7eb;">
+              <p style="margin:0; font-size:12px; color:#9ca3af; text-align:center;">
+                Este mensaje fue generado automáticamente por ${APP_NAME}. Por favor no respondas a este correo.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+};
+
+const buildTaskCompletedEmailHtml = (params: {
+  taskNumber: string;
+  taskTitle: string;
+  completedDate: string;
+  completedTime: string;
+  recipientName: string;
+}): string => {
+  const { taskNumber, taskTitle, completedDate, completedTime, recipientName } =
+    params;
+
+  return `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body style="margin:0; padding:0; background-color:#f3f4f6; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f3f4f6; padding:40px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%;">
+
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(135deg,#059669,#10b981); padding:28px 32px; border-radius:8px 8px 0 0;">
+              <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td>
+                    <p style="margin:0; font-size:12px; color:rgba(255,255,255,0.75); text-transform:uppercase; letter-spacing:1px;">${APP_NAME}</p>
+                    <h1 style="margin:6px 0 0 0; font-size:20px; font-weight:700; color:#ffffff;">✅ Tarea completada</h1>
+                  </td>
+                  <td align="right">
+                    <span style="display:inline-block; background:rgba(255,255,255,0.25); color:#fff; font-size:13px; font-weight:600; padding:4px 12px; border-radius:20px;">${taskNumber}</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="background:#ffffff; padding:28px 32px;">
+
+              <p style="margin:0 0 20px 0; font-size:15px; color:#374151;">
+                Hola <strong>${recipientName}</strong>, tu Tarea ha sido marcada como completada:
+              </p>
+
+              <!-- Task title -->
+              <div style="background:#ecfdf5; border-left:4px solid #10b981; padding:16px 20px; border-radius:6px; margin-bottom:24px;">
+                <p style="margin:0; font-size:13px; color:#065f46; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Tarea</p>
+                <p style="margin:6px 0 0 0; font-size:16px; color:#1f2937; font-weight:600;">${taskTitle.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+              </div>
+
+              <!-- Completion date -->
+              <table cellpadding="0" cellspacing="0" style="margin-bottom:20px;">
+                <tr>
+                  <td style="padding-right:16px; vertical-align:middle;">
+                    <div style="width:40px; height:40px; background:#ecfdf5; border-radius:50%; display:flex; align-items:center; justify-content:center; text-align:center; line-height:40px; font-size:18px;">📅</div>
+                  </td>
+                  <td style="vertical-align:middle;">
+                    <p style="margin:0; font-size:13px; color:#6b7280; font-weight:500;">Completada el</p>
+                    <p style="margin:2px 0 0 0; font-size:15px; color:#111827; font-weight:600;">${completedDate} · ${completedTime}</p>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0; font-size:14px; color:#6b7280; line-height:1.6;">
+                Si tienes alguna consulta sobre esta Tarea, puedes responder directamente a través del portal.
+              </p>
 
             </td>
           </tr>
@@ -274,5 +371,47 @@ export const brevoEmailService = {
         });
       }
     }
+  },
+
+  async sendTaskCompletedNotification(
+    params: TaskCompletedNotificationParams
+  ): Promise<void> {
+    if (!BREVO_API_KEY) {
+      console.warn('No hay mail service API key?.');
+      return;
+    }
+
+    const { taskNumber, taskTitle, taskCreatorId, completedAt } = params;
+
+    const creatorProfile = await firestoreService.getUserProfile(taskCreatorId);
+    if (!creatorProfile) {
+      console.warn('No se encontró el perfil del creador de la tarea.');
+      return;
+    }
+
+    const date = new Date(completedAt);
+    const completedDate = date.toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    });
+    const completedTime = date.toLocaleTimeString('es-ES', {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+
+    const subject = `✅ [${taskNumber}] La tarea ha sido completada`;
+
+    await sendEmail({
+      to: [{ email: creatorProfile.email, name: creatorProfile.name }],
+      subject,
+      htmlContent: buildTaskCompletedEmailHtml({
+        taskNumber,
+        taskTitle,
+        completedDate,
+        completedTime,
+        recipientName: creatorProfile.name,
+      }),
+    });
   },
 };

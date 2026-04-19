@@ -18,6 +18,7 @@ import { FileItem } from '@/clients-portal/components/FileItem';
 import { TaskComments } from '@/clients-portal/components/TaskComments';
 import { useAuth } from '@/clients-portal/auth/useAuth';
 import { taskService } from '@/clients-portal/integrations/firebase/taskService';
+import { brevoEmailService } from '@/clients-portal/integrations/brevo/emailService';
 import { firestoreService } from '@/clients-portal/integrations/firebase/firestoreService';
 import type { Task, TaskStatus } from '@/clients-portal/types/task';
 import {
@@ -255,6 +256,9 @@ export const TaskDialog = ({
       }
 
       if (editingTask) {
+        const statusChangedToCompleted =
+          editingTask.status !== 'completed' && formData.status === 'completed';
+
         // Subir nuevos archivos y combinar con archivos existentes
         await taskService.updateTask(
           editingTask.uid,
@@ -268,6 +272,22 @@ export const TaskDialog = ({
           },
           files.length > 0 ? files : undefined // Archivos nuevos a subir
         );
+
+        if (statusChangedToCompleted) {
+          brevoEmailService
+            .sendTaskCompletedNotification({
+              taskNumber: editingTask.taskNumber,
+              taskTitle: editingTask.title,
+              taskCreatorId: editingTask.user_id,
+              completedAt: new Date().toISOString(),
+            })
+            .catch(err => {
+              console.warn(
+                'No se pudo enviar notificación de tarea completada:',
+                err
+              );
+            });
+        }
       } else {
         await taskService.createTask(
           {
@@ -331,9 +351,7 @@ export const TaskDialog = ({
       <Toaster />
       <DialogContent
         className={`md:max-w-[calc(100%-35rem)] block overflow-y-auto ${
-          editingTask
-            ? 'h-[90vh] md:h-[88vh]'
-            : 'h-[65vh] md:h-[62vh]'
+          editingTask ? 'h-[90vh] md:h-[88vh]' : 'h-[65vh] md:h-[62vh]'
         }`}
       >
         <DialogHeader>
@@ -538,8 +556,8 @@ export const TaskDialog = ({
               {loading
                 ? 'Creando...'
                 : editingTask
-                ? 'Actualizar Incidencia'
-                : 'Crear Incidencia'}
+                  ? 'Actualizar Incidencia'
+                  : 'Crear Incidencia'}
             </Button>
           </div>
         </form>
