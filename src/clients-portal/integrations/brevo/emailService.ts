@@ -3,9 +3,12 @@ import { firestoreService } from '@/clients-portal/integrations/firebase/firesto
 const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email';
 const BREVO_API_KEY = import.meta.env.VITE_BREVO_API_KEY as string;
 const ADMIN_EMAIL = (import.meta.env.VITE_ADMIN_EMAIL as string) || 'fernandoecueto@gmail.com';
-const ADMIN_EMAIL_FROM = (import.meta.env.VITE_ADMIN_EMAIL_FROM as string) || 'hey@fernandocueto.com';
-const ADMIN_NAME = (import.meta.env.VITE_ADMIN_NAME as string) || 'Fernando E. Cueto';
-const APP_NAME = (import.meta.env.VITE_APP_NAME as string) || 'Portal de Clientes FERNANDO E. CUETO';
+const ADMIN_EMAIL_FROM = import.meta.env.VITE_ADMIN_EMAIL_FROM as string;
+const ADMIN_NAME =
+  (import.meta.env.VITE_ADMIN_NAME as string) || 'Fernando E. Cueto';
+const APP_NAME =
+  (import.meta.env.VITE_APP_NAME as string) ||
+  'Portal de Clientes FERNANDO E. CUETO';
 
 interface EmailRecipient {
   email: string;
@@ -40,7 +43,16 @@ const buildEmailHtml = (params: {
   filesCount: number;
   recipientName: string;
 }): string => {
-  const { taskNumber, taskTitle, commenterName, commentText, commentDate, commentTime, filesCount, recipientName } = params;
+  const {
+    taskNumber,
+    taskTitle,
+    commenterName,
+    commentText,
+    commentDate,
+    commentTime,
+    filesCount,
+    recipientName,
+  } = params;
 
   const filesNote =
     filesCount > 0
@@ -108,7 +120,11 @@ const buildEmailHtml = (params: {
                     <table cellpadding="0" cellspacing="0">
                       <tr>
                         <td style="width:36px; height:36px; background:#4f46e5; border-radius:50%; text-align:center; vertical-align:middle;">
-                          <span style="color:#fff; font-size:13px; font-weight:700;">${commenterName.split(' ').slice(0, 2).map(n => n[0]?.toUpperCase() || '').join('')}</span>
+                          <span style="color:#fff; font-size:13px; font-weight:700;">${commenterName
+                            .split(' ')
+                            .slice(0, 2)
+                            .map(n => n[0]?.toUpperCase() || '')
+                            .join('')}</span>
                         </td>
                         <td style="padding-left:12px;">
                           <p style="margin:0; font-size:14px; font-weight:600; color:#111827;">${commenterName.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
@@ -144,15 +160,9 @@ const buildEmailHtml = (params: {
 
 const sendEmail = async (params: SendEmailParams): Promise<void> => {
   if (!BREVO_API_KEY) {
-    console.warn('[Brevo] API key no configurada. Omitiendo notificación por email.');
+    console.warn('No hay mail service API key?.');
     return;
   }
-
-  console.log('Desde brevo service', {
-    sender: { name: APP_NAME, email: ADMIN_EMAIL_FROM },
-    to: params.to,
-    subject: params.subject,
-  });
 
   const response = await fetch(BREVO_API_URL, {
     method: 'POST',
@@ -176,18 +186,36 @@ const sendEmail = async (params: SendEmailParams): Promise<void> => {
 };
 
 export const brevoEmailService = {
-  async sendCommentNotification(params: CommentNotificationParams): Promise<void> {
+  async sendCommentNotification(
+    params: CommentNotificationParams
+  ): Promise<void> {
     if (!BREVO_API_KEY) {
-      console.warn('No hay [Brevo] API key?.');
+      console.warn('No hay mail service API key?.');
       return;
     }
 
-    const { taskCreatorId, currentUserId, taskNumber, taskTitle, commenterName, commentText, commentCreatedAt, filesCount } = params;
+    const {
+      taskCreatorId,
+      currentUserId,
+      taskNumber,
+      taskTitle,
+      commenterName,
+      commentText,
+      commentCreatedAt,
+      filesCount,
+    } = params;
     const commenterIsCreator = currentUserId === taskCreatorId;
 
     const date = new Date(commentCreatedAt);
-    const commentDate = date.toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' });
-    const commentTime = date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+    const commentDate = date.toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    });
+    const commentTime = date.toLocaleTimeString('es-ES', {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
 
     const subject = `[${taskNumber}] Nuevo comentario — ${taskTitle.slice(0, 60)}${taskTitle.length > 60 ? '…' : ''}`;
 
@@ -209,23 +237,10 @@ export const brevoEmailService = {
       });
     } else {
       // El admin u otro usuario comentó → notificar al admin y al creador de la tarea
-      const creatorProfile = await firestoreService.getUserProfile(taskCreatorId);
+      const creatorProfile =
+        await firestoreService.getUserProfile(taskCreatorId);
 
       // Notificación al admin
-      console.log('Notificación al admin', {
-        to: [{ email: ADMIN_EMAIL, name: ADMIN_NAME }],
-        subject,
-        htmlContent: buildEmailHtml({
-          taskNumber,
-          taskTitle,
-          commenterName,
-          commentText,
-          commentDate,
-          commentTime,
-          filesCount,
-          recipientName: ADMIN_NAME,
-        }),
-      });
       await sendEmail({
         to: [{ email: ADMIN_EMAIL, name: ADMIN_NAME }],
         subject,
@@ -243,20 +258,6 @@ export const brevoEmailService = {
 
       // Notificación al creador si tiene email y es diferente al admin
       if (creatorProfile?.email && creatorProfile.email !== ADMIN_EMAIL) {
-        console.log('Notificación al creador', {
-          to: [{ email: creatorProfile.email, name: creatorProfile.name }],
-          subject,
-          htmlContent: buildEmailHtml({
-            taskNumber,
-            taskTitle,
-            commenterName,
-            commentText,
-            commentDate,
-            commentTime,
-            filesCount,
-            recipientName: creatorProfile.name,
-          }),
-        });
         await sendEmail({
           to: [{ email: creatorProfile.email, name: creatorProfile.name }],
           subject,

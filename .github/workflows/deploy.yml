@@ -52,6 +52,11 @@ jobs:
           VITE_AWS_BUCKET_FOLDER: ${{ secrets.VITE_AWS_BUCKET_FOLDER }}
           VITE_AWS_REGION: ${{ secrets.VITE_AWS_REGION }}
           VITE_AWS_PATH: ${{ secrets.VITE_AWS_PATH }}
+          VITE_BREVO_API_KEY: ${{ secrets.VITE_BREVO_API_KEY }}
+          VITE_ADMIN_EMAIL: ${{ secrets.VITE_ADMIN_EMAIL }}
+          VITE_ADMIN_EMAIL_FROM: ${{ secrets.VITE_ADMIN_EMAIL_FROM }}
+          VITE_ADMIN_NAME: ${{ secrets.VITE_ADMIN_NAME }}
+          VITE_APP_NAME: ${{ secrets.VITE_APP_NAME }}
 
   # Job para hacer deploy a producción
   deploy:
@@ -99,6 +104,11 @@ jobs:
           VITE_AWS_BUCKET_FOLDER: ${{ secrets.VITE_AWS_BUCKET_FOLDER }}
           VITE_AWS_REGION: ${{ secrets.VITE_AWS_REGION }}
           VITE_AWS_PATH: ${{ secrets.VITE_AWS_PATH }}
+          VITE_BREVO_API_KEY: ${{ secrets.VITE_BREVO_API_KEY }}
+          VITE_ADMIN_EMAIL: ${{ secrets.VITE_ADMIN_EMAIL }}
+          VITE_ADMIN_EMAIL_FROM: ${{ secrets.VITE_ADMIN_EMAIL_FROM }}
+          VITE_ADMIN_NAME: ${{ secrets.VITE_ADMIN_NAME }}
+          VITE_APP_NAME: ${{ secrets.VITE_APP_NAME }}
 
 
       - name: 📦 Create deployment package

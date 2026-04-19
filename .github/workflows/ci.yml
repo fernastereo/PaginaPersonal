@@ -48,6 +48,11 @@ jobs:
           export VITE_AWS_BUCKET_FOLDER="test_aws_bucket_folder"
           export VITE_AWS_REGION="test_aws_region"
           export VITE_AWS_PATH="test_aws_path"
+          export VITE_BREVO_API_KEY="test_brevo_api_key"
+          export VITE_ADMIN_EMAIL="test@admin.email"
+          export VITE_ADMIN_EMAIL_FROM="test@admin.email"
+          export VITE_ADMIN_NAME="Test Admin"
+          export VITE_APP_NAME="Test App"
           npm run build
 
       - name: 📊 Build size analysis
