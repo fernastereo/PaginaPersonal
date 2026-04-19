@@ -23,7 +23,6 @@ import {
 } from 'lucide-react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { TaskDialog } from '@/clients-portal/components/TaskDialog';
 import { taskService } from '@/clients-portal/integrations/firebase/taskService';
 import {
   Table,
@@ -58,11 +57,9 @@ const Tasks = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
-  const [dialogOpen, setDialogOpen] = useState(false);
   const [searchTitle, setSearchTitle] = useState('');
   const [searchDate, setSearchDate] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [editingTask, setEditingTask] = useState<Task | null>(null);
   const navigate = useNavigate();
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const { user, client_id } = useAuth();
@@ -134,16 +131,14 @@ const Tasks = () => {
     if (isProduction) {
       logEvent(analytics, 'click_on_new_task', {});
     }
-    setEditingTask(null);
-    setDialogOpen(true);
+    navigate('/clients/tasks/new');
   };
 
   const handleEdit = (task: Task) => {
     if (isProduction) {
       logEvent(analytics, 'click_on_edit_task', { task: task.title });
     }
-    setEditingTask(task);
-    setDialogOpen(true);
+    navigate(`/clients/tasks/${task.uid}`);
   };
 
   const getStatusBadge = (status: string) => {
@@ -386,12 +381,6 @@ const Tasks = () => {
           </>
         )}
 
-        <TaskDialog
-          open={dialogOpen}
-          onOpenChange={setDialogOpen}
-          onSuccess={loadTasks}
-          editingTask={editingTask}
-        />
       </div>
     </div>
   );
