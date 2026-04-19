@@ -169,7 +169,7 @@ export const TaskComments = ({
   };
 
   return (
-    <div className="space-y-4 pt-4 border-t border-border mt-2">
+    <div className="space-y-4 pt-4 border-t border-border mt-6">
       <div className="flex items-center gap-2">
         <MessageSquare className="h-4 w-4 text-primary" />
         <span className="text-sm font-semibold">
@@ -256,7 +256,9 @@ export const TaskComments = ({
               <Button
                 type="submit"
                 size="sm"
-                disabled={loading || (!commentText.trim() && files.length === 0)}
+                disabled={
+                  loading || (!commentText.trim() && files.length === 0)
+                }
                 className="h-7 px-3 text-xs"
               >
                 <Send className="h-3 w-3 mr-1" />
@@ -287,9 +289,12 @@ export const TaskComments = ({
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs font-semibold">{comment.user_name}</span>
+                  <span className="text-xs font-semibold">
+                    {comment.user_name}
+                  </span>
                   <span className="text-xs text-muted-foreground">
-                    {formatDate(comment.createdAt)} · {formatTime(comment.createdAt)}
+                    {formatDate(comment.createdAt)} ·{' '}
+                    {formatTime(comment.createdAt)}
                   </span>
                 </div>
                 {comment.text && (

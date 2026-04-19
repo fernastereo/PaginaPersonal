@@ -377,14 +377,14 @@ export const TaskDialog = ({
               {taskNumber ? taskNumber : ''}
             </span>
             <span className="text-sm font-semibold">
-              {editingTask ? 'Actualizar Incidencia' : 'Nueva Incidencia'}
+              {editingTask ? 'Actualizar Tarea' : 'Nueva Tarea'}
             </span>
           </DialogTitle>
           <DialogDescription>
             <span className="text-md text-muted-foreground">
               {editingTask
-                ? 'Actualiza los datos de la incidencia'
-                : 'Completa los datos para registrar una nueva incidencia'}
+                ? 'Actualiza los datos de la tarea'
+                : 'Completa los datos para registrar una nueva tarea'}
             </span>
           </DialogDescription>
         </DialogHeader>
@@ -394,7 +394,7 @@ export const TaskDialog = ({
               <Label htmlFor="title">Título *</Label>
               <Input
                 id="title"
-                placeholder="Título de la incidencia"
+                placeholder="Título de la tarea"
                 value={formData.title}
                 onChange={e =>
                   setFormData({ ...formData, title: e.target.value })
@@ -572,8 +572,8 @@ export const TaskDialog = ({
               {loading
                 ? 'Creando...'
                 : editingTask
-                  ? 'Actualizar Incidencia'
-                  : 'Crear Incidencia'}
+                  ? 'Actualizar Tarea'
+                  : 'Crear Tarea'}
             </Button>
           </div>
         </form>

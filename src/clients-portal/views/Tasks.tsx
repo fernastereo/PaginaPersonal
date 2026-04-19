@@ -178,9 +178,9 @@ const Tasks = () => {
       <div className="container mx-auto p-4 md:p-8">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold">Gestión de Incidencias</h1>
+            <h1 className="text-3xl font-bold">Gestión de Tareas</h1>
             <p className="text-muted-foreground mt-2">
-              Administra y registra incidencias
+              Administra y registra tareas
             </p>
           </div>
           <Button onClick={handleLogout} variant="outline" size="sm">
@@ -193,14 +193,14 @@ const Tasks = () => {
           <CardHeader>
             <CardTitle>Filtros</CardTitle>
             <CardDescription>
-              Busca incidencias por título o Date
+              Busca tareas por título o número de tarea
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Buscar por título..."
+                placeholder="Buscar por título o número de tarea..."
                 value={searchTitle}
                 onChange={e => setSearchTitle(e.target.value)}
                 className="pl-9"
@@ -224,21 +224,19 @@ const Tasks = () => {
             </Button>
             <Button onClick={handleNewTask}>
               <Plus className="mr-2 h-4 w-4" />
-              Nueva Incidencia
+              Nueva Tarea
             </Button>
           </CardContent>
         </Card>
 
         {loading ? (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">Cargando incidencias...</p>
+            <p className="text-muted-foreground">Cargando tareas...</p>
           </div>
         ) : filteredTasks.length === 0 ? (
           <Card className="border-border">
             <CardContent className="py-12 text-center">
-              <p className="text-muted-foreground">
-                No se encontraron incidencias
-              </p>
+              <p className="text-muted-foreground">No se encontraron tareas</p>
             </CardContent>
           </Card>
         ) : (
