@@ -588,5 +588,19 @@ export const brevoEmailService = {
         recipientName: creatorProfile.name,
       }),
     });
+
+    if (creatorProfile.email !== ADMIN_EMAIL) {
+      await sendEmail({
+        to: [{ email: ADMIN_EMAIL, name: ADMIN_NAME }],
+        subject,
+        htmlContent: buildTaskCompletedEmailHtml({
+          taskNumber,
+          taskTitle,
+          completedDate,
+          completedTime,
+          recipientName: ADMIN_NAME,
+        }),
+      });
+    }
   },
 };

@@ -212,13 +212,25 @@ Users belong to multiple clients via `client_id: string[]`. Queries use `array-c
 
 ## Email Notifications (Brevo)
 
-Three automatic transactional emails via `emailService.ts`:
+Service: `src/clients-portal/integrations/brevo/emailService.ts`
 
-| Trigger | Recipient | Event |
-|---|---|---|
-| Task created | Admin | `taskService.createTask()` |
-| Comment added | Admin + Task creator | `taskService.addComment()` |
-| Task completed | Task creator | `taskService.updateTask()` with `status='completed'` |
+### Notification matrix
+
+| Event | Admin | Task creator |
+|---|:---:|:---:|
+| New task created | ✅ | ❌ |
+| Comment added — by the task creator | ✅ | ❌ |
+| Comment added — by someone else | ✅ | ✅ |
+| Task completed | ✅ | ✅ |
+
+### Rules
+- If the task creator **is the admin** (`email === ADMIN_EMAIL`), no duplicate is sent.
+- Emails are sent fire-and-forget from the client — they do not block the UI.
+
+### Exported functions
+- `sendNewTaskNotification()` — triggered by `taskService.createTask()`
+- `sendCommentNotification()` — triggered by `taskService.addComment()`
+- `sendTaskCompletedNotification()` — triggered by `taskService.updateTask()` when `status='completed'`
 
 Homepage contact form uses **EmailJS** (client-side, no backend needed).
 
