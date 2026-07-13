@@ -59,6 +59,7 @@ const Tasks = () => {
   const [loading, setLoading] = useState(true);
   const [searchTitle, setSearchTitle] = useState('');
   const [searchDate, setSearchDate] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
@@ -90,14 +91,31 @@ const Tasks = () => {
     loadTasks();
   }, [checkAuth, loadTasks]);
 
+  const statusFilters = [
+    { value: 'all', label: 'Todas' },
+    { value: 'pending', label: 'Pendiente' },
+    { value: 'in_progress', label: 'En Progreso' },
+    { value: 'on_hold', label: 'Requiere Feedback' },
+    { value: 'completed', label: 'Completado' },
+    { value: 'cancelled', label: 'Cancelado' },
+  ];
+
+  const statusCount = (status: string) =>
+    tasks.filter(t => t.status === status).length;
+
   const filterTasks = useCallback(() => {
     let filtered = [...tasks];
+
+    if (selectedStatus !== 'all') {
+      filtered = filtered.filter(task => task.status === selectedStatus);
+    }
 
     if (searchTitle) {
       filtered = filtered.filter(
         task =>
           task.title.toLowerCase().includes(searchTitle.toLowerCase()) ||
-          task.taskNumber.toLowerCase().includes(searchTitle.toLowerCase())
+          task.taskNumber.toLowerCase().includes(searchTitle.toLowerCase()) ||
+          task.client_name?.toLowerCase().includes(searchTitle.toLowerCase())
       );
     }
 
@@ -109,7 +127,7 @@ const Tasks = () => {
 
     setFilteredTasks(filtered);
     setCurrentPage(1);
-  }, [tasks, searchTitle, searchDate]);
+  }, [tasks, selectedStatus, searchTitle, searchDate]);
 
   useEffect(() => {
     filterTasks();
@@ -118,8 +136,8 @@ const Tasks = () => {
   const cleanAndReloadTasks = () => {
     setSearchTitle('');
     setSearchDate('');
+    setSelectedStatus('all');
     loadTasks();
-    filterTasks();
   };
 
   const handleLogout = async () => {
@@ -190,6 +208,26 @@ const Tasks = () => {
             <CardDescription>
               Busca tareas por título o número de tarea
             </CardDescription>
+            <div className="flex flex-wrap gap-2 pt-1">
+              {statusFilters.map(filter => (
+                <button
+                  key={filter.value}
+                  onClick={() => setSelectedStatus(filter.value)}
+                  className={`px-3 py-1 rounded-full text-xs font-medium transition-colors border ${
+                    selectedStatus === filter.value
+                      ? 'bg-primary text-primary-foreground border-primary'
+                      : 'bg-transparent text-muted-foreground border-border hover:border-primary/50 hover:text-foreground'
+                  }`}
+                >
+                  {filter.label}
+                  {filter.value !== 'all' && (
+                    <span className="ml-1 opacity-70">
+                      ({statusCount(filter.value)})
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
           </CardHeader>
           <CardContent className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">

@@ -73,6 +73,7 @@ const Dashboard = () => {
     on_hold: 0,
   });
   const [loading, setLoading] = useState(true);
+  const [selectedStatus, setSelectedStatus] = useState<string>('all');
 
   const checkAuth = useCallback(async () => {
     if (!user) {
@@ -175,8 +176,19 @@ const Dashboard = () => {
 
   const trendData = getTrendData();
 
-  // Incidencias recientes
-  const recentTasks = tasks.slice(0, 3);
+  const statusFilters = [
+    { value: 'all', label: 'Todas' },
+    { value: 'pending', label: 'Pendiente' },
+    { value: 'in_progress', label: 'En Progreso' },
+    { value: 'on_hold', label: 'Requiere Feedback' },
+    { value: 'completed', label: 'Completado' },
+    { value: 'cancelled', label: 'Cancelado' },
+  ];
+
+  const filteredTasks =
+    selectedStatus === 'all'
+      ? tasks.slice(0, 3)
+      : tasks.filter(t => t.status === selectedStatus).slice(0, 5);
 
   // Tiempo promedio de resolución (en días)
   const getAverageResolutionTime = () => {
@@ -424,14 +436,16 @@ const Dashboard = () => {
                 </CardContent>
               </Card>
 
-              {/* Incidencias Recientes */}
+              {/* Tareas Recientes */}
               <Card className="lg:col-span-2 border-border">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div>
                       <CardTitle>Tareas Recientes</CardTitle>
                       <CardDescription>
-                        Últimas 3 tareas registradas
+                        {selectedStatus === 'all'
+                          ? 'Últimas 3 tareas registradas'
+                          : `Últimas 5 tareas · ${statusFilters.find(f => f.value === selectedStatus)?.label}`}
                       </CardDescription>
                     </div>
                     <Button
@@ -443,18 +457,40 @@ const Dashboard = () => {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
+                  {/* Filtros de estado */}
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {statusFilters.map(filter => (
+                      <button
+                        key={filter.value}
+                        onClick={() => setSelectedStatus(filter.value)}
+                        className={`px-3 py-1 rounded-full text-xs font-medium transition-colors border ${
+                          selectedStatus === filter.value
+                            ? 'bg-primary text-primary-foreground border-primary'
+                            : 'bg-transparent text-muted-foreground border-border hover:border-primary/50 hover:text-foreground'
+                        }`}
+                      >
+                        {filter.label}
+                        {filter.value !== 'all' && (
+                          <span className="ml-1 opacity-70">
+                            ({stats[filter.value as keyof Stats] ?? 0})
+                          </span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {recentTasks.length === 0 ? (
+                    {filteredTasks.length === 0 ? (
                       <p className="text-muted-foreground text-center py-4">
-                        No hay tareas registradas
+                        No hay tareas con ese estado
                       </p>
                     ) : (
-                      recentTasks.map(task => (
+                      filteredTasks.map(task => (
                         <div
                           key={task.uid}
-                          className="flex items-start justify-between p-3 rounded-lg border bg-card hover:bg-accent/50 transition-colors"
+                          className="flex items-start justify-between p-3 rounded-lg border bg-card hover:bg-accent/50 transition-colors cursor-pointer"
+                          onClick={() => navigate(`/clients/tasks/${task.uid}`)}
                         >
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 mb-1 flex-wrap">
